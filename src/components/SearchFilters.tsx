@@ -1,4 +1,4 @@
-import { Search, MapPin, Filter, Star, Clock, DollarSign, Wine, Music, Beer } from "lucide-react";
+import { Search, MapPin, Filter, Wine, Music, Beer, GlassWater, Martini } from "lucide-react";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,23 +6,30 @@ import { supabase } from "@/integrations/supabase/client";
 const SearchFilters = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
-  const filters = [
-    { id: "all", label: "All Bars", icon: Search },
-    { id: "Cocktail Bar", label: "Cocktail", icon: Wine },
-    { id: "Rooftop Bar", label: "Rooftop", icon: MapPin },
-    { id: "Speakeasy", label: "Speakeasy", icon: Filter },
-    { id: "Wine Bar", label: "Wine", icon: Wine },
-    { id: "Jazz Bar", label: "Jazz", icon: Music },
-    { id: "Beer Bar", label: "Beer", icon: Beer },
-  ];
-
-  const { data: stats } = useQuery({
-    queryKey: ["bar-stats"],
+  const { data: categories } = useQuery({
+    queryKey: ["bar-categories"],
     queryFn: async () => {
-      const { data, error } = await supabase.rpc("get_bar_stats");
+      const { data, error } = await supabase
+        .from("bars")
+        .select("category");
       if (error) throw error;
-      return data as { total: number; categories: number; rooftop: number };
+
+      const counts: Record<string, number> = {};
+      let total = 0;
+      for (const row of data) {
+        if (row.category) {
+          counts[row.category] = (counts[row.category] || 0) + 1;
+        }
+        total++;
+      }
+
+      const sorted = Object.entries(counts)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count);
+
+      return { categories: sorted, total };
     },
   });
 
@@ -33,7 +40,7 @@ const SearchFilters = () => {
     queryFn: async () => {
       let query = supabase.from("bars").select("id, name, address, category, operating_hours", { count: "exact" });
       if (activeFilter !== "all") {
-        query = query.or(`category.eq.${activeFilter},category.eq.${activeFilter} Bar`);
+        query = query.eq("category", activeFilter);
       }
       if (searchTerm.trim()) {
         query = query.or(`name.ilike.%${searchTerm}%,address.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%`);
@@ -45,6 +52,12 @@ const SearchFilters = () => {
     },
     enabled: hasActiveSearch,
   });
+
+  const displayedCategories = categories?.categories
+    ? showAllCategories
+      ? categories.categories
+      : categories.categories.slice(0, 8)
+    : [];
 
   return (
     <section className="py-16 bg-card border-y border-border">
@@ -66,26 +79,46 @@ const SearchFilters = () => {
 
           {/* Filter Categories */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Categories</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">
+              Categories ({categories?.categories.length ?? "—"})
+            </h3>
             <div className="flex flex-wrap gap-3">
-              {filters.map((filter) => {
-                const Icon = filter.icon;
-                return (
-                  <button
-                    key={filter.id}
-                    onClick={() => setActiveFilter(filter.id)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
-                      activeFilter === filter.id
-                        ? "bg-accent text-accent-foreground border-accent shadow-gold"
-                        : "bg-background text-muted-foreground border-border hover:border-accent hover:text-accent"
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    <span className="text-sm font-medium">{filter.label}</span>
-                  </button>
-                );
-              })}
+              <button
+                onClick={() => setActiveFilter("all")}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
+                  activeFilter === "all"
+                    ? "bg-accent text-accent-foreground border-accent shadow-gold"
+                    : "bg-background text-muted-foreground border-border hover:border-accent hover:text-accent"
+                }`}
+              >
+                <Search className="w-4 h-4" />
+                <span className="text-sm font-medium">All ({categories?.total ?? "—"})</span>
+              </button>
+              {displayedCategories.map((cat) => (
+                <button
+                  key={cat.name}
+                  onClick={() => setActiveFilter(cat.name)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-all duration-200 ${
+                    activeFilter === cat.name
+                      ? "bg-accent text-accent-foreground border-accent shadow-gold"
+                      : "bg-background text-muted-foreground border-border hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  <span className="text-sm font-medium">{cat.name}</span>
+                  <span className="text-xs opacity-70">({cat.count})</span>
+                </button>
+              ))}
             </div>
+            {categories && categories.categories.length > 8 && (
+              <button
+                onClick={() => setShowAllCategories(!showAllCategories)}
+                className="mt-3 text-sm text-accent hover:text-accent/80 transition-colors"
+              >
+                {showAllCategories
+                  ? "Show less"
+                  : `Show all ${categories.categories.length} categories`}
+              </button>
+            )}
           </div>
 
           {/* Search Results */}
@@ -116,15 +149,17 @@ const SearchFilters = () => {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-8 border-t border-border">
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-1">{stats?.total ?? "—"}</div>
+              <div className="text-2xl font-bold text-accent mb-1">{categories?.total ?? "—"}</div>
               <div className="text-sm text-muted-foreground">Total Bars</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-1">{stats?.categories ?? "—"}</div>
+              <div className="text-2xl font-bold text-accent mb-1">{categories?.categories.length ?? "—"}</div>
               <div className="text-sm text-muted-foreground">Categories</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-accent mb-1">{stats?.rooftop ?? "—"}</div>
+              <div className="text-2xl font-bold text-accent mb-1">
+                {categories?.categories.find((c) => c.name === "Rooftop Bar")?.count ?? "—"}
+              </div>
               <div className="text-sm text-muted-foreground">Rooftop Bars</div>
             </div>
           </div>
