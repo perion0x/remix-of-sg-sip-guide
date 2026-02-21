@@ -34,20 +34,24 @@ const SearchFilters = () => {
     },
   });
 
+  const hasActiveSearch = activeFilter !== "all" || searchTerm.trim().length > 0;
+
   const { data: searchResults } = useQuery({
     queryKey: ["bar-search", activeFilter, searchTerm],
     queryFn: async () => {
-      let query = supabase.from("bars").select("id, name, address, category, operating_hours").limit(12);
+      let query = supabase.from("bars").select("id, name, address, category, operating_hours", { count: "exact" });
       if (activeFilter !== "all") {
         query = query.or(`category.eq.${activeFilter},category.eq.${activeFilter} Bar`);
       }
       if (searchTerm.trim()) {
         query = query.or(`name.ilike.%${searchTerm}%,address.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%`);
       }
-      const { data, error } = await query;
+      query = query.limit(12);
+      const { data, error, count } = await query;
       if (error) throw error;
-      return data;
+      return { data, count };
     },
+    enabled: hasActiveSearch,
   });
 
   return (
@@ -93,13 +97,13 @@ const SearchFilters = () => {
           </div>
 
           {/* Search Results */}
-          {searchResults && searchResults.length > 0 && (
+          {hasActiveSearch && searchResults?.data && searchResults.data.length > 0 && (
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-foreground mb-4">
-                Results ({searchResults.length})
+                Results ({searchResults.count ?? searchResults.data.length})
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                {searchResults.map((bar) => (
+                {searchResults.data.map((bar) => (
                   <div
                     key={bar.id}
                     className="p-4 bg-background rounded-lg border border-border hover:border-accent transition-all duration-200"
