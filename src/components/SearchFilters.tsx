@@ -2,6 +2,7 @@ import { Search, MapPin, Filter, Wine, Music, Beer, GlassWater, Martini } from "
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 const SearchFilters = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -38,7 +39,7 @@ const SearchFilters = () => {
   const { data: searchResults } = useQuery({
     queryKey: ["bar-search", activeFilter, searchTerm],
     queryFn: async () => {
-      let query = supabase.from("bars").select("id, name, address, category, operating_hours", { count: "exact" });
+      let query = supabase.from("bars").select("id, name, address, category, operating_hours, slug", { count: "exact" });
       if (activeFilter !== "all") {
         query = query.eq("category", activeFilter);
       }
@@ -129,9 +130,10 @@ const SearchFilters = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {searchResults.data.map((bar) => (
-                  <div
+                  <Link
+                    to={`/bars/${bar.slug}`}
                     key={bar.id}
-                    className="p-4 bg-background rounded-lg border border-border hover:border-accent transition-all duration-200"
+                    className="p-4 bg-background rounded-lg border border-border hover:border-accent transition-all duration-200 block"
                   >
                     <h4 className="font-medium text-foreground mb-1">{bar.name}</h4>
                     {bar.category && (
@@ -140,7 +142,7 @@ const SearchFilters = () => {
                     {bar.address && (
                       <p className="text-xs text-muted-foreground mt-1 truncate">{bar.address}</p>
                     )}
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
