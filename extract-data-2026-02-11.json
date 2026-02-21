@@ -1,0 +1,2821 @@
+{
+  "bars": [
+    {
+      "name": "Side Door",
+      "address": "3 Neil Rd, Singapore 088805",
+      "category": "Bar",
+      "operating_hours": "Tue-Sat 3pm-midnight"
+    },
+    {
+      "name": "Fura",
+      "address": "74A Amoy St, Level 2, Singapore 069893",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sat 5pm-midnight"
+    },
+    {
+      "name": "Offtrack",
+      "address": "34 North Canal Rd, #01-01, Singapore 059290",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.instagram.com/offtrack.sg/"
+      ],
+      "operating_hours": "Mon-Thu 6pm-midnight; Fri-Sat 5pm-1am"
+    },
+    {
+      "name": "Hup San Social Club",
+      "address": "98 Club St, Singapore 069467",
+      "category": "Bar",
+      "operating_hours": "Tue-Sat 6pm-1am"
+    },
+    {
+      "name": "The Elephant Room",
+      "address": "33 Tanjong Pagar Rd, 01-02, Singapore 088456",
+      "category": "Bar",
+      "operating_hours": "Sun-Thu 6pm-1am; Fri-Sat 6pm-2am"
+    },
+    {
+      "name": "Jigger & Pony",
+      "address": "165 Tanjong Pagar Rd, Amara Hotel, Singapore 069921",
+      "category": "Cocktail Bar",
+      "operating_hours": "Sun-Tue 6pm-midnight; Wed-Thu 6pm-1am; Fri-Sat 6pm-2am"
+    },
+    {
+      "name": "Last Word",
+      "address": "8 Purvis St, #01-04, Singapore 188587",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sat 6pm-midnight"
+    },
+    {
+      "name": "Native",
+      "address": "52A Amoy St, Singapore 069878",
+      "category": "Cocktail Bar",
+      "operating_hours": "Mon-Thu 6pm-midnight; Fri-Sat 6pm-1am"
+    },
+    {
+      "name": "Bar Somma",
+      "address": "46 Kim Yam Rd, New Bahru, #04-02A, Singapore 239351",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue 6pm-11pm, Wed-Sat 6pm-midnight"
+    },
+    {
+      "name": "Gibson",
+      "address": "20 Bukit Pasoh Rd, Level 2, Singapore 089834",
+      "category": "Cocktail Bar",
+      "operating_hours": "Sun-Tue 6pm-midnight; Wed-Thu 6pm-1am; Fri-Sat 6pm-2am"
+    },
+    {
+      "name": "The Store",
+      "address": "11 Neil Rd, Singapore 088809",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sat 4pm-midnight"
+    },
+    {
+      "name": "Pop City X Pony",
+      "address": "19 Cecil St, Level 2, Singapore 049704",
+      "category": "Bar",
+      "operating_hours": "Mon-Sat 5.30pm-midnight"
+    },
+    {
+      "name": "Live Twice",
+      "address": "20 Bukit Pasoh Rd, Singapore 089834",
+      "category": "Cocktail Bar",
+      "operating_hours": "Sun-Tue 6pm-midnight; Wed-Thu 6pm-1am; Fri-Sat 6pm-2am"
+    },
+    {
+      "name": "Manhattan",
+      "address": "1 Cuscaden Rd, Conrad Singapore Orchard, Level 2, Singapore 249715",
+      "category": "Cocktail Bar",
+      "operating_hours": "Mon-Thu 5pm-midnight; Fri-Sat 5pm-1am; Sun noon-3pm, 6pm-midnight"
+    },
+    {
+      "name": "Atlas",
+      "address": "600 North Bridge Rd, Parkview Square, Singapore 188778",
+      "category": "Cocktail Bar",
+      "operating_hours": "Mon 3pm-midnight; Tue-Thu noon-midnight, Fri-Sat noon-2am"
+    },
+    {
+      "name": "Republic",
+      "address": "7 Raffles Ave, Ritz-Carlton, Millenia Singapore, Level 3, Singapore 039799",
+      "category": "Bar",
+      "operating_hours": "Mon-Thu 8am-midnight, Fri-Sat 8am-1am"
+    },
+    {
+      "name": "Night Hawk",
+      "address": "43 Tanjong Pagar Rd, #01-02, Singapore 088464",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sun 5.30pm-midnight"
+    },
+    {
+      "name": "Stay Gold Flamingo",
+      "address": "69 Amoy St, Singapore 069888",
+      "category": "Café Bar",
+      "operating_hours": "Mon-Sat 5pm-midnight"
+    },
+    {
+      "name": "Spectre",
+      "address": "120 Tanjong Pagar Rd, #02-01, Singapore 088532",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sat 5pm-11.30pm"
+    },
+    {
+      "name": "Cat Bite Club",
+      "address": "75 Duxton Rd, Singapore 089534",
+      "category": "Cocktail Bar",
+      "operating_hours": "Daily 5pm-midnight"
+    },
+    {
+      "name": "Bar Bon Funk",
+      "address": "46 Kim Yam Rd, New Bahru, #02-01, Singapore 239351",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sun 6pm-11.30pm"
+    },
+    {
+      "name": "Puffy Bois",
+      "address": "15 Duxton Rd, Singapore 089481",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Sat 6pm-midnight"
+    },
+    {
+      "name": "East47",
+      "address": "1 Cuscaden Rd, Conrad Singapore Orchard, Level 2, Singapore 249715",
+      "category": "Cocktail Bar",
+      "operating_hours": "Wed-Thu 6pm-midnight; Fri-Sat 6pm-1am"
+    },
+    {
+      "name": "Nutmeg & Clove",
+      "address": "8 Purvis St, Singapore 188587",
+      "category": "Bar",
+      "operating_hours": "Daily 5pm-midnight"
+    },
+    {
+      "name": "Tess Bar & Kitchen",
+      "address": "36 Seah St, Singapore 188392",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.facebook.com/TessBarKitchen"
+      ],
+      "operating_hours": "Mon-Thu 4pm-1am; Fri 4pm-3am; Sat noon-3am; Sun noon-1am"
+    },
+    {
+      "name": "Praelum Wine Bistro",
+      "address": "4 Duxton Hill, Singapore 089590",
+      "category": "Wine Bar",
+      "operating_hours": "Mon-Sat 6pm-midnight"
+    },
+    {
+      "name": "28 HongKong Street",
+      "address": "28 HongKong St, Singapore 059667",
+      "category": "Speakeasy",
+      "operating_hours": "Mon-Sat 6pm-late"
+    },
+    {
+      "name": "Employees Only",
+      "address": "112 Amoy St, Singapore 069932",
+      "category": "Cocktail Bar",
+      "operating_hours": "Sun-Thu 5pm-1am; Fri-Sat 5pm-2am"
+    },
+    {
+      "name": "RPM by D.Bespoke",
+      "address": "16 Duxton Rd, Singapore 089482",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Fri 6am-midnight; Sat-Sun 4pm-midnight"
+    },
+    {
+      "name": "No Sleep Club",
+      "address": "20 Keong Saik Rd, Singapore 089127",
+      "category": "Cocktail Bar",
+      "social_media_links": [
+        "https://www.instagram.com/nosleepclubsg/"
+      ],
+      "operating_hours": "Tue-Sat 5pm-midnight; Sun noon-7pm"
+    },
+    {
+      "name": "BeGin",
+      "address": "Boat Quay, Singapore",
+      "category": "Gin Bar"
+    },
+    {
+      "name": "Skinny's Lounge",
+      "address": "82 Boat Quay, #01-02, Singapore 049870",
+      "category": "Dive Bar",
+      "operating_hours": "Open till 4am"
+    },
+    {
+      "name": "Mogambo Bar",
+      "address": "Boat Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "OPVS II",
+      "address": "Boat Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Limelight",
+      "address": "Circular Road, Boat Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "XclusiV",
+      "address": "6 Raffles Boulevard, Raffles Link, #01-04, Singapore 039594",
+      "category": "Nightclub",
+      "phone": "8139 9437"
+    },
+    {
+      "name": "Upstairs",
+      "address": "Boat Quay, Singapore",
+      "category": "Nightclub"
+    },
+    {
+      "name": "Headquarters",
+      "address": "66A Boat Quay, Singapore 049854",
+      "category": "Techno Club",
+      "phone": "9667 9424",
+      "social_media_links": [
+        "https://www.facebook.com/headquarters.sg/"
+      ],
+      "operating_hours": "Wed-Sat 9pm-3am"
+    },
+    {
+      "name": "Lady Wu",
+      "address": "Attic Level, 11 N Canal Rd, The Offshore Building, Singapore 048824",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/ladywu.sg/"
+      ]
+    },
+    {
+      "name": "Level-Up",
+      "address": "3A River Valley Road, #02-04, Clarke Quay, Singapore 179020",
+      "category": "Arcade Bar",
+      "phone": "9231 4992",
+      "operating_hours": "Sun-Thu 5pm-1am | Fri-Sat 5pm-3am"
+    },
+    {
+      "name": "Zouk Singapore",
+      "address": "3C River Valley Road, #01-05, Singapore 179022",
+      "category": "Nightclub",
+      "phone": "6738 2988",
+      "operating_hours": "Wed-Sat 10pm-3am"
+    },
+    {
+      "name": "Level 33",
+      "address": "Marina Bay, Singapore",
+      "category": "Micro-Brewery"
+    },
+    {
+      "name": "Cé La Vi",
+      "address": "1 Bayfront Avenue, Marina Bay Sands Tower 3, Level 57, Singapore 018971",
+      "category": "Rooftop Bar",
+      "phone": "6508 2188",
+      "operating_hours": "Mon-Tue 4pm-1am | Wed 4pm-4am | Thu 4pm-3am | Fri 4pm-4am | Sat 12pm-4am | Sun 12pm-3am"
+    },
+    {
+      "name": "MARQUEE Nightclub",
+      "address": "2 Bayfront Avenue, #B1-67, Singapore 018972",
+      "category": "Nightclub",
+      "phone": "6688 8660",
+      "social_media_links": [
+        "https://www.instagram.com/marqueesingapore/"
+      ],
+      "operating_hours": "Fri-Sat 10pm-6am"
+    },
+    {
+      "name": "Drip",
+      "address": "100 Orchard Road, Singapore 238840",
+      "category": "Nightclub",
+      "social_media_links": [
+        "https://www.instagram.com/drip.singapore/"
+      ],
+      "operating_hours": "Fri-Sat 10pm-3am"
+    },
+    {
+      "name": "TUFF Club",
+      "address": "138 Robinson Road, #19-01, Singapore 068906",
+      "category": "Club",
+      "phone": "9667 9424",
+      "social_media_links": [
+        "https://www.instagram.com/tuffclub.sg/?hl=en"
+      ],
+      "operating_hours": "Fri 10.30pm-3am | Sat 10.30pm-3.30am"
+    },
+    {
+      "name": "Cherry Discotheque",
+      "address": "133 Cecil Street, Singapore 069535",
+      "category": "Club",
+      "phone": "9826 5055",
+      "operating_hours": "Tue-Sat 8pm-3am"
+    },
+    {
+      "name": "YANG",
+      "address": "3A River Valley Road, #01-02, Singapore 179020",
+      "category": "Nightclub",
+      "phone": "6261 1189",
+      "operating_hours": "Fri-Sat 10pm-3am"
+    },
+    {
+      "name": "AVENUE Lounge",
+      "address": "2 Bayfront Ave, The Shoppes at Marina Bay Sands, Singapore 018956",
+      "category": "Speakeasy Bar",
+      "phone": "6688 8680",
+      "social_media_links": [
+        "https://www.instagram.com/avenuesingapore/"
+      ],
+      "operating_hours": "Wed 10pm-3am | Thur 9pm-3am | Fri & Sat 10pm-5am"
+    },
+    {
+      "name": "Lantern",
+      "address": "80 Collyer Quay, Fullerton Bay Hotel, Singapore 049326",
+      "category": "Rooftop Bar",
+      "email": "dining-rsvp@fullertonhotels.com",
+      "social_media_links": [
+        "https://www.instagram.com/fullertonbayhotelsg/"
+      ],
+      "operating_hours": "Sun-Thu 3pm-1am | Fri-Sat 3pm-2am"
+    },
+    {
+      "name": "Kinki Bar",
+      "address": "70 Collyer Quay, #02-02 Customs House, Singapore 049323",
+      "category": "Izakaya Bar",
+      "phone": "6533 3471",
+      "operating_hours": "12pm-3pm & 6pm-11pm, Daily"
+    },
+    {
+      "name": "RedTail Bar",
+      "address": "Block 3C River Valley Road #01-04, Singapore 179022",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.facebook.com/RedTailBarByZouk/"
+      ],
+      "operating_hours": "Tue-Thu 2pm-11pm | Fri 2pm-3am | Sat 6pm-4am"
+    },
+    {
+      "name": "Kanpai 789",
+      "address": "11 Unity Street, #01-18/29, Robertson Walk, Singapore 237995",
+      "category": "Beer Bar",
+      "phone": "8738 7996",
+      "operating_hours": "Sun-Thu 5pm-2am | Fri-Sat 5pm-3am"
+    },
+    {
+      "name": "Five Bar",
+      "address": "25 Cuppage Road, Cuppage Terrace, Singapore 229454",
+      "category": "Bar",
+      "phone": "8038 6050",
+      "operating_hours": "Sun-Thu 5pm-12am | Fri-Sat 5pm-2am"
+    },
+    {
+      "name": "Mr Stork",
+      "address": "5 Fraser Street, Level 39, Andaz, Singapore 189354",
+      "category": "Rooftop Bar",
+      "phone": "9008 7707",
+      "operating_hours": "Sun-Thu 5pm-12am | Fri & Sat 5pm-1am"
+    },
+    {
+      "name": "Chupitos",
+      "address": "3B River Valley Road, #01-05, Singapore 179021",
+      "category": "Shots Bar",
+      "phone": "8850 9412",
+      "operating_hours": "Sun-Tue & Thu 5.30pm-1.30am | Wed 5.30pm-3am | Fri 5.30pm-3am | Sat 5.30pm-4am"
+    },
+    {
+      "name": "Potato Head Folk",
+      "address": "36 Keong Saik Road, Singapore 089143",
+      "category": "Rooftop Bar",
+      "phone": "6327 1939",
+      "operating_hours": "12pm-12am, Daily"
+    },
+    {
+      "name": "Blu Jaz",
+      "address": "11 Bali Lane, Singapore 189848",
+      "category": "Jazz Bar",
+      "operating_hours": "8pm – 11:15pm, daily"
+    },
+    {
+      "name": "Cool Cats",
+      "address": "32 Beach Road, Singapore 189764",
+      "category": "Jazz Bar",
+      "operating_hours": "7pm – 12am (Tuesday – Saturday)"
+    },
+    {
+      "name": "COTU - Centre Of The Universe",
+      "address": "CapitaGreen, Raffles Place, Levels 38 & 39, 138 Market Street, Singapore 048946",
+      "category": "Cocktail Bar",
+      "operating_hours": "6:30pm – 9pm, Monday – Friday"
+    },
+    {
+      "name": "Whiskey Library & Jazz Club",
+      "address": "39 Syed Alwi Road, Singapore 207630",
+      "category": "Jazz Club",
+      "operating_hours": "From 8:30pm"
+    },
+    {
+      "name": "The Blackbird",
+      "address": "8 Lock Road, Singapore 108936",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.facebook.com/theblackbird.singapore",
+        "https://www.instagram.com/theblackbird.sg"
+      ],
+      "operating_hours": "Every night"
+    },
+    {
+      "name": "Ember & Oak by Reverie",
+      "address": "9 Bras Basah Road, #01-06, Singapore 189559",
+      "category": "Bar",
+      "operating_hours": "9pm – 12am, every Friday & Saturday"
+    },
+    {
+      "name": "Le Noir",
+      "address": "2 Bayfront Avenue, #01-84 The Shoppes at Marina Bay Sands, Singapore",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.facebook.com/lenoirsg/"
+      ],
+      "operating_hours": "8:15pm – 11pm (Sunday – Wednesday); 8:15pm – 12am (Thursday); 7:15pm – 1am (Friday & Saturday)"
+    },
+    {
+      "name": "Wheeler's Estate",
+      "address": "2 Park Lane, Singapore 798386",
+      "category": "Bar",
+      "operating_hours": "Every night from 7:30pm – 10:30pm"
+    },
+    {
+      "name": "Ameising Live House",
+      "address": "2 North Wing, #01-512/513 Suntec City Tower, Singapore 038989",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.facebook.com/Ameising.livehouse.suntec",
+        "https://www.instagram.com/ameising.livehouse"
+      ],
+      "operating_hours": "Every night from 8pm onwards"
+    },
+    {
+      "name": "Frienzie Bar & Bistro",
+      "address": "10 Tebing Lane, #01-02, Singapore 828836",
+      "category": "Bar",
+      "social_media_links": [
+        "https://www.instagram.com/frienziebar"
+      ],
+      "operating_hours": "Every night from 7:45pm – 10:30pm"
+    },
+    {
+      "name": "Home Dusk",
+      "address": "Block 3A River Valley Road, #02-03, Singapore",
+      "category": "Bar",
+      "operating_hours": "From 7:30pm/8pm"
+    },
+    {
+      "name": "Simply Live by Tin Box",
+      "address": "73 Bras Basah Road, #01-01/02, Singapore 189556",
+      "category": "Bar",
+      "operating_hours": "From 8:30pm"
+    },
+    {
+      "name": "Sago House",
+      "address": "37 Duxton Hill, Singapore 089615",
+      "category": "Speakeasy",
+      "operating_hours": "Sun-Fri 6pm-1am; Sat 6pm-2am"
+    },
+    {
+      "name": "Brooklyn Bar",
+      "address": "14 Ann Siang Rd, #01-01, Singapore 069694",
+      "category": "Bar",
+      "operating_hours": "Tue-Sat 5pm-midnight"
+    },
+    {
+      "name": "Convivial Champagne Bar",
+      "address": "11 North Canal Rd, The Offshore, #01-01, Singapore 048824",
+      "category": "Champagne Bar",
+      "operating_hours": "Mon-Sat 4pm-midnight"
+    },
+    {
+      "name": "Draft Land SG",
+      "address": "24 Purvis St, Singapore 188601",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tue-Fri 4pm-midnight; Sat-Sun 2pm-midnight"
+    },
+    {
+      "name": "Dirty Sips",
+      "address": "78 Moh Guan Terrace, #01-19, Singapore 162078",
+      "category": "Bar",
+      "operating_hours": "Mon-Sat 6.30pm-midnight"
+    },
+    {
+      "name": "Madame Fan Bar",
+      "address": "The NCO Club, 32 Beach Rd, Singapore 189764",
+      "category": "Cocktail Bar",
+      "operating_hours": "Daily 5pm-midnight"
+    },
+    {
+      "name": "MOGĀ",
+      "address": "1 Hill St, Pullman Singapore Hill St, Singapore 179949",
+      "category": "Izakaya",
+      "operating_hours": "Mon-Thu noon-3pm, 6pm-midnight; Fri-Sat noon-3pm, 6pm-1am"
+    },
+    {
+      "name": "Naga House",
+      "address": "14 Lorong Telok, Singapore 049027",
+      "category": "Café Bar",
+      "operating_hours": "Mon-Sat 10.30am-midnight"
+    },
+    {
+      "name": "MO Bar",
+      "address": "5 Raffles Ave, Mandarin Oriental, Level 3, Singapore 039797",
+      "category": "Cocktail Bar",
+      "phone": "+65 6885 3500",
+      "email": "mosin-dining@mohg.com",
+      "operating_hours": "5pm-midnight (Sun-Thu); 5pm-1am (Fri-Sat)"
+    },
+    {
+      "name": "Origin Bar",
+      "address": "22 Orange Grove Rd, Shangri-La Singapore, Tower Wing, Lobby Level, Singapore 258350",
+      "category": "Bar",
+      "operating_hours": "Tue-Sun 5.30pm-1am"
+    },
+    {
+      "name": "Parliament",
+      "address": "18 Teck Lim Rd, Singapore 088390",
+      "category": "Cocktail Bar",
+      "operating_hours": "Tues-Sat 5pm-midnight"
+    },
+    {
+      "name": "MoboMoga",
+      "address": "207 River Valley Rd, UE Square, River Wing, #01-58, Singapore 238275",
+      "category": "Sake Bar",
+      "operating_hours": "Mon-Sat 5pm-11.30pm"
+    },
+    {
+      "name": "Spago Bar & Lounge",
+      "address": "10 Bayfront Ave, Sands Skypark Tower 2, Level 57, Singapore 018956",
+      "category": "Rooftop Bar",
+      "operating_hours": "Tue-Sat 11am-1am; Sun-Mon 11am-midnight"
+    },
+    {
+      "name": "Druggists",
+      "address": "119 Tyrwhitt Rd, Singapore 207547",
+      "category": "Bar",
+      "operating_hours": "Mon-Wed 5pm-midnight; Thu 4pm-midnight; Fri 3pm-midnight; Sat 1pm-midnight; Sun 1pm-10pm"
+    },
+    {
+      "name": "Shin Gi Tai",
+      "address": "179A Telok Ayer St, Singapore 068627",
+      "category": "Izakaya",
+      "social_media_links": [
+        "https://www.facebook.com/shingitaibar/"
+      ],
+      "operating_hours": "Mon-Sat 6pm-midnight"
+    },
+    {
+      "name": "The Bar Kakure",
+      "address": "29 Scotts Rd, Level 2, Singapore 228224",
+      "category": "Cocktail Bar",
+      "operating_hours": "Mon-Sat 6pm-1am"
+    },
+    {
+      "name": "Laut",
+      "address": "190 Middle Rd, Fortune Centre, #03-05, Singapore 188979",
+      "category": "Bar",
+      "operating_hours": "Wed-Sat 7pm-midnight"
+    },
+    {
+      "name": "Locality",
+      "address": "160 Changi Rd, Hexacube, B1-10, Singapore 419728",
+      "category": "Pub",
+      "operating_hours": "Wed-Fri 3pm-11.30pm; Sat-Mon 2pm-11.30pm"
+    },
+    {
+      "name": "Dimple",
+      "address": "13 Purvis St, Hotel Nuve Heritage, Singapore 188592",
+      "category": "Bar",
+      "operating_hours": "Mon-Sat 6pm-1am"
+    },
+    {
+      "name": "Long Bar",
+      "address": "328 North Bridge Rd, Raffles Arcade, #02-01, Singapore 188719",
+      "category": "Cocktail Bar",
+      "operating_hours": "Thu-Sat 11am-11.30pm; Sun-Wed 11am-10.30pm"
+    },
+    {
+      "name": "L.A.B Inc",
+      "address": "Singapore",
+      "category": "Cocktail Bar"
+    },
+    {
+      "name": "Lumo",
+      "address": "50 South Bridge Road #01-00 Singapore 058682",
+      "category": "Cocktail Bar",
+      "phone": "+65 8921 3818",
+      "operating_hours": "Monday to Sunday, 12pm to 9.30pm"
+    },
+    {
+      "name": "Junior",
+      "address": "43 Tanjong Pagar Road, Singapore",
+      "category": "Cocktail Bar",
+      "phone": "+65 8121 1462",
+      "social_media_links": [
+        "https://www.instagram.com/juniorthepocketbar/",
+        "https://m.facebook.com/JuniorThePocketBar/"
+      ]
+    },
+    {
+      "name": "Brass Lion Distillery",
+      "address": "Singapore",
+      "category": "Distillery",
+      "phone": "+65 6954 0602"
+    },
+    {
+      "name": "Butcher Boy",
+      "address": "31 Keong Saik Rd., Singapore 089138",
+      "category": "Bar",
+      "phone": "+65 6221 6833"
+    },
+    {
+      "name": "Fung Kee Hotdogs",
+      "address": "Singapore",
+      "category": "Bar",
+      "phone": "+65 9838 0436",
+      "operating_hours": "Daily, 5pm to 11pm"
+    },
+    {
+      "name": "Operation Dagger",
+      "address": "#B1-01, 7 Ann Siang Hill Singapore 069791",
+      "category": "Cocktail Bar",
+      "email": "info@operationdagger.com",
+      "social_media_links": [
+        "https://www.instagram.com/operationdagger/"
+      ],
+      "operating_hours": "Monday to Saturday, 4pm till late"
+    },
+    {
+      "name": "The Old Man",
+      "address": "Singapore",
+      "category": "Cocktail Bar",
+      "operating_hours": "Monday to Sunday, 12pm to 10pm"
+    },
+    {
+      "name": "Tippling Club",
+      "address": "38 Tanjong Pagar Road, Singapore 088461",
+      "category": "Bar",
+      "phone": "+65 6475 2217"
+    },
+    {
+      "name": "The Other Room",
+      "address": "Singapore Marriott Tang Plaza Hotel, 320 Orchard Road, Singapore 238865",
+      "category": "Speakeasy"
+    },
+    {
+      "name": "The Auld Alliance",
+      "address": "09 Bras Basah Road, Hotel RendezVous Gallery #02-02A, Singapore 189559",
+      "category": "Whisky Bar"
+    },
+    {
+      "name": "Coffee Bar K",
+      "address": "205 River Valley Rd, #01-76 UE Square, Singapore 238275",
+      "category": "Bar"
+    },
+    {
+      "name": "Bitters & Love",
+      "address": "118 Telok Ayer Street, Raffles Place, Singapore",
+      "category": "Speakeasy"
+    },
+    {
+      "name": "D.Bespoke",
+      "address": "2 Bukit Pasoh Road, Singapore 089816",
+      "category": "Whisky Bar"
+    },
+    {
+      "name": "Fancy",
+      "address": "35 North Canal Road, Singapore 059291",
+      "category": "Cocktail Bar"
+    },
+    {
+      "name": "Caffe Fernet",
+      "address": "70 Collyer Quay, Customs House #01-05, Singapore 049323",
+      "category": "Bar"
+    },
+    {
+      "name": "Smoke & Mirrors",
+      "address": "National Gallery, Marina Bay, Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Mama Diam",
+      "address": "Prinsep Place, Singapore",
+      "category": "Speakeasy"
+    },
+    {
+      "name": "Club FML",
+      "address": "Prinsep Place, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Jō's Rooftop",
+      "address": "Chinatown, Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "The Lions Den",
+      "address": "Club St, Chinatown, Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Skybar",
+      "address": "Marina Bay Sands, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Canary",
+      "address": "Singapore",
+      "category": "Cocktail Bar"
+    },
+    {
+      "name": "The Great Escape",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "BarOne",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Tipple",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Muddy Murphy's",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Public House",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Drunken Poet",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "The Crazy Elephant",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Moshi Moshi Bollywood",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Ba.li.ba",
+      "address": "Orchard Towers, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Sara's at Upper Thompson",
+      "address": "Upper Thompson, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Carlsberg Sports Bar",
+      "address": "Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Molly Roffey's Irish Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Forest Darts Cafe & Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Ginza Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "TAP",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "The Carpenter Bar",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "BRIX",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Going Om",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Slackers' Bar & Café",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "VUE",
+      "address": "OUE Bayfront, 50 Collyer Quay Rooftop Level 19, Singapore 049321",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/vuesingapore/"
+      ]
+    },
+    {
+      "name": "CÉ LA VI Singapore",
+      "address": "1 Bayfront Ave, Singapore 018971",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/celavisingapore/"
+      ],
+      "operating_hours": "Open daily from noon to very late"
+    },
+    {
+      "name": "El Chido",
+      "address": "1 Hill St, Pullman Singapore, Singapore 179949",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/elchido.sg/"
+      ],
+      "operating_hours": "Daily happy hour 12pm-6pm"
+    },
+    {
+      "name": "NOVA",
+      "address": "1 Raffles Pl, L63, Singapore 048616",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/novabar.sg/"
+      ]
+    },
+    {
+      "name": "The Roof Garden at Artyzen",
+      "address": "9 Cuscaden Rd, Singapore 249719",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/artyzensingapore/"
+      ]
+    },
+    {
+      "name": "SKAI Bar",
+      "address": "2 Stamford Road, Level 70, #70-02 Swissôtel The Stamford, Singapore 178882",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/skai.bar/"
+      ]
+    },
+    {
+      "name": "Baia",
+      "address": "8 Raffles Ave., Level 4 Esplanade Mall, Singapore 039802",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/baia.sg/"
+      ]
+    },
+    {
+      "name": "Artemis Grill & Sky Bar",
+      "address": "138 Market Street #40-01, Singapore",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/artemis.sg/"
+      ],
+      "operating_hours": "Weeknight happy hour from 5-8pm"
+    },
+    {
+      "name": "LeVeL33",
+      "address": "8 Marina Boulevard #33-01, Marina Bay Financial Centre Tower 1, Singapore 018981",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/level33_sg/"
+      ]
+    },
+    {
+      "name": "Moon Rooftop Bar & Lounge",
+      "address": "70 Anson Rd, #27-01 Hub Synergy Point, Singapore 079905",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/moonrooftopbar/"
+      ]
+    },
+    {
+      "name": "1-Alfaro",
+      "address": "1 Pasir Panjang Rd, #34-00 Labrador Tower, Singapore 118479",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/1alfaro.sg"
+      ]
+    },
+    {
+      "name": "The Mirabilis Bar @ Mount Faber Peak",
+      "address": "Mount Faber Rd, Level 2 Mount Faber Peak Singapore, 109, Singapore 099203",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/mountfaberdining"
+      ]
+    },
+    {
+      "name": "Southbridge",
+      "address": "80 Boat Quay, Level 5, Rooftop, Singapore 049868",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/southbridge.sg/"
+      ]
+    },
+    {
+      "name": "Verandah at Momentus Hotel Alexandra",
+      "address": "Momentus Hotel, Alexandra Rd, Level 7 Alexandra 323, Singapore 159972",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/verandah_sg/"
+      ]
+    },
+    {
+      "name": "Barouv Rooftop Bar",
+      "address": "33 Erskine Rd, Level 4 Scarlet Hotel, Singapore 069333",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/barouvsg/"
+      ]
+    },
+    {
+      "name": "Las Palmas Rooftop Bar",
+      "address": "99 Irrawaddy Rd, Level 33 Courtyard Marriott Singapore, Singapore 329568",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/laspalmasbarsg/"
+      ]
+    },
+    {
+      "name": "Cooling Tower Rooftop Bar",
+      "address": "1 Gopeng St, Level 29 Carlton City Hotel Singapore, Singapore 078862",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/coolingtower.sg"
+      ]
+    },
+    {
+      "name": "The ROOF at The Singapore EDITION",
+      "address": "38 Cuscaden Rd, Singapore 249731",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/singaporeedition/"
+      ],
+      "operating_hours": "Happy hour 5-7pm"
+    },
+    {
+      "name": "LVLR Rooftop Bar",
+      "address": "42 Carpenter St, Singapore 059921",
+      "category": "Rooftop Bar",
+      "phone": "+65 96920678",
+      "social_media_links": [
+        "https://www.instagram.com/lvlrbar/"
+      ]
+    },
+    {
+      "name": "LAVO Singapore",
+      "address": "10 Bayfront Ave, Tower 1, Singapore 018956",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/lavosingapore/"
+      ]
+    },
+    {
+      "name": "1-Altitude Coast",
+      "address": "10 Artillery Ave, #07-01, Singapore 099951",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/1altitudecoast.sg/"
+      ],
+      "operating_hours": "Happy hour Monday to Thursday 11am to 7pm"
+    },
+    {
+      "name": "Abriza Rooftop Bar",
+      "address": "32 Tras St, Level 4, Singapore 078972",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/abrizasg/"
+      ]
+    },
+    {
+      "name": "Kinki Rooftop Bar",
+      "address": "70 Collyer Quay #02-02 Customs House, Singapore 049323",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/kinkibar/"
+      ]
+    },
+    {
+      "name": "Trippi at JEN Singapore Orchardgateway",
+      "address": "277 Orchard Road, Singapore 238858",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/hoteljenog/"
+      ]
+    },
+    {
+      "name": "Rooftop at QT Singapore",
+      "address": "35 Robinson Road, Singapore 068876",
+      "category": "Rooftop Bar",
+      "social_media_links": [
+        "https://www.instagram.com/qtsingapore/"
+      ]
+    },
+    {
+      "name": "Wala Wala Cafe Bar",
+      "address": "31 Lorong Mambong, Holland Village, Singapore 277689",
+      "category": "Pub"
+    },
+    {
+      "name": "Stärker Fresh Beer",
+      "address": "Holland Village, Singapore",
+      "category": "Brewery"
+    },
+    {
+      "name": "The Good Beer Company",
+      "address": "Holland Village, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "O Bar",
+      "address": "Holland Village, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Fine Line",
+      "address": "Holland Village, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Tawandang Microbrewery",
+      "address": "Block 26 Dempsey Road #01-01, Singapore 249686",
+      "category": "Brewery"
+    },
+    {
+      "name": "Harry's @ Holland Village",
+      "address": "22 Lorong Mambong, Singapore 277681",
+      "category": "Bar"
+    },
+    {
+      "name": "Harry's @ Dempsey Hill",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The White Rabbit",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Writers Bar",
+      "address": "1 Beach Road, Raffles Hotel, Singapore 189673",
+      "category": "Bar",
+      "phone": "+65 6337 1886",
+      "email": "singapore@raffles.com"
+    },
+    {
+      "name": "The St. Regis Bar",
+      "address": "29 Tanglin Road, The St. Regis Singapore, Singapore 247911",
+      "category": "Bar",
+      "email": "contact-locationstregisbar.singapore@stregis.com",
+      "operating_hours": "Sun-Thu 5pm-12am; Fri-Sat 5pm-2am"
+    },
+    {
+      "name": "One-Ninety Bar",
+      "address": "190 Orchard Boulevard, Four Seasons Hotel Singapore, Singapore 248646",
+      "category": "Bar"
+    },
+    {
+      "name": "Opus Bar and Grill",
+      "address": "voco Singapore, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Wonder Room",
+      "address": "The Singapore EDITION, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Brewerkz",
+      "address": "Clarke Quay, Riverside Point, Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Harry's @ Boat Quay",
+      "address": "Boat Quay, Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Boomarang",
+      "address": "Clarke Quay, Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Timbre",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Rakes",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Crystabelle KTV Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Cuscaden @ CHIJMES",
+      "address": "CHIJMES, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Jekyll & Hyde",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Spiffy Dapper",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Ying Yang Rooftop Bar",
+      "address": "Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Smith Street Taps",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "American Taproom",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Orh Gao Taproom",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Yeast Side",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Ziggy Zaggy",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Lion Brewery Co",
+      "address": "Singapore",
+      "category": "Brewery"
+    },
+    {
+      "name": "SG Taps",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Gulp Riverside",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Little Creatures Brewing Singapore",
+      "address": "Singapore",
+      "category": "Brewery"
+    },
+    {
+      "name": "On Tap",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Alchemist Beer Lab",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Wine RVLT",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Le Bon Funk",
+      "address": "Club Street, Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Humpback",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Fool",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Wine On Tap",
+      "address": "11 Bussorah St, #02-01, Singapore 199432",
+      "category": "Wine Bar",
+      "phone": "+65 9010 0395"
+    },
+    {
+      "name": "Caveau",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Le Clos",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Big Wine Freaks",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Gaston",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Les Crayères",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "LQV Singapore",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Park 90",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Wine & Chef",
+      "address": "7 Keong Saik Rd., Singapore 089115",
+      "category": "Wine Bar",
+      "operating_hours": "Mon 12pm-2:30pm"
+    },
+    {
+      "name": "JAG WINE",
+      "address": "East Coast Rd, Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Buddy Buddy Cheers",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Malthouse",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Nectars and Vine",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cafe Football",
+      "address": "Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Romance KTV Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Ice Cold Beer",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Quench Bistro & Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Brazzo House",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bojangles",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "T Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Toriki Yakitori And Craft Beer",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Bar Black Sheep",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Union Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Drinks & Co",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Harry's Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Executive Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Wine Connection",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Another Bar",
+      "address": "9 Bras Basah Road #02-03, Singapore 189559",
+      "category": "Bar",
+      "operating_hours": "Sun-Mon 6pm-3am, Sat 8pm-4am"
+    },
+    {
+      "name": "SG Overflow",
+      "address": "Changi Airport T2, Singapore",
+      "category": "Bar",
+      "phone": "+65 87431863",
+      "operating_hours": "Sun & Mon 12pm-10pm, Tue-Thur 2pm-12am, Fri & Sat 2pm-2am"
+    },
+    {
+      "name": "No. 5 Emerald Hill",
+      "address": "5 Emerald Hill Rd, Singapore 229289",
+      "category": "Bar",
+      "operating_hours": "12pm-2am (Sun-Thu) | 12pm-3am (Fri & Sat)"
+    },
+    {
+      "name": "Social Bar & Bistro",
+      "address": "9 Raffles Place, Republic Plaza, Singapore",
+      "category": "Bar",
+      "phone": "+65 8891 1085"
+    },
+    {
+      "name": "Nost",
+      "address": "98 Club St, Level 3, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "BLU JAZ Cafe",
+      "address": "11 Bali Lane, Singapore 189848",
+      "category": "Jazz Bar"
+    },
+    {
+      "name": "Tanjong Beach Club",
+      "address": "120 Tanjong Beach Walk, Sentosa, Singapore 098942",
+      "category": "Beach Club",
+      "operating_hours": "Sat-Sun 10am-10pm, Mon-Tue 10:30am-8pm, Wed-Fri 10:30am-10pm"
+    },
+    {
+      "name": "+Twelve",
+      "address": "54 Palawan Beach Walk, Singapore 098233",
+      "category": "Beach Club",
+      "operating_hours": "Fri-Sun 9:30am-10:30pm, Mon-Thu 11am-9pm"
+    },
+    {
+      "name": "Ola Beach Club",
+      "address": "46 Siloso Beach Walk, Sentosa Island, Singapore 099005",
+      "category": "Beach Club",
+      "operating_hours": "Sat 9am-10pm, Sun 9am-9pm, Mon-Thu 10am-9pm, Fri 10am-10pm"
+    },
+    {
+      "name": "Bikini Bar",
+      "address": "Siloso Beach, Sentosa, Singapore",
+      "category": "Beach Bar"
+    },
+    {
+      "name": "FOC by the Beach",
+      "address": "110 Tanjong Beach Walk, Sentosa, Singapore 098943",
+      "category": "Bar",
+      "operating_hours": "Fri-Sat 11:30am-11pm; Wed, Thu, Sun 11am-10:30pm"
+    },
+    {
+      "name": "Coastes",
+      "address": "50 Siloso Beach Walk, #01-05 Sentosa, Singapore 099000",
+      "category": "Beach Club",
+      "operating_hours": "Sat 9am-10:30pm, Sun 9am-9pm, Mon-Fri 11am-9pm"
+    },
+    {
+      "name": "Sand Bar",
+      "address": "Siloso Beach, Sentosa, Singapore",
+      "category": "Beach Bar"
+    },
+    {
+      "name": "Tipsy Unicorn",
+      "address": "Siloso Beach Walk, Sentosa, Singapore",
+      "category": "Beach Club"
+    },
+    {
+      "name": "Rumours Beach Club",
+      "address": "40 Siloso Beach Walk, Sentosa, Singapore 098996",
+      "category": "Beach Club",
+      "operating_hours": "Fri-Sun 10am-10pm, Mon-Thu 11am-10pm"
+    },
+    {
+      "name": "Trapizza",
+      "address": "10 Siloso Beach Walk, Sentosa, Singapore 098995",
+      "category": "Beach Club",
+      "operating_hours": "12pm-9pm Mon-Thu, 11am-10pm Fri-Sun"
+    },
+    {
+      "name": "Aloha Beach Bar",
+      "address": "1212 East Coast Parkway, Singapore 449886",
+      "category": "Beach Bar",
+      "phone": "+65 6241 9212",
+      "operating_hours": "Sat-Sun 9am-9pm, Wed-Fri 2pm-9pm"
+    },
+    {
+      "name": "Ohana Beach House",
+      "address": "159W Jln. Loyang Besar, Singapore 507020",
+      "category": "Beach Bar",
+      "social_media_links": [
+        "www.instagram.com/ohana_beach_house"
+      ],
+      "operating_hours": "Sat-Sun 8:30am-12am, Mon-Wed 3pm-11pm, Thu 9am-11pm, Fri 3pm-12am"
+    },
+    {
+      "name": "KOKOMO Beach Club",
+      "address": "131 Pasir Ris Road, Carpark E, Singapore 519148",
+      "category": "Beach Club",
+      "operating_hours": "Sat-Sun 9am-6:30pm, Mon-Fri 9am-5:30pm"
+    },
+    {
+      "name": "Splash Tribe",
+      "address": "54 Palawan Beach Walk, Singapore 098233",
+      "category": "Beach Club",
+      "operating_hours": "Mon-Fri 10am-7pm; Sat, Sun, PH 9:30am-8pm"
+    },
+    {
+      "name": "1942",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "99 Bottles",
+      "address": "Singapore",
+      "category": "Beer Bar",
+      "operating_hours": "Weekend-only"
+    },
+    {
+      "name": "Adstragold Microbrewery",
+      "address": "Singapore",
+      "category": "Brewery"
+    },
+    {
+      "name": "Alibabar the Hawker Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Betel Box Hostel",
+      "address": "Joo Chiat, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Brussels Sprouts @ Big Splash",
+      "address": "Big Splash, Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "The Cider Pit",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Five Bar Changi",
+      "address": "Changi, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Georges Mad Bar & Grill",
+      "address": "Siglap, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Happy Days",
+      "address": "Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Harry's at East Coast Park",
+      "address": "East Coast Park, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Immigrants",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Jag's Gastropub",
+      "address": "Siglap, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Lower East Side Taqueria",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Mad Nest",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Mel's Place",
+      "address": "East Coast Road, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Myra's Beach Club",
+      "address": "PA Water-Venture, Singapore",
+      "category": "Beach Club"
+    },
+    {
+      "name": "Next Door Cafe",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Rabbit Carrot Gun",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Sunset Bay Garden Bistro",
+      "address": "East Coast Parkway, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Trenchard Arms",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "The Tuckshop",
+      "address": "Geylang, Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Vau Wine Bar",
+      "address": "Changi Hotel, Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "WaWaWa",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Mooloolabar",
+      "address": "20 East Coast Road, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Magic Carpet Lounge",
+      "address": "72 Bussorah Street, Singapore 199485",
+      "category": "Lounge",
+      "operating_hours": "Mon-Thu 6pm-1am, Fri-Sat 6pm-3am, Sun 6pm-1am"
+    },
+    {
+      "name": "13% Gastro Wine",
+      "address": "#02-01, 14 Aliwal Street, Singapore 199907",
+      "category": "Wine Bar",
+      "phone": "6291 6816",
+      "operating_hours": "Tue-Fri 5pm-1am, Sat 12pm-1am"
+    },
+    {
+      "name": "Bar Stories",
+      "address": "57A Haji Lane, Singapore 189248",
+      "category": "Cocktail Bar",
+      "phone": "90044543",
+      "social_media_links": [
+        "https://www.facebook.com/barstories.sg/?rf=212989955428848"
+      ],
+      "operating_hours": "Sun-Thu 4pm-1am, Fri-Sat 4pm-2am"
+    },
+    {
+      "name": "Maison Ikkoku",
+      "address": "20 Kandahar Street, Singapore 198885",
+      "category": "Cocktail Bar",
+      "phone": "6294 0078",
+      "social_media_links": [
+        "https://www.facebook.com/maison.ikkoku.sg"
+      ],
+      "operating_hours": "Sun-Thu 6pm-1am, Fri-Sat 6pm-2am"
+    },
+    {
+      "name": "FRESH!",
+      "address": "101 Jalan Sultan, #02-01 The Sultan, Singapore 199002",
+      "category": "Cocktail Bar",
+      "phone": "8828 7084",
+      "operating_hours": "Mon-Thu 8pm-1am, Fri 9pm-3am, Sat 10pm-3am"
+    },
+    {
+      "name": "KOI Bangers + Izakaya",
+      "address": "9 Haji Lane, Singapore 189202",
+      "category": "Izakaya",
+      "phone": "9790 7535",
+      "operating_hours": "Tue-Thu 3pm-12am, Fri-Sat 3pm-2am, Sun 1pm-12am"
+    },
+    {
+      "name": "Singjazz Club",
+      "address": "101 Jalan Sultan #02-00, Singapore 199002",
+      "category": "Jazz Bar",
+      "phone": "8481 3034",
+      "social_media_links": [
+        "https://www.facebook.com/sgjazzclub/"
+      ],
+      "operating_hours": "Wed-Sun 8:30pm-1am"
+    },
+    {
+      "name": "All About Eve",
+      "address": "144 Arab Street #02-01, Singapore 199829",
+      "category": "Bar",
+      "phone": "63963780",
+      "operating_hours": "Mon-Thu 6pm-1:30am, Fri-Sat 6pm-2:30am, Sun 6pm-1:30am"
+    },
+    {
+      "name": "Good Luck Beerhouse",
+      "address": "Arab Street, Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Chevy's Bar and Bistro",
+      "address": "Arab Street, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Molly Malone's Irish Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Malone's Irish Restaurant & Bar",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Ice Karaoke Pub",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "1819",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "8 Degree Lounge (Bukit Batok)",
+      "address": "Bukit Batok, Singapore",
+      "category": "Karaoke Lounge"
+    },
+    {
+      "name": "8 Degree KTV Lounge (Changi Village)",
+      "address": "Changi Village, Singapore",
+      "category": "Karaoke Lounge"
+    },
+    {
+      "name": "Faber Valley",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "KEN's Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Underground Ktv",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Party World KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Good Cheer 2",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "ZIGGY'S Karaoke Rooms & Cocktail Bar",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "The Music Room",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "7 Tavern",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Forest3 Cafe",
+      "address": "Singapore",
+      "category": "Cafe Bar"
+    },
+    {
+      "name": "Palace 1 Sultan",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Oriental Tea House KTV Karaoke",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "R. S. Karaoke KTV Lounge",
+      "address": "Singapore",
+      "category": "Karaoke Lounge"
+    },
+    {
+      "name": "B12 Delux KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Club Butterfly",
+      "address": "Singapore",
+      "category": "Karaoke Club"
+    },
+    {
+      "name": "Egos KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Galaxy KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "UME KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Gala KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Meili KTV",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "7th Heaven KTV Cafe",
+      "address": "Singapore",
+      "category": "Karaoke Cafe"
+    },
+    {
+      "name": "Major 99 Karaoke",
+      "address": "Singapore",
+      "category": "Karaoke Bar"
+    },
+    {
+      "name": "Club Nana",
+      "address": "Chinatown, Singapore",
+      "category": "Club"
+    },
+    {
+      "name": "Neverland",
+      "address": "Chinatown, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Smith Street Taps",
+      "address": "Chinatown, Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Tantric Bar & May Wong's Cafe",
+      "address": "Chinatown, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "PintHouse SG",
+      "address": "Little India, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "MINI PANJAB RESTAURANT & BAR",
+      "address": "Little India, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "INDO THAI Bar & Restaurant",
+      "address": "Little India, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Olibier Rooftop Bar",
+      "address": "Little India, Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Blue Skies Cafe & Bar",
+      "address": "Little India, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Hard Rock Cafe Sentosa",
+      "address": "Sentosa, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "WOOBAR",
+      "address": "W Singapore, Sentosa, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé Keppel",
+      "address": "Keppel Bay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Harry's @ Mapletree Business City",
+      "address": "Mapletree Business City, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Harry's @ Riverside Point",
+      "address": "Riverside Point, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Harry's @ Changi Airport",
+      "address": "Changi Airport, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Attica",
+      "address": "Clarke Quay, Singapore",
+      "category": "Nightclub"
+    },
+    {
+      "name": "Canvas Nightclub",
+      "address": "Clarke Quay, Singapore",
+      "category": "Nightclub"
+    },
+    {
+      "name": "G-Max Reverse Bungy",
+      "address": "Clarke Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Octapas",
+      "address": "Clarke Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé @ Keppel Bay",
+      "address": "2 Keppel Bay Vista, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Dashi",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Penny Black",
+      "address": "Boat Quay, Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Rumours Bar & Grill",
+      "address": "Holland Village, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "La Nonna",
+      "address": "Holland Village, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Baden Baden",
+      "address": "Boat Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cuba Libre",
+      "address": "Boat Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Riverside Point Bars",
+      "address": "Riverside Point, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Pump Room",
+      "address": "Clarke Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Clinic",
+      "address": "Clarke Quay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Hooters Singapore",
+      "address": "Singapore",
+      "category": "Sports Bar"
+    },
+    {
+      "name": "Bar Opiume",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Kyo",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Exchange",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Ah Sam Cold Drink Stall",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "1927",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Kick",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Tipsy Penguin",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Secret Mermaid",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cufflink Club",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Other Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Dempsey Cookhouse & Bar",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "PS.Cafe Dempsey",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Samy's Curry",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Beast",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Last Call",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Barbary Coast",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Omakase + Appreciate",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Cicheti",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "1-Group",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Ah Hua Kelong",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Tong Ah Eating House",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Lime House",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Lokal",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar-Roque Grill",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Porta",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Salt Tapas & Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Spot",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Type",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Wild Honey",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "40 Hands",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Chico Loco",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Guild",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Balcony Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Clifford Pier",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Courtyard",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Post Bar",
+      "address": "Fullerton Hotel, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Lighthouse",
+      "address": "Fullerton Hotel, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Writing Club",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Hari's Lobby Lounge & Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "LEBAR",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Yardbird Southern Table and Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Mogambo Bar & Restaurant",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "P.S.O. Beach Club",
+      "address": "Singapore",
+      "category": "Beach Club"
+    },
+    {
+      "name": "Anti:dote",
+      "address": "Fairmont Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Manhattan Bar @ Regent",
+      "address": "Regent Hotel, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Jaan",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Stellar at 1-Altitude",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Odette",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Burnt Ends",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Nouri",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cloudstreet",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Meta",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Labyrinth",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Summer Pavilion",
+      "address": "Ritz Carlton, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Colony",
+      "address": "Ritz Carlton, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Ritz Lounge",
+      "address": "Ritz Carlton, Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Pool Bar",
+      "address": "Ritz Carlton, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Colony Bakery",
+      "address": "Ritz Carlton, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Si Chuan Dou Hua",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cherry Garden",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Artichoke",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cure",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "CornerHouse",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Les Amis",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bistro du Vin",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Le Chasseur",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Ember Beach Club",
+      "address": "Singapore",
+      "category": "Beach Club"
+    },
+    {
+      "name": "The Library",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Wine Company",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "The Bank Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Altimate",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Moon",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Altitude Grill",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Stellar 1-Altitude",
+      "address": "Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "1-Altitude Gallery & Bar",
+      "address": "1 Raffles Pl, Level 63, Singapore 048616",
+      "category": "Rooftop Bar",
+      "phone": "6438 0410"
+    },
+    {
+      "name": "Crazy Elephant",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Prince of Wales",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Brewdog Singapore",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Chupitos Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Kilo Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Kilo Kitchen",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Sum Yi Tai",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Beast Public House",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "The Flagship",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bee's Knees",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé Somerset",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé Orchard",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé Raffles Place",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Privé City Hall",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Wine RVLT at Keong Saik",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "2am:dessertbar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Oxwell & Co",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "No. 5 Tapas",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "FOC Restaurant",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Feather Blade",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Senso Ristorante & Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "PizzaFace",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Working Title",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Stories Dempsey",
+      "address": "Dempsey Hill, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Disgruntled Brasserie",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Market Grill",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Artemis Mediterranean Grill",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Garage",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Good  Luck Beerhouse",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "Bunker Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Catch Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "FLNT at 1-ATICO",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Sky View Pavilion",
+      "address": "Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Gather@bar Bistro",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Cuscaden Cafe & Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Craft Drinks",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Circle Star",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Red Wine Club",
+      "address": "Singapore",
+      "category": "Wine Bar"
+    },
+    {
+      "name": "Happy Villa",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Pat's Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "O Plus Entertainment",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Club Colaba",
+      "address": "Singapore",
+      "category": "Club"
+    },
+    {
+      "name": "World Music",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Sin Kim Leng Music Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Ming's Cafe & Pub",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "Macquire",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "J Bowen",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Lucky Cafes",
+      "address": "Singapore",
+      "category": "Cafe Bar"
+    },
+    {
+      "name": "Golden Donuts",
+      "address": "Singapore",
+      "category": "Cafe Bar"
+    },
+    {
+      "name": "Fusion Bistro",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Heart of Darkness",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "1-Altitude Bar",
+      "address": "Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "IPPUDO",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Meatsmith Little India",
+      "address": "Little India, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Neon Pigeon",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Spiffy Dapper @ Keong Saik",
+      "address": "Keong Saik, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Loof Rooftop Bar",
+      "address": "Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Screening Room",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Glasshouse",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Tippling Club Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Populus Coffee & Food Co",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Supertree by IndoChine",
+      "address": "Gardens by the Bay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Super Loco",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Pollen",
+      "address": "Gardens by the Bay, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bee's Singapore",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Black Swan",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Canvas Club Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Alley on 25",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Alley Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bob's Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Spot @ The Grandstand",
+      "address": "The Grandstand, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Three Peacocks",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Horse's Mouth",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Tio Barista",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Piedra Negra",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Symmetry",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Wild Oats",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Guild Singapore",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "TAP Craft Beer Bar",
+      "address": "Singapore",
+      "category": "Beer Bar"
+    },
+    {
+      "name": "The Ale House",
+      "address": "Singapore",
+      "category": "Pub"
+    },
+    {
+      "name": "The Beer Factory",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Full Circle",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "City Space Bar & Lounge",
+      "address": "Singapore",
+      "category": "Lounge"
+    },
+    {
+      "name": "Anti:dote Rooftop Bar",
+      "address": "Fairmont Singapore",
+      "category": "Rooftop Bar"
+    },
+    {
+      "name": "Shahi Maharani",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Blanco Court Cocktail Bar",
+      "address": "Singapore",
+      "category": "Cocktail Bar"
+    },
+    {
+      "name": "Sugarhall",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Bar Stories Balestier",
+      "address": "Balestier, Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "Hopscotch Singapore",
+      "address": "Singapore",
+      "category": "Cocktail Bar"
+    },
+    {
+      "name": "Raffles Hotel Bar",
+      "address": "1 Beach Road, Raffles Hotel, Singapore 189673",
+      "category": "Bar"
+    },
+    {
+      "name": "Analogue",
+      "address": "Singapore",
+      "category": "Bar"
+    },
+    {
+      "name": "The Warehouse Hotel Bar",
+      "address": "320 Havelock Rd, Singapore 169628",
+      "category": "Bar",
+      "phone": "+65 6828 0000"
+    },
+    {
+      "name": "Tan Quee Lan Street Bar",
+      "address": "Singapore",
+      "category": "Bar"
+    }
+  ]
+}
