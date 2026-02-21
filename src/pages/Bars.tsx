@@ -85,6 +85,7 @@ const Bars = () => {
     <>
       <Helmet>
         <title>All Bars - SG Bars</title>
+        <link rel="canonical" href="https://singapore-sip-guide.lovable.app/bars" />
         <meta
           name="description"
           content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot."
