@@ -27,7 +27,7 @@ const HeroSection = () => {
         {/* Stats */}
         <div className="flex flex-wrap justify-center gap-8 mb-10 animate-fade-in-up animate-stagger-2">
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">503</div>
+            <div className="text-3xl font-bold text-accent">500+</div>
             <div className="text-sm text-white/80">Bars Listed</div>
           </div>
           <div className="text-center">
