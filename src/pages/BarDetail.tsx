@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { BarSchema } from "@/components/BarSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight } from "lucide-react";
 
 const BarDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -46,6 +46,17 @@ const BarDetail = () => {
               <title>{bar.name} — SG Bars</title>
               <link rel="canonical" href={`https://singapore-sip-guide.lovable.app/bars/${slug}`} />
               <meta name="description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <script type="application/ld+json">
+                {JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "BreadcrumbList",
+                  itemListElement: [
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://singapore-sip-guide.lovable.app/" },
+                    { "@type": "ListItem", position: 2, name: "Bars", item: "https://singapore-sip-guide.lovable.app/bars" },
+                    { "@type": "ListItem", position: 3, name: bar.name },
+                  ],
+                })}
+              </script>
             </Helmet>
 
             <BarSchema
@@ -58,9 +69,13 @@ const BarDetail = () => {
               pageUrl={`https://singapore-sip-guide.lovable.app/bars/${slug}`}
             />
 
-            <Link to="/" className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors mb-8">
-              <ArrowLeft className="w-4 h-4" /> Back to all bars
-            </Link>
+            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground mb-8">
+              <Link to="/" className="hover:text-accent transition-colors">Home</Link>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <Link to="/bars" className="hover:text-accent transition-colors">Bars</Link>
+              <ChevronRight className="w-3.5 h-3.5" />
+              <span className="text-foreground font-medium truncate">{bar.name}</span>
+            </nav>
 
             <h1 className="text-4xl font-bold text-foreground mb-2">{bar.name}</h1>
 
