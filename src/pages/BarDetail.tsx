@@ -44,6 +44,7 @@ const BarDetail = () => {
           <>
             <Helmet>
               <title>{bar.name} — SG Bars</title>
+              <link rel="canonical" href={`https://singapore-sip-guide.lovable.app/bars/${slug}`} />
               <meta name="description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
             </Helmet>
 
