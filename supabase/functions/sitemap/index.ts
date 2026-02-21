@@ -6,7 +6,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-const BASE = "https://singapore-sip-guide.lovable.app";
+const BASE = "https://bars.sg";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -52,7 +52,7 @@ Deno.serve(async (req) => {
     <loc>${BASE}/bars/${bar.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>`;
   }
 
