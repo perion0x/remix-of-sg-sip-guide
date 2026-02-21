@@ -25,6 +25,7 @@ export type Database = {
           name: string
           operating_hours: string | null
           phone: string | null
+          slug: string
           social_media_links: string | null
         }
         Insert: {
@@ -37,6 +38,7 @@ export type Database = {
           name: string
           operating_hours?: string | null
           phone?: string | null
+          slug: string
           social_media_links?: string | null
         }
         Update: {
@@ -49,6 +51,7 @@ export type Database = {
           name?: string
           operating_hours?: string | null
           phone?: string | null
+          slug?: string
           social_media_links?: string | null
         }
         Relationships: []
