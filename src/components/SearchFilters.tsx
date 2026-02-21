@@ -20,17 +20,9 @@ const SearchFilters = () => {
   const { data: stats } = useQuery({
     queryKey: ["bar-stats"],
     queryFn: async () => {
-      const [totalRes, categoriesRes] = await Promise.all([
-        supabase.from("bars").select("*", { count: "exact", head: true }),
-        supabase.from("bars").select("category").not("category", "is", null),
-      ]);
-      const categories = new Set(categoriesRes.data?.map((b) => b.category));
-      const rooftopCount = categoriesRes.data?.filter((b) => b.category === "Rooftop Bar").length ?? 0;
-      return {
-        total: totalRes.count ?? 0,
-        categories: categories.size,
-        rooftop: rooftopCount,
-      };
+      const { data, error } = await supabase.rpc("get_bar_stats");
+      if (error) throw error;
+      return data as { total: number; categories: number; rooftop: number };
     },
   });
 
