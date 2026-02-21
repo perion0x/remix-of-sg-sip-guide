@@ -27,16 +27,16 @@ const HeroSection = () => {
         {/* Stats */}
         <div className="flex flex-wrap justify-center gap-8 mb-10 animate-fade-in-up animate-stagger-2">
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">12</div>
-            <div className="text-sm text-white/80">Asia's 50 Best</div>
+            <div className="text-3xl font-bold text-accent">503</div>
+            <div className="text-sm text-white/80">Bars Listed</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">250+</div>
-            <div className="text-sm text-white/80">Premium Bars</div>
+            <div className="text-3xl font-bold text-accent">35</div>
+            <div className="text-sm text-white/80">Categories</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-accent">28</div>
-            <div className="text-sm text-white/80">Neighborhoods</div>
+            <div className="text-3xl font-bold text-accent">129</div>
+            <div className="text-sm text-white/80">Locations</div>
           </div>
         </div>
 
