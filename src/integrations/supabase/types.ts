@@ -20,6 +20,7 @@ export type Database = {
           category: string | null
           created_at: string
           email: string | null
+          google_maps_link: string | null
           id: string
           name: string
           operating_hours: string | null
@@ -31,6 +32,7 @@ export type Database = {
           category?: string | null
           created_at?: string
           email?: string | null
+          google_maps_link?: string | null
           id?: string
           name: string
           operating_hours?: string | null
@@ -42,6 +44,7 @@ export type Database = {
           category?: string | null
           created_at?: string
           email?: string | null
+          google_maps_link?: string | null
           id?: string
           name?: string
           operating_hours?: string | null
