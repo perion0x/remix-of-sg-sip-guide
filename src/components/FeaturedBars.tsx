@@ -2,6 +2,7 @@ import { Star, MapPin, Clock, Award } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "react-router-dom";
 
 const FeaturedBars = () => {
   const { data: bars, isLoading } = useQuery({
@@ -40,9 +41,10 @@ const FeaturedBars = () => {
                 </div>
               ))
             : bars?.map((bar, index) => (
-                <div
+                <Link
+                  to={`/bars/${bar.slug}`}
                   key={bar.id}
-                  className={`bar-card animate-fade-in-up animate-stagger-${index + 1}`}
+                  className={`bar-card animate-fade-in-up animate-stagger-${index + 1} block`}
                 >
                   {/* Header with category badge */}
                   <div className="relative h-48 bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
@@ -75,9 +77,9 @@ const FeaturedBars = () => {
                       </div>
                     )}
 
-                    <button className="w-full btn-primary">View Details</button>
+                    <span className="w-full btn-primary block text-center">View Details</span>
                   </div>
-                </div>
+                </Link>
               ))}
         </div>
 
