@@ -77,6 +77,7 @@ const BarDetail = () => {
               socialMedia={bar.social_media_links ?? undefined}
               mapUrl={bar.google_maps_link ?? undefined}
               pageUrl={`https://bars.sg/bars/${slug}`}
+              operatingHours={bar.operating_hours ?? undefined}
             />
 
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground mb-8">

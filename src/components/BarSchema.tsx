@@ -8,9 +8,40 @@ interface BarSchemaProps {
   socialMedia?: string;
   mapUrl?: string;
   pageUrl: string;
+  operatingHours?: string;
 }
 
-export function BarSchema({ name, address, category, phone, socialMedia, mapUrl, pageUrl }: BarSchemaProps) {
+const DAY_MAP: Record<string, string> = {
+  Mon: "Mo", Tue: "Tu", Wed: "We", Thu: "Th", Fri: "Fr", Sat: "Sa", Sun: "Su",
+};
+
+function parseTime(t: string): string {
+  t = t.trim().toLowerCase();
+  if (t === "midnight") return "00:00";
+  if (t === "noon") return "12:00";
+  const match = t.match(/^(\d+)(?::(\d+))?\s*(am|pm)$/);
+  if (!match) return t;
+  let h = parseInt(match[1]);
+  const m = match[2] ? parseInt(match[2]) : 0;
+  if (match[3] === "pm" && h !== 12) h += 12;
+  if (match[3] === "am" && h === 12) h = 0;
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+}
+
+function parseDays(d: string): string {
+  return d.trim().replace(/\b(Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b/g, (m) => DAY_MAP[m] ?? m);
+}
+
+function parseOpeningHours(raw: string): string[] {
+  const segments = raw.split(/[;,]\s+/);
+  return segments.flatMap((seg) => {
+    const match = seg.trim().match(/^([A-Za-z\s\-]+?)\s+(\S+)-(\S+)$/);
+    if (!match) return [];
+    return [`${parseDays(match[1])} ${parseTime(match[2])}-${parseTime(match[3])}`];
+  });
+}
+
+export function BarSchema({ name, address, category, phone, socialMedia, mapUrl, pageUrl, operatingHours }: BarSchemaProps) {
   const nightclubTypes = ["Nightclub", "Club", "Techno Club"];
   const breweryTypes = ["Brewery", "Micro-Brewery"];
 
@@ -39,12 +70,18 @@ export function BarSchema({ name, address, category, phone, socialMedia, mapUrl,
     },
   };
 
+  schema.description = `${category ? category + " " : ""}located in Singapore. Discover address, opening hours, and contact details for ${name}.`;
+
   if (phone) {
     const clean = phone.replace(/[^\d]/g, "");
     schema.telephone = clean.length === 8 ? `+65-${clean.slice(0, 4)}-${clean.slice(4)}` : phone;
   }
   if (socialMedia) schema.sameAs = socialMedia.split(",").map((s) => s.trim()).filter(Boolean);
   if (mapUrl) schema.hasMap = mapUrl;
+  if (operatingHours) {
+    const parsed = parseOpeningHours(operatingHours);
+    if (parsed.length > 0) schema.openingHours = parsed;
+  }
 
   return (
     <Helmet>
