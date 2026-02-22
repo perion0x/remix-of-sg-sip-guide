@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { BarSchema } from "@/components/BarSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train } from "lucide-react";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -36,6 +36,83 @@ function getSocialInfo(url: string): { platform: string; handle: string; Icon: (
   }
 }
 
+function getOpenStatus(hours: string | null): { open: boolean; label: string } | null {
+  if (!hours) return null;
+  try {
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun, 1=Mon ... 6=Sat
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const todayName = dayNames[day];
+
+    const segments = hours.split(/[;,]\s+/);
+    for (const seg of segments) {
+      const match = seg.trim().match(/^([A-Za-z\s\-]+?)\s+(\d+(?::\d+)?(?:am|pm)?)-(.+)$/i);
+      if (!match) continue;
+
+      const dayRange = match[1].trim();
+      const dayParts = dayRange.split("-").map((d) => d.trim());
+      const dayOrder = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+      const startIdx = dayOrder.indexOf(dayParts[0]);
+      const endIdx = dayParts[1] ? dayOrder.indexOf(dayParts[1]) : startIdx;
+      const todayIdx = dayOrder.indexOf(todayName);
+
+      const inRange = startIdx <= endIdx
+        ? todayIdx >= startIdx && todayIdx <= endIdx
+        : todayIdx >= startIdx || todayIdx <= endIdx;
+
+      if (!inRange) continue;
+
+      const parseHour = (t: string): number => {
+        t = t.trim().toLowerCase();
+        if (t === "midnight") return 24;
+        if (t === "noon") return 12;
+        const m = t.match(/^(\d+)(?::(\d+))?\s*(am|pm)$/);
+        if (!m) return -1;
+        let h = parseInt(m[1]);
+        if (m[3] === "pm" && h !== 12) h += 12;
+        if (m[3] === "am" && h === 12) h = 0;
+        return h;
+      };
+
+      const openH = parseHour(match[2]);
+      const closeRaw = match[3].trim();
+      let closeH = parseHour(closeRaw);
+      if (closeH < openH) closeH += 24; // past midnight
+
+      const currentH = now.getHours() + now.getMinutes() / 60;
+      const isOpen = currentH >= openH && currentH < closeH;
+
+      const closingLabel = closeRaw === "midnight" ? "midnight" : closeRaw;
+      return {
+        open: isOpen,
+        label: isOpen ? `Open · closes ${closingLabel}` : `Closed · opens ${match[2]}`,
+      };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function getArea(address: string | null): string | null {
+  if (!address) return null;
+  const areas: Record<string, string[]> = {
+    "Clarke Quay / River Valley": ["Clarke Quay", "River Valley", "Robertson Quay"],
+    "Chinatown / Tanjong Pagar": ["Chinatown", "Tanjong Pagar", "Amoy", "Club St", "Ann Siang", "Neil Rd", "Duxton"],
+    "CBD / Marina Bay": ["Marina Bay", "Raffles Place", "Shenton Way", "Marina Blvd"],
+    "Orchard": ["Orchard", "Somerset", "Dhoby Ghaut"],
+    "Bugis / Beach Road": ["Bugis", "Beach Rd", "Arab St", "Haji Lane"],
+    "Kampong Glam": ["Kampong Glam", "Sultan", "North Bridge"],
+    "Dempsey": ["Dempsey"],
+    "Holland Village": ["Holland"],
+    "Sentosa": ["Sentosa"],
+  };
+  for (const [area, keywords] of Object.entries(areas)) {
+    if (keywords.some((k) => address.toLowerCase().includes(k.toLowerCase()))) return area;
+  }
+  return null;
+}
+
 const BarDetail = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -57,7 +134,7 @@ const BarDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="max-w-3xl mx-auto px-4 py-12">
+      <main>
         {isLoading && (
           <div className="text-center py-20 text-muted-foreground">Loading…</div>
         )}
@@ -74,16 +151,16 @@ const BarDetail = () => {
             <Helmet>
               <title>{bar.name} — SG Bars | Singapore Bar Guide</title>
               <link rel="canonical" href={`https://bars.sg/bars/${slug}`} />
-              <meta name="description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta property="og:type" content="website" />
               <meta property="og:url" content={`https://bars.sg/bars/${slug}`} />
               <meta property="og:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta property="og:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta property="og:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:site" content="@sgbars" />
               <meta name="twitter:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta name="twitter:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="twitter:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
               <script type="application/ld+json">
                 {JSON.stringify({
@@ -109,98 +186,173 @@ const BarDetail = () => {
               operatingHours={bar.operating_hours ?? undefined}
             />
 
-            <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground mb-8">
-              <Link to="/" className="hover:text-accent transition-colors">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <Link to="/bars" className="hover:text-accent transition-colors">Bars</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-foreground font-medium truncate">{bar.name}</span>
-            </nav>
+            {/* Hero */}
+            <div className="relative h-64 md:h-80 bg-gradient-to-br from-accent/30 via-primary/20 to-background flex items-end">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-8xl font-bold text-accent/10 select-none">{bar.name.charAt(0)}</span>
+              </div>
+              <div className="relative container mx-auto px-4 pb-6">
+                <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/70 mb-3">
+                  <Link to="/" className="hover:text-white transition-colors">Home</Link>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                  <Link to="/bars" className="hover:text-white transition-colors">Bars</Link>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span className="text-white font-medium truncate">{bar.name}</span>
+                </nav>
+                <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow">{bar.name}</h1>
+                {bar.category && (
+                  <span className="inline-block mt-2 px-3 py-1 rounded-full bg-accent/80 text-white text-sm font-medium">
+                    {bar.category}
+                  </span>
+                )}
+              </div>
+            </div>
 
-            <h1 className="text-4xl font-bold text-foreground mb-2">{bar.name}</h1>
+            {/* Content */}
+            <div className="container mx-auto px-4 py-10">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-            {bar.category && (
-              <span className="inline-block px-3 py-1 rounded-full bg-accent/15 text-accent-foreground text-sm font-medium mb-6">
-                {bar.category}
-              </span>
-            )}
+                {/* Main content */}
+                <div className="lg:col-span-2 space-y-8">
 
-            <div className="space-y-4 mt-6">
-              {bar.address && (
-                <div className="flex items-start gap-3 text-foreground">
-                  <MapPin className="w-5 h-5 mt-0.5 text-accent shrink-0" />
-                  <span>{bar.address}</span>
-                </div>
-              )}
+                  {/* Open status */}
+                  {(() => {
+                    const status = getOpenStatus(bar.operating_hours);
+                    if (!status) return null;
+                    return (
+                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${status.open ? "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300" : "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"}`}>
+                        <span className={`w-2 h-2 rounded-full ${status.open ? "bg-green-500" : "bg-red-500"}`} />
+                        {status.label}
+                      </div>
+                    );
+                  })()}
 
-              {bar.operating_hours && (
-                <div className="flex items-start gap-3 text-foreground">
-                  <Clock className="w-5 h-5 mt-0.5 text-accent shrink-0" />
-                  <span className="whitespace-pre-line">{bar.operating_hours}</span>
-                </div>
-              )}
+                  {/* Description */}
+                  {bar.description && (
+                    <div>
+                      <h2 className="text-xl font-semibold text-foreground mb-3">About</h2>
+                      <p className="text-muted-foreground leading-relaxed">{bar.description}</p>
+                    </div>
+                  )}
 
-              {bar.phone && (
-                <div className="flex items-center gap-3 text-foreground">
-                  <Phone className="w-5 h-5 text-accent shrink-0" />
-                  <a href={`tel:${bar.phone}`} className="hover:text-accent transition-colors">{bar.phone}</a>
-                </div>
-              )}
+                  {/* Highlights */}
+                  {bar.category && (
+                    <div>
+                      <h2 className="text-xl font-semibold text-foreground mb-3">Highlights</h2>
+                      <div className="flex flex-wrap gap-2">
+                        {[bar.category, "Singapore Bar", bar.address ? getArea(bar.address) : null]
+                          .filter(Boolean)
+                          .map((tag) => (
+                            <span key={tag} className="px-3 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium border border-accent/20">
+                              {tag}
+                            </span>
+                          ))}
+                      </div>
+                    </div>
+                  )}
 
-              {bar.email && (
-                <div className="flex items-center gap-3 text-foreground">
-                  <Mail className="w-5 h-5 text-accent shrink-0" />
-                  <a href={`mailto:${bar.email}`} className="hover:text-accent transition-colors">{bar.email}</a>
-                </div>
-              )}
-
-              {bar.google_maps_link && (
-                <a
-                  href={bar.google_maps_link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 btn-gold mt-4"
-                >
-                  <ExternalLink className="w-4 h-4" /> View on Google Maps
-                </a>
-              )}
-
-              <div className="mt-6 pt-6 border-t border-border">
-                {bar.social_media_links ? (
-                  <>
-                    <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h2>
-                    <div className="flex flex-wrap gap-3">
-                      {bar.social_media_links.split(",").map((link) => {
-                        const trimmed = link.trim();
-                        if (!trimmed) return null;
-                        const { platform, handle, Icon, className } = getSocialInfo(trimmed);
-                        return (
+                  {/* Getting There */}
+                  {bar.address && (
+                    <div>
+                      <h2 className="text-xl font-semibold text-foreground mb-3">Getting There</h2>
+                      <div className="space-y-3 text-muted-foreground">
+                        <div className="flex items-start gap-3">
+                          <MapPin className="w-5 h-5 mt-0.5 text-accent shrink-0" />
+                          <span>{bar.address}</span>
+                        </div>
+                        {getArea(bar.address) && (
+                          <div className="flex items-start gap-3">
+                            <Train className="w-5 h-5 mt-0.5 text-accent shrink-0" />
+                            <span>Located in the <strong>{getArea(bar.address)}</strong> area of Singapore</span>
+                          </div>
+                        )}
+                        {bar.google_maps_link && (
                           <a
-                            key={trimmed}
-                            href={trimmed}
+                            href={bar.google_maps_link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${className}`}
+                            className="inline-flex items-center gap-2 btn-gold mt-2"
                           >
-                            <Icon />
-                            <span>{platform}</span>
-                            <span className="text-xs opacity-70">{handle}</span>
+                            <ExternalLink className="w-4 h-4" /> View on Google Maps
                           </a>
-                        );
-                      })}
+                        )}
+                      </div>
                     </div>
-                  </>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    Know their socials?{" "}
-                    <a
-                      href={`mailto:hello@bars.sg?subject=Suggest an edit for ${encodeURIComponent(bar.name)}`}
-                      className="text-accent hover:underline"
-                    >
-                      Help us keep this listing up to date.
-                    </a>
-                  </p>
-                )}
+                  )}
+                </div>
+
+                {/* Sidebar */}
+                <div className="space-y-6">
+                  <div className="rounded-xl border border-border bg-card p-6 space-y-5">
+
+                    {bar.operating_hours && (
+                      <div>
+                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Hours</h3>
+                        <div className="flex items-start gap-2 text-foreground text-sm">
+                          <Clock className="w-4 h-4 mt-0.5 text-accent shrink-0" />
+                          <span className="whitespace-pre-line">{bar.operating_hours}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {bar.phone && (
+                      <div>
+                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Phone</h3>
+                        <a href={`tel:${bar.phone}`} className="flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors">
+                          <Phone className="w-4 h-4 text-accent shrink-0" />
+                          {bar.phone}
+                        </a>
+                      </div>
+                    )}
+
+                    {bar.email && (
+                      <div>
+                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Email</h3>
+                        <a href={`mailto:${bar.email}`} className="flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors">
+                          <Mail className="w-4 h-4 text-accent shrink-0" />
+                          {bar.email}
+                        </a>
+                      </div>
+                    )}
+
+                    <div className="pt-2 border-t border-border">
+                      <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h3>
+                      {bar.social_media_links ? (
+                        <div className="flex flex-col gap-2">
+                          {bar.social_media_links.split(",").map((link) => {
+                            const trimmed = link.trim();
+                            if (!trimmed) return null;
+                            const { platform, handle, Icon, className } = getSocialInfo(trimmed);
+                            return (
+                              <a
+                                key={trimmed}
+                                href={trimmed}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${className}`}
+                              >
+                                <Icon />
+                                <span>{platform}</span>
+                                <span className="text-xs opacity-70">{handle}</span>
+                              </a>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-muted-foreground">
+                          Know their socials?{" "}
+                          <a
+                            href={`mailto:hello@bars.sg?subject=Suggest an edit for ${encodeURIComponent(bar.name)}`}
+                            className="text-accent hover:underline"
+                          >
+                            Help us update this listing.
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </>
