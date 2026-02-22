@@ -98,6 +98,10 @@ const Bars = () => {
       <main className="min-h-screen bg-background">
         <section className="py-12">
           <div className="container mx-auto px-4">
+            <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-accent transition-colors mb-4">
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              Back to Home
+            </Link>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">All Bars</h1>
             <p className="text-muted-foreground mb-8">
               Explore {barsResult?.total ?? "—"} bars across Singapore
