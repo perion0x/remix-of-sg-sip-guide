@@ -43,16 +43,26 @@ const BarDetail = () => {
         {bar && (
           <>
             <Helmet>
-              <title>{bar.name} — SG Bars</title>
-              <link rel="canonical" href={`https://singapore-sip-guide.lovable.app/bars/${slug}`} />
+              <title>{bar.name} — SG Bars | Singapore Bar Guide</title>
+              <link rel="canonical" href={`https://bars.sg/bars/${slug}`} />
               <meta name="description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta property="og:type" content="website" />
+              <meta property="og:url" content={`https://bars.sg/bars/${slug}`} />
+              <meta property="og:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
+              <meta property="og:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
+              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:site" content="@sgbars" />
+              <meta name="twitter:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
+              <meta name="twitter:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
               <script type="application/ld+json">
                 {JSON.stringify({
                   "@context": "https://schema.org",
                   "@type": "BreadcrumbList",
                   itemListElement: [
-                    { "@type": "ListItem", position: 1, name: "Home", item: "https://singapore-sip-guide.lovable.app/" },
-                    { "@type": "ListItem", position: 2, name: "Bars", item: "https://singapore-sip-guide.lovable.app/bars" },
+                    { "@type": "ListItem", position: 1, name: "Home", item: "https://bars.sg/" },
+                    { "@type": "ListItem", position: 2, name: "Bars", item: "https://bars.sg/bars" },
                     { "@type": "ListItem", position: 3, name: bar.name },
                   ],
                 })}
@@ -66,7 +76,7 @@ const BarDetail = () => {
               phone={bar.phone ?? undefined}
               socialMedia={bar.social_media_links ?? undefined}
               mapUrl={bar.google_maps_link ?? undefined}
-              pageUrl={`https://singapore-sip-guide.lovable.app/bars/${slug}`}
+              pageUrl={`https://bars.sg/bars/${slug}`}
             />
 
             <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground mb-8">

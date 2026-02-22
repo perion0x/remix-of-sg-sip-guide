@@ -75,7 +75,7 @@ const Bars = () => {
         itemListElement: barsResult.bars.map((bar, i) => ({
           "@type": "ListItem",
           position: (currentPage - 1) * BARS_PER_PAGE + i + 1,
-          url: `https://singapore-sip-guide.lovable.app/bars/${bar.slug}`,
+          url: `https://bars.sg/bars/${bar.slug}`,
           name: bar.name,
         })),
       }
@@ -84,12 +84,19 @@ const Bars = () => {
   return (
     <>
       <Helmet>
-        <title>All Bars - SG Bars</title>
-        <link rel="canonical" href="https://singapore-sip-guide.lovable.app/bars" />
-        <meta
-          name="description"
-          content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot."
-        />
+        <title>All Bars in Singapore - SG Bars</title>
+        <link rel="canonical" href="https://bars.sg/bars" />
+        <meta name="description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bars.sg/bars" />
+        <meta property="og:title" content="All Bars in Singapore - SG Bars" />
+        <meta property="og:description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
+        <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@sgbars" />
+        <meta name="twitter:title" content="All Bars in Singapore - SG Bars" />
+        <meta name="twitter:description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
+        <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
         {itemListJsonLd && (
           <script type="application/ld+json">{JSON.stringify(itemListJsonLd)}</script>
         )}
