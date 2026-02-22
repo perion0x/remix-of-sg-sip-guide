@@ -5,7 +5,36 @@ import { supabase } from "@/integrations/supabase/client";
 import { BarSchema } from "@/components/BarSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight } from "lucide-react";
+import { ArrowLeft, MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe } from "lucide-react";
+
+const InstagramIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+  </svg>
+);
+
+const FacebookIcon = () => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  </svg>
+);
+
+function getSocialInfo(url: string): { platform: string; handle: string; Icon: () => JSX.Element; className: string } {
+  try {
+    const { hostname, pathname } = new URL(url);
+    const host = hostname.replace("www.", "");
+    const handle = pathname.replace(/\/$/, "").split("/").filter(Boolean).pop() ?? host;
+    if (host.includes("instagram.com"))
+      return { platform: "Instagram", handle: `@${handle}`, Icon: InstagramIcon, className: "text-pink-500 border-pink-200 hover:bg-pink-50 dark:hover:bg-pink-950" };
+    if (host.includes("facebook.com"))
+      return { platform: "Facebook", handle: handle, Icon: FacebookIcon, className: "text-blue-600 border-blue-200 hover:bg-blue-50 dark:hover:bg-blue-950" };
+    return { platform: host, handle: handle, Icon: () => <Globe className="w-4 h-4" />, className: "text-accent border-border hover:bg-muted" };
+  } catch {
+    return { platform: "Link", handle: url, Icon: () => <ExternalLink className="w-4 h-4" />, className: "text-accent border-border hover:bg-muted" };
+  }
+}
 
 const BarDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -138,20 +167,23 @@ const BarDetail = () => {
 
               {bar.social_media_links && (
                 <div className="mt-6 pt-6 border-t border-border">
-                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Social Media</h2>
+                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h2>
                   <div className="flex flex-wrap gap-3">
                     {bar.social_media_links.split(",").map((link) => {
                       const trimmed = link.trim();
                       if (!trimmed) return null;
+                      const { platform, handle, Icon, className } = getSocialInfo(trimmed);
                       return (
                         <a
                           key={trimmed}
                           href={trimmed}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-accent hover:underline"
+                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${className}`}
                         >
-                          {new URL(trimmed).hostname.replace("www.", "")}
+                          <Icon />
+                          <span>{platform}</span>
+                          <span className="text-xs opacity-70">{handle}</span>
                         </a>
                       );
                     })}
