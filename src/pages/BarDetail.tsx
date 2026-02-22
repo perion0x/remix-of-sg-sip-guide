@@ -165,31 +165,43 @@ const BarDetail = () => {
                 </a>
               )}
 
-              {bar.social_media_links && (
-                <div className="mt-6 pt-6 border-t border-border">
-                  <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h2>
-                  <div className="flex flex-wrap gap-3">
-                    {bar.social_media_links.split(",").map((link) => {
-                      const trimmed = link.trim();
-                      if (!trimmed) return null;
-                      const { platform, handle, Icon, className } = getSocialInfo(trimmed);
-                      return (
-                        <a
-                          key={trimmed}
-                          href={trimmed}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${className}`}
-                        >
-                          <Icon />
-                          <span>{platform}</span>
-                          <span className="text-xs opacity-70">{handle}</span>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
+              <div className="mt-6 pt-6 border-t border-border">
+                {bar.social_media_links ? (
+                  <>
+                    <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h2>
+                    <div className="flex flex-wrap gap-3">
+                      {bar.social_media_links.split(",").map((link) => {
+                        const trimmed = link.trim();
+                        if (!trimmed) return null;
+                        const { platform, handle, Icon, className } = getSocialInfo(trimmed);
+                        return (
+                          <a
+                            key={trimmed}
+                            href={trimmed}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-colors ${className}`}
+                          >
+                            <Icon />
+                            <span>{platform}</span>
+                            <span className="text-xs opacity-70">{handle}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    Know their socials?{" "}
+                    <a
+                      href={`mailto:hello@bars.sg?subject=Suggest an edit for ${encodeURIComponent(bar.name)}`}
+                      className="text-accent hover:underline"
+                    >
+                      Help us keep this listing up to date.
+                    </a>
+                  </p>
+                )}
+              </div>
             </div>
           </>
         )}
