@@ -1,0 +1,16 @@
+{
+  "name": "SG Bars — Singapore Bar Guide",
+  "short_name": "SG Bars",
+  "description": "Discover Singapore's finest cocktail bars, speakeasies, and award-winning establishments.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#c9a84c",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
