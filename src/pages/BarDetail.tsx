@@ -151,16 +151,16 @@ const BarDetail = () => {
             <Helmet>
               <title>{bar.name} — SG Bars | Singapore Bar Guide</title>
               <link rel="canonical" href={`https://bars.sg/bars/${slug}`} />
-              <meta name="description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta property="og:type" content="website" />
               <meta property="og:url" content={`https://bars.sg/bars/${slug}`} />
               <meta property="og:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta property="og:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta property="og:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:site" content="@sgbars" />
               <meta name="twitter:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta name="twitter:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="twitter:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
               <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
               <script type="application/ld+json">
                 {JSON.stringify({
@@ -228,12 +228,7 @@ const BarDetail = () => {
                   })()}
 
                   {/* Description */}
-                  {bar.description && (
-                    <div>
-                      <h2 className="text-xl font-semibold text-foreground mb-3">About</h2>
-                      <p className="text-muted-foreground leading-relaxed">{bar.description}</p>
-                    </div>
-                  )}
+                  {/* Description placeholder - add description column to bars table to enable */}
 
                   {/* Highlights */}
                   {bar.category && (
