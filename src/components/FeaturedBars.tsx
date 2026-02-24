@@ -47,8 +47,19 @@ const FeaturedBars = () => {
                   className={`bar-card animate-fade-in-up animate-stagger-${index + 1} block`}
                 >
                   {/* Header with category badge */}
-                  <div className="relative h-48 bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-accent/30">{bar.name.charAt(0)}</span>
+                  <div className="relative h-48 overflow-hidden">
+                    {bar.image_url ? (
+                      <img
+                        src={bar.image_url}
+                        alt={bar.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
+                        <span className="text-4xl font-bold text-accent/30">{bar.name.charAt(0)}</span>
+                      </div>
+                    )}
                     {bar.category && (
                       <div className="absolute top-4 left-4">
                         <div className="ranking-badge">{bar.category}</div>

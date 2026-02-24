@@ -155,13 +155,13 @@ const BarDetail = () => {
               <meta property="og:type" content="website" />
               <meta property="og:url" content={`https://bars.sg/bars/${slug}`} />
               <meta property="og:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta property="og:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
-              <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
+              <meta property="og:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta property="og:image" content={bar.image_url ?? "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png"} />
               <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:site" content="@sgbars" />
               <meta name="twitter:title" content={`${bar.name} — SG Bars | Singapore Bar Guide`} />
-              <meta name="twitter:description" content={`Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
-              <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
+              <meta name="twitter:description" content={bar.description ?? `Discover ${bar.name} in Singapore. ${bar.category ?? "Bar"} — address, hours, contact and more.`} />
+              <meta name="twitter:image" content={bar.image_url ?? "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png"} />
               <script type="application/ld+json">
                 {JSON.stringify({
                   "@context": "https://schema.org",
@@ -187,10 +187,21 @@ const BarDetail = () => {
             />
 
             {/* Hero */}
-            <div className="relative h-64 md:h-80 bg-gradient-to-br from-accent/30 via-primary/20 to-background flex items-end">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl font-bold text-accent/10 select-none">{bar.name.charAt(0)}</span>
-              </div>
+            <div className="relative h-64 md:h-80 flex items-end">
+              {bar.image_url ? (
+                <>
+                  <img
+                    src={bar.image_url}
+                    alt={bar.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
+                </>
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-primary/20 to-background flex items-center justify-center">
+                  <span className="text-8xl font-bold text-accent/10 select-none">{bar.name.charAt(0)}</span>
+                </div>
+              )}
               <div className="relative container mx-auto px-4 pb-6">
                 <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/70 mb-3">
                   <Link to="/" className="hover:text-white transition-colors">Home</Link>

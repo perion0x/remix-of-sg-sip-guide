@@ -159,10 +159,21 @@ const Bars = () => {
                       key={bar.id}
                       className="bar-card block hover:shadow-lg transition-shadow"
                     >
-                      <div className="relative h-36 bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
-                        <span className="text-3xl font-bold text-accent/30">
-                          {bar.name.charAt(0)}
-                        </span>
+                      <div className="relative h-36 overflow-hidden">
+                        {bar.image_url ? (
+                          <img
+                            src={bar.image_url}
+                            alt={bar.name}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
+                            <span className="text-3xl font-bold text-accent/30">
+                              {bar.name.charAt(0)}
+                            </span>
+                          </div>
+                        )}
                         {bar.category && (
                           <span className="absolute top-3 left-3 ranking-badge text-xs">
                             {bar.category}

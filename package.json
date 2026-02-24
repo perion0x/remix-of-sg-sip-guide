@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "generate:sitemap": "node --env-file=.env ./node_modules/.bin/tsx scripts/generate-sitemap.ts",
-    "generate:descriptions": "node --env-file=.env ./node_modules/.bin/tsx scripts/generate-descriptions.ts"
+    "generate:descriptions": "node --env-file=.env ./node_modules/.bin/tsx scripts/generate-descriptions.ts",
+    "fetch:images": "node --env-file=.env ./node_modules/.bin/tsx scripts/fetch-images.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
