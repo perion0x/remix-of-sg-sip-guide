@@ -19,40 +19,49 @@ export type Database = {
           address: string | null
           category: string | null
           created_at: string
+          description: string | null
           email: string | null
           google_maps_link: string | null
           id: string
+          image_url: string | null
           name: string
           operating_hours: string | null
           phone: string | null
           slug: string
           social_media_links: string | null
+          website: string | null
         }
         Insert: {
           address?: string | null
           category?: string | null
           created_at?: string
+          description?: string | null
           email?: string | null
           google_maps_link?: string | null
           id?: string
+          image_url?: string | null
           name: string
           operating_hours?: string | null
           phone?: string | null
           slug: string
           social_media_links?: string | null
+          website?: string | null
         }
         Update: {
           address?: string | null
           category?: string | null
           created_at?: string
+          description?: string | null
           email?: string | null
           google_maps_link?: string | null
           id?: string
+          image_url?: string | null
           name?: string
           operating_hours?: string | null
           phone?: string | null
           slug?: string
           social_media_links?: string | null
+          website?: string | null
         }
         Relationships: []
       }
