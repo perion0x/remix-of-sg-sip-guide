@@ -1,8 +1,20 @@
-import { Star, MapPin, Clock, Award } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+const NOTABLE_NAMES = [
+  "Jigger & Pony",
+  "Nutmeg & Clove",
+  "Native",
+  "Employees Only",
+  "28 HongKong Street",
+  "Smoke & Mirrors",
+  "The Cocktail Bar",
+  "Manhattan",
+  "Origin Bar",
+  "Analogue Initiative",
+];
 
 const FeaturedBars = () => {
   const { data: bars, isLoading } = useQuery({
@@ -10,33 +22,40 @@ const FeaturedBars = () => {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("bars")
-        .select("*")
-        .in("category", ["Cocktail Bar", "Speakeasy", "Speakeasy Bar", "Gin Bar", "Whisky Bar"])
-        .limit(6);
+        .select("id, name, address, category, slug, description")
+        .in("name", NOTABLE_NAMES);
       if (error) throw error;
-      return data;
+      // Sort to match NOTABLE_NAMES order
+      return data?.sort(
+        (a, b) => NOTABLE_NAMES.indexOf(a.name) - NOTABLE_NAMES.indexOf(b.name)
+      );
     },
   });
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-secondary/30">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="section-title animate-fade-in-up">Featured Bars</h2>
-          <p className="section-subtitle animate-fade-in-up animate-stagger-1">
-            Discover Singapore's most acclaimed cocktail destinations
-          </p>
+    <section className="py-24 bg-background">
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="flex items-end justify-between mb-12 border-b border-border pb-6">
+          <div>
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">Selection</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Notable Bars</h2>
+          </div>
+          <Link
+            to="/bars"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground flex items-center gap-1.5 transition-colors"
+          >
+            View all <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div>
           {isLoading
-            ? Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="bar-card">
-                  <Skeleton className="h-64 w-full" />
-                  <div className="p-6 space-y-3">
-                    <Skeleton className="h-6 w-2/3" />
-                    <Skeleton className="h-4 w-1/2" />
-                    <Skeleton className="h-4 w-full" />
+            ? Array.from({ length: 8 }).map((_, i) => (
+                <div key={i} className="flex items-center gap-6 py-5 border-b border-border/50 animate-pulse">
+                  <div className="w-8 h-5 bg-muted rounded" />
+                  <div className="flex-1 space-y-2">
+                    <div className="h-5 bg-muted rounded w-1/3" />
+                    <div className="h-3 bg-muted rounded w-1/4" />
                   </div>
                 </div>
               ))
@@ -44,61 +63,37 @@ const FeaturedBars = () => {
                 <Link
                   to={`/bars/${bar.slug}`}
                   key={bar.id}
-                  className={`bar-card animate-fade-in-up animate-stagger-${index + 1} block`}
+                  className="group flex items-start gap-6 py-6 border-b border-border/50 hover:border-border transition-colors"
                 >
-                  {/* Header with category badge */}
-                  <div className="relative h-48 overflow-hidden">
-                    {bar.image_url ? (
-                      <img
-                        src={bar.image_url}
-                        alt={bar.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-accent/20 to-primary/10 flex items-center justify-center">
-                        <span className="text-4xl font-bold text-accent/30">{bar.name.charAt(0)}</span>
-                      </div>
-                    )}
-                    {bar.category && (
-                      <div className="absolute top-4 left-4">
-                        <div className="ranking-badge">{bar.category}</div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-3">
-                      <h3 className="text-xl font-semibold text-foreground">{bar.name}</h3>
-                      <Award className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="text-2xl font-bold text-muted-foreground/30 w-8 shrink-0 text-right leading-tight mt-0.5">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-accent transition-colors mb-1">
+                      {bar.name}
+                    </h3>
+                    <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                      {bar.category && (
+                        <span className="uppercase tracking-wider text-xs font-medium text-accent/80">
+                          {bar.category}
+                        </span>
+                      )}
+                      {bar.category && bar.address && (
+                        <span className="text-muted-foreground/40">·</span>
+                      )}
+                      {bar.address && (
+                        <span className="truncate">{bar.address}</span>
+                      )}
                     </div>
-
-                    {bar.address && (
-                      <div className="flex items-center text-muted-foreground mb-3">
-                        <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-                        <span className="text-sm truncate">{bar.address}</span>
-                      </div>
+                    {bar.description && (
+                      <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                        {bar.description}
+                      </p>
                     )}
-
-                    {bar.operating_hours && (
-                      <div className="flex items-center text-muted-foreground text-sm mb-4">
-                        <Clock className="w-4 h-4 mr-2 flex-shrink-0" />
-                        <span className="truncate">{bar.operating_hours}</span>
-                      </div>
-                    )}
-
-                    <span className="w-full btn-primary block text-center">View Details</span>
                   </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-accent shrink-0 mt-1 transition-colors" />
                 </Link>
               ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link to="/bars" className="btn-gold inline-flex items-center">
-            <Award className="w-5 h-5 mr-2" />
-            View All Bars
-          </Link>
         </div>
       </div>
     </section>
