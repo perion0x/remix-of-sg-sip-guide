@@ -1,31 +1,103 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <section
-      className="relative h-[80vh] flex items-center justify-center overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #0a0e1a 0%, #0d1b2a 40%, #0a0f1e 70%, #050810 100%)" }}
-    >
-      {/* Subtle vignette */}
-      <div className="absolute inset-0 bg-radial-gradient pointer-events-none" />
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
+      {/* Ambient glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 50% at 50% 40%, hsl(42 78% 60% / 0.04) 0%, transparent 70%)",
+        }}
+      />
 
-      <div className="relative z-10 text-center text-white max-w-3xl mx-auto px-6">
-        <p className="text-xs uppercase tracking-[0.25em] text-white/40 mb-6 font-medium">
-          Singapore Bar Guide
-        </p>
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 tracking-tight">
-          The Best Bars<br />in Singapore
-        </h1>
-        <p className="text-lg text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
-          503 bars across cocktail lounges, rooftop terraces, speakeasies, and neighbourhood pubs.
-        </p>
-        <Link
-          to="/bars"
-          className="inline-block px-10 py-4 bg-white text-black text-sm font-semibold tracking-widest uppercase hover:bg-white/90 transition-colors"
+      {/* Subtle grain texture */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Decorative line */}
+      <motion.div
+        initial={{ scaleY: 0 }}
+        animate={{ scaleY: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute left-1/2 top-0 w-px h-24 bg-gradient-to-b from-transparent via-accent/30 to-transparent origin-top"
+      />
+
+      <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-xs uppercase tracking-[0.35em] text-accent/70 mb-8 font-medium"
         >
-          Explore All Bars
-        </Link>
+          Singapore Bar Guide
+        </motion.p>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="font-display text-6xl md:text-8xl font-bold leading-[0.95] mb-8 tracking-tight text-foreground"
+        >
+          The Best Bars
+          <br />
+          <span className="italic font-medium text-accent">in Singapore</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="text-base md:text-lg text-muted-foreground mb-12 max-w-lg mx-auto leading-relaxed"
+        >
+          503 bars across cocktail lounges, rooftop terraces,
+          speakeasies, and neighbourhood pubs.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <Link
+            to="/bars"
+            className="group inline-flex items-center gap-3 px-10 py-4 border border-accent/40 text-accent text-sm font-semibold tracking-[0.2em] uppercase hover:bg-accent hover:text-accent-foreground transition-all duration-500"
+          >
+            Explore All Bars
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </motion.div>
+
+        {/* Stats strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="mt-20 flex items-center justify-center gap-12 text-center"
+        >
+          {[
+            { value: "503", label: "Bars Listed" },
+            { value: "35", label: "Categories" },
+            { value: "129", label: "Locations" },
+          ].map((stat) => (
+            <div key={stat.label}>
+              <div className="text-2xl font-display font-bold text-foreground">{stat.value}</div>
+              <div className="text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </div>
+
+      {/* Bottom fade line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
     </section>
   );
 };

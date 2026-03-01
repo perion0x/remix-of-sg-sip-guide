@@ -1,4 +1,4 @@
-import { Search, MapPin, Star, Menu } from "lucide-react";
+import { Star, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,42 +6,49 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+    <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent/80 rounded-lg flex items-center justify-center">
-              <Star className="w-5 h-5 text-accent-foreground" />
+          <Link to="/" className="flex items-center space-x-2.5 group">
+            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Star className="w-4 h-4 text-accent-foreground" />
             </div>
-            <span className="text-xl font-semibold text-foreground">SG Bars</span>
-          </div>
+            <span className="text-lg font-display font-semibold text-foreground tracking-wide">SG Bars</span>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/bars" className="text-foreground hover:text-accent transition-colors font-medium">Bars</Link>
-            <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Rankings</a>
-            <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Map</a>
-            <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Neighborhoods</a>
+          <nav className="hidden md:flex items-center space-x-10">
+            {["Bars", "Rankings", "Map", "Neighborhoods"].map((item) => (
+              <Link
+                key={item}
+                to={item === "Bars" ? "/bars" : "#"}
+                className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors duration-300 tracking-wide"
+              >
+                {item}
+              </Link>
+            ))}
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-foreground hover:text-accent transition-colors"
+            className="md:hidden p-2 text-muted-foreground hover:text-accent transition-colors"
           >
-            <Menu className="w-6 h-6" />
+            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border animate-fade-in-up">
+          <div className="md:hidden py-6 border-t border-border/50 animate-fade-in-up">
             <nav className="flex flex-col space-y-4">
-              <Link to="/bars" className="text-foreground hover:text-accent transition-colors font-medium">Bars</Link>
-              <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Rankings</a>
-              <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Map</a>
-              <a href="#" className="text-foreground hover:text-accent transition-colors font-medium">Neighborhoods</a>
+              {["Bars", "Rankings", "Map", "Neighborhoods"].map((item) => (
+                <Link
+                  key={item}
+                  to={item === "Bars" ? "/bars" : "#"}
+                  className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors tracking-wide"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item}
+                </Link>
+              ))}
             </nav>
           </div>
         )}
