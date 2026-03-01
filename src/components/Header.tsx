@@ -1,4 +1,4 @@
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -56,8 +56,8 @@ const Header = () => {
               </span>
             </Link>
 
-            {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Desktop nav - centered */}
+            <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -69,16 +69,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Right section */}
-            <div className="flex items-center gap-2">
-              <button className="hidden md:flex items-center gap-2 px-3.5 py-2 text-xs text-muted-foreground bg-foreground/5 hover:bg-foreground/10 rounded-lg transition-colors border border-border/40">
-                <Search className="w-3.5 h-3.5" />
-                <span>Search</span>
-                <kbd className="ml-2 px-1.5 py-0.5 text-[10px] bg-background/80 rounded border border-border/50 text-muted-foreground/50">
-                  ⌘K
-                </kbd>
-              </button>
-
+            {/* Mobile menu button */}
+            <div className="flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="md:hidden p-2 text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-foreground/5"
