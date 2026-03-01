@@ -1,8 +1,8 @@
-import { Menu, X, Search, Wine } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-
+import sgLogo from "@/assets/sg-bars-logo.png";
 const navItems = [
   { label: "Bars", to: "/bars" },
   { label: "Rankings", to: "#" },
@@ -50,9 +50,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="relative w-9 h-9 bg-gradient-to-br from-accent to-accent/80 rounded-xl flex items-center justify-center shadow-lg shadow-accent/20 transition-all duration-300 group-hover:shadow-accent/40 group-hover:scale-105">
-                <Wine className="w-4.5 h-4.5 text-accent-foreground" strokeWidth={2} />
-              </div>
+              <img src={sgLogo} alt="SG Bars" className="w-9 h-9 rounded-xl object-cover shadow-lg shadow-accent/20 transition-all duration-300 group-hover:shadow-accent/40 group-hover:scale-105" />
               <div className="flex flex-col">
                 <span className="text-base font-bold text-foreground tracking-tight leading-none">
                   SG Bars
