@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import heroVideo from "@/assets/hero-bar-video.mp4";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Ambient glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 60% 50% at 50% 40%, hsl(42 78% 60% / 0.04) 0%, transparent 70%)",
-        }}
-      />
+      {/* Background video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={heroVideo} type="video/mp4" />
+      </video>
+
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-background/70" />
 
       {/* Subtle grain texture */}
       <div
