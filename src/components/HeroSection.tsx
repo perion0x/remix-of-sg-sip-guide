@@ -56,15 +56,6 @@ const HeroSection = () => {
           <span className="italic font-medium text-accent">in Singapore</span>
         </motion.h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-base md:text-lg text-muted-foreground mb-12 max-w-lg mx-auto leading-relaxed"
-        >
-          503 bars across cocktail lounges, rooftop terraces,
-          speakeasies, and neighbourhood pubs.
-        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
