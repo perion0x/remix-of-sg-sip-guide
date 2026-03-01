@@ -51,11 +51,11 @@ const Header = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <img src={sgLogo} alt="SG Bars" className="w-9 h-9 rounded-xl object-cover shadow-lg shadow-accent/20 transition-all duration-300 group-hover:shadow-accent/40 group-hover:scale-105" />
-              <div className="flex flex-col">
+              <div className="flex items-baseline gap-2">
                 <span className="text-base font-bold text-foreground tracking-tight leading-none">
                   SG Bars
                 </span>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 leading-none mt-0.5">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/60 leading-none">
                   Singapore
                 </span>
               </div>
