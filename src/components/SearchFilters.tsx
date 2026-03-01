@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SearchFilters = () => {
   const [activeFilter, setActiveFilter] = useState("all");
@@ -61,11 +62,11 @@ const SearchFilters = () => {
     : [];
 
   return (
-    <section className="py-12 bg-secondary/40 border-y border-border">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section className="py-14 bg-secondary/30 border-y border-border/30">
+      <div className="container mx-auto px-4 max-w-3xl">
         {/* Search */}
         <div className="relative mb-6">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground/60 w-4 h-4" />
           <input
             type="text"
             placeholder="Search bars, neighbourhoods, categories…"
@@ -79,10 +80,10 @@ const SearchFilters = () => {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setActiveFilter("all")}
-            className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
+            className={`px-3.5 py-1.5 text-xs font-medium border transition-all duration-300 ${
               activeFilter === "all"
-                ? "bg-foreground text-background border-foreground"
-                : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
+                ? "bg-accent text-accent-foreground border-accent"
+                : "bg-transparent text-muted-foreground border-border hover:border-accent/40 hover:text-foreground"
             }`}
           >
             All · {categories?.total ?? "—"}
@@ -91,10 +92,10 @@ const SearchFilters = () => {
             <button
               key={cat.name}
               onClick={() => setActiveFilter(cat.name)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all ${
+              className={`px-3.5 py-1.5 text-xs font-medium border transition-all duration-300 ${
                 activeFilter === cat.name
-                  ? "bg-foreground text-background border-foreground"
-                  : "bg-transparent text-muted-foreground border-border hover:border-foreground hover:text-foreground"
+                  ? "bg-accent text-accent-foreground border-accent"
+                  : "bg-transparent text-muted-foreground border-border hover:border-accent/40 hover:text-foreground"
               }`}
             >
               {cat.name} · {cat.count}
@@ -103,17 +104,22 @@ const SearchFilters = () => {
           {categories && categories.categories.length > 8 && (
             <button
               onClick={() => setShowAllCategories(!showAllCategories)}
-              className="px-3 py-1.5 text-xs font-medium rounded-full border border-dashed border-border text-muted-foreground hover:text-foreground transition-colors"
+              className="px-3.5 py-1.5 text-xs font-medium border border-dashed border-border text-muted-foreground hover:text-accent hover:border-accent/30 transition-all duration-300"
             >
               {showAllCategories ? "Less" : `+${categories.categories.length - 8} more`}
             </button>
           )}
         </div>
 
-        {/* Search Results */}
+        {/* Results */}
         {hasActiveSearch && searchResults?.data && searchResults.data.length > 0 && (
-          <div className="mt-8 border-t border-border pt-6">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            className="mt-8 border-t border-border/30 pt-6"
+          >
+            <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground/60 mb-4">
               {searchResults.count ?? searchResults.data.length} results
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -121,18 +127,18 @@ const SearchFilters = () => {
                 <Link
                   to={`/bars/${bar.slug}`}
                   key={bar.id}
-                  className="p-4 bg-background rounded-lg border border-border hover:border-accent transition-all block"
+                  className="p-4 bg-card border border-border/30 hover:border-accent/30 transition-all duration-300 block"
                 >
-                  <h4 className="font-medium text-foreground text-sm mb-0.5">{bar.name}</h4>
+                  <h4 className="font-display font-medium text-foreground text-sm mb-0.5">{bar.name}</h4>
                   <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                    {bar.category && <span className="text-accent/80 font-medium">{bar.category}</span>}
-                    {bar.category && bar.address && <span>·</span>}
+                    {bar.category && <span className="text-accent/60 font-medium">{bar.category}</span>}
+                    {bar.category && bar.address && <span className="text-border">·</span>}
                     {bar.address && <span className="truncate">{bar.address}</span>}
                   </div>
                 </Link>
               ))}
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>
