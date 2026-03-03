@@ -1,11 +1,12 @@
 import { useParams, Link } from "react-router-dom";
+import { useState, useCallback, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { BarSchema } from "@/components/BarSchema";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train, X, ChevronLeft, Images } from "lucide-react";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -113,6 +114,123 @@ function getArea(address: string | null): string | null {
   return null;
 }
 
+function Lightbox({ images, startIndex, onClose }: { images: string[]; startIndex: number; onClose: () => void }) {
+  const [current, setCurrent] = useState(startIndex);
+
+  const prev = useCallback(() => setCurrent((i) => (i - 1 + images.length) % images.length), [images.length]);
+  const next = useCallback(() => setCurrent((i) => (i + 1) % images.length), [images.length]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose, prev, next]);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center"
+      onClick={onClose}
+    >
+      <button
+        className="absolute top-4 right-4 text-white/80 hover:text-white p-2"
+        onClick={onClose}
+        aria-label="Close"
+      >
+        <X className="w-7 h-7" />
+      </button>
+      <button
+        className="absolute left-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white p-2"
+        onClick={(e) => { e.stopPropagation(); prev(); }}
+        aria-label="Previous"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </button>
+      <button
+        className="absolute right-4 top-1/2 -translate-y-1/2 text-white/80 hover:text-white p-2"
+        onClick={(e) => { e.stopPropagation(); next(); }}
+        aria-label="Next"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </button>
+      <img
+        src={images[current]}
+        alt={`Photo ${current + 1}`}
+        className="max-h-[90vh] max-w-[90vw] object-contain select-none"
+        onClick={(e) => e.stopPropagation()}
+      />
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/60 text-sm">
+        {current + 1} / {images.length}
+      </div>
+    </div>
+  );
+}
+
+function PhotoGallery({ images, barName }: { images: string[]; barName: string }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const visible = images.slice(0, 5);
+  const remaining = images.length - 5;
+
+  return (
+    <>
+      {lightboxIndex !== null && (
+        <Lightbox images={images} startIndex={lightboxIndex} onClose={() => setLightboxIndex(null)} />
+      )}
+      <div className="relative">
+        <div className="grid grid-cols-4 grid-rows-2 gap-1 h-[420px] md:h-[500px]">
+          {/* Main large image */}
+          <button
+            className="col-span-2 row-span-2 relative overflow-hidden bg-muted focus:outline-none"
+            onClick={() => setLightboxIndex(0)}
+            aria-label={`View photo 1 of ${barName}`}
+          >
+            <img
+              src={visible[0]}
+              alt={barName}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </button>
+
+          {/* 2×2 thumbnails */}
+          {[1, 2, 3, 4].map((i) => (
+            visible[i] ? (
+              <button
+                key={i}
+                className="relative overflow-hidden bg-muted focus:outline-none"
+                onClick={() => setLightboxIndex(i)}
+                aria-label={`View photo ${i + 1} of ${barName}`}
+              >
+                <img
+                  src={visible[i]}
+                  alt={`${barName} photo ${i + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+                {i === 4 && remaining > 0 && (
+                  <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                    <span className="text-white font-semibold text-lg">+{remaining} more</span>
+                  </div>
+                )}
+              </button>
+            ) : <div key={i} className="bg-muted" />
+          ))}
+        </div>
+
+        {/* Show all photos button */}
+        <button
+          onClick={() => setLightboxIndex(0)}
+          className="absolute bottom-4 right-4 flex items-center gap-2 bg-white text-foreground text-sm font-medium px-4 py-2 rounded-lg shadow hover:shadow-md transition-shadow border border-border"
+        >
+          <Images className="w-4 h-4" />
+          Show all {images.length} photos
+        </button>
+      </div>
+    </>
+  );
+}
+
 const BarDetail = () => {
   const { slug } = useParams<{ slug: string }>();
 
@@ -186,38 +304,38 @@ const BarDetail = () => {
               operatingHours={bar.operating_hours ?? undefined}
             />
 
-            {/* Hero */}
-            <div className="relative h-64 md:h-80 flex items-end">
-              {bar.image_url ? (
-                <>
-                  <img
-                    src={bar.image_url}
-                    alt={bar.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent" />
-                </>
-              ) : (
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/30 via-primary/20 to-background flex items-center justify-center">
-                  <span className="text-8xl font-bold text-accent/10 select-none">{bar.name.charAt(0)}</span>
-                </div>
+            {/* Breadcrumb */}
+            <div className="container mx-auto px-4 pt-6 pb-2">
+              <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+                <ChevronRight className="w-3.5 h-3.5" />
+                <Link to="/bars" className="hover:text-foreground transition-colors">Bars</Link>
+                <ChevronRight className="w-3.5 h-3.5" />
+                <span className="text-foreground font-medium truncate">{bar.name}</span>
+              </nav>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mt-3">{bar.name}</h1>
+              {bar.category && (
+                <span className="inline-block mt-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium border border-accent/20">
+                  {bar.category}
+                </span>
               )}
-              <div className="relative container mx-auto px-4 pb-6">
-                <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/70 mb-3">
-                  <Link to="/" className="hover:text-white transition-colors">Home</Link>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                  <Link to="/bars" className="hover:text-white transition-colors">Bars</Link>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                  <span className="text-white font-medium truncate">{bar.name}</span>
-                </nav>
-                <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow">{bar.name}</h1>
-                {bar.category && (
-                  <span className="inline-block mt-2 px-3 py-1 rounded-full bg-accent/80 text-white text-sm font-medium">
-                    {bar.category}
-                  </span>
-                )}
-              </div>
             </div>
+
+            {/* Photo gallery / hero */}
+            {(bar as any).images?.length > 0 ? (
+              <div className="mt-4">
+                <PhotoGallery images={(bar as any).images} barName={bar.name} />
+              </div>
+            ) : bar.image_url ? (
+              <div className="relative h-64 md:h-80 mt-4">
+                <img src={bar.image_url} alt={bar.name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            ) : (
+              <div className="h-48 mt-4 bg-gradient-to-br from-accent/30 via-primary/20 to-background flex items-center justify-center">
+                <span className="text-8xl font-bold text-accent/10 select-none">{bar.name.charAt(0)}</span>
+              </div>
+            )}
 
             {/* Content */}
             <div className="container mx-auto px-4 py-10">
