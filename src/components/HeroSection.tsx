@@ -1,17 +1,30 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 import heroVideo from "@/assets/hero-bar-video.mp4";
+import heroPoster from "@/assets/hero-singapore-bar.jpg";
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {});
+    }
+  }, []);
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-background">
       {/* Background video */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
+        poster={heroPoster}
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src={heroVideo} type="video/mp4" />
