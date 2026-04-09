@@ -10,11 +10,6 @@ const NOTABLE_NAMES = [
   "Native",
   "Employees Only",
   "28 HongKong Street",
-  "Smoke & Mirrors",
-  "The Cocktail Bar",
-  "Manhattan",
-  "Origin Bar",
-  "Analogue Initiative",
 ];
 
 const FeaturedBars = () => {
