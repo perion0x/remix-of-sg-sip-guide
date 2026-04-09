@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import sgLogo from "@/assets/sg-bars-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +10,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center space-x-2.5 mb-4">
-              <div className="w-7 h-7 bg-accent rounded-lg flex items-center justify-center">
-                <Star className="w-4 h-4 text-accent-foreground" />
-              </div>
+              <img src={sgLogo} alt="SG Bars" className="w-7 h-7 object-contain" />
               <span className="text-lg font-display font-semibold text-foreground">SG Bars</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
