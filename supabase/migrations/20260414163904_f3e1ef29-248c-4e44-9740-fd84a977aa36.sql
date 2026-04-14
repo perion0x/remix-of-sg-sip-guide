@@ -1,0 +1,1 @@
+DROP POLICY "Users can view their own responses" ON public.cocktail_questionnaire_responses;
