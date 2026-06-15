@@ -1,0 +1,14 @@
+# SG Bars
+
+> Singapore's premier guide to cocktail bars, speakeasies, rooftop lounges, and award-winning nightlife — including Asia's 50 Best Bars.
+
+SG Bars is a directory of Singapore bars with search, category filters, and detailed venue pages covering address, hours, contact details, and category (cocktail bar, speakeasy, rooftop, wine bar, nightclub, brewery, and more).
+
+## Pages
+
+- [Home](/): Featured bars, search, and the cocktail-preference questionnaire.
+- [All Bars](/bars): Full directory of Singapore bars with category filters and pagination.
+
+## Sitemap
+
+- [XML sitemap](/sitemap.xml): Every public bar detail page (`/bars/:slug`).
