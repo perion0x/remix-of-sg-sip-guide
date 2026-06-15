@@ -206,6 +206,7 @@ const Bars = () => {
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage <= 1}
                   className="p-2 rounded-lg border border-border text-muted-foreground hover:text-accent hover:border-accent disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                  aria-label="Previous page"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -213,6 +214,8 @@ const Bars = () => {
                   <button
                     key={page}
                     onClick={() => goToPage(page)}
+                    aria-label={`Go to page ${page}`}
+                    aria-current={page === currentPage ? "page" : undefined}
                     className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
                       page === currentPage
                         ? "bg-accent text-accent-foreground"
@@ -226,6 +229,7 @@ const Bars = () => {
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage >= totalPages}
                   className="p-2 rounded-lg border border-border text-muted-foreground hover:text-accent hover:border-accent disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                  aria-label="Next page"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
