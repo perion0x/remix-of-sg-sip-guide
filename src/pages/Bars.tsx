@@ -84,17 +84,17 @@ const Bars = () => {
   return (
     <>
       <Helmet>
-        <title>Singapore Bars Directory — Cocktail Bars, Speakeasies &amp; More | SG Bars</title>
+        <title>Singapore Bars Directory — Cocktail Bars &amp; Speakeasies</title>
         <link rel="canonical" href="https://bars.sg/bars" />
         <meta name="description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bars.sg/bars" />
-        <meta property="og:title" content="Singapore Bars Directory — Cocktail Bars, Speakeasies & More | SG Bars" />
+        <meta property="og:title" content="Singapore Bars Directory — Cocktail Bars & Speakeasies" />
         <meta property="og:description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
         <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@sgbars" />
-        <meta name="twitter:title" content="Singapore Bars Directory — Cocktail Bars, Speakeasies & More | SG Bars" />
+        <meta name="twitter:title" content="Singapore Bars Directory — Cocktail Bars & Speakeasies" />
         <meta name="twitter:description" content="Browse all bars in Singapore — cocktail bars, speakeasies, rooftop bars, wine bars and more. Find your next favourite spot." />
         <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png" />
         {itemListJsonLd && (
@@ -206,6 +206,7 @@ const Bars = () => {
                   onClick={() => goToPage(currentPage - 1)}
                   disabled={currentPage <= 1}
                   className="p-2 rounded-lg border border-border text-muted-foreground hover:text-accent hover:border-accent disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                  aria-label="Previous page"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
@@ -213,6 +214,8 @@ const Bars = () => {
                   <button
                     key={page}
                     onClick={() => goToPage(page)}
+                    aria-label={`Go to page ${page}`}
+                    aria-current={page === currentPage ? "page" : undefined}
                     className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
                       page === currentPage
                         ? "bg-accent text-accent-foreground"
@@ -226,6 +229,7 @@ const Bars = () => {
                   onClick={() => goToPage(currentPage + 1)}
                   disabled={currentPage >= totalPages}
                   className="p-2 rounded-lg border border-border text-muted-foreground hover:text-accent hover:border-accent disabled:opacity-30 disabled:pointer-events-none transition-colors"
+                  aria-label="Next page"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
