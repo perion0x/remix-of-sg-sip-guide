@@ -26,18 +26,18 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>SG Bars - Singapore's Premier Bar Guide | Asia's 50 Best &amp; More</title>
-        <meta name="description" content="Discover Singapore's finest cocktail bars, speakeasies, and award-winning establishments. Featuring Asia's 50 Best Bars, rooftop lounges, and hidden gems across the Lion City." />
+        <title>SG Bars — Singapore's Premier Bar &amp; Cocktail Guide</title>
+        <meta name="description" content="Discover Singapore's finest cocktail bars, speakeasies and award-winning venues — from Asia's 50 Best to hidden rooftop gems." />
         <link rel="canonical" href="https://bars.sg/" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://bars.sg/" />
-        <meta property="og:title" content="SG Bars - Singapore's Premier Bar Guide | Asia's 50 Best & More" />
-        <meta property="og:description" content="Discover Singapore's finest cocktail bars, speakeasies, and award-winning establishments. Featuring Asia's 50 Best Bars, rooftop lounges, and hidden gems across the Lion City." />
+        <meta property="og:title" content="SG Bars — Singapore's Premier Bar & Cocktail Guide" />
+        <meta property="og:description" content="Discover Singapore's finest cocktail bars, speakeasies and award-winning venues — from Asia's 50 Best to hidden rooftop gems." />
         <meta property="og:image" content={OG_IMAGE} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@sgbars" />
-        <meta name="twitter:title" content="SG Bars - Singapore's Premier Bar Guide | Asia's 50 Best & More" />
-        <meta name="twitter:description" content="Discover Singapore's finest cocktail bars, speakeasies, and award-winning establishments. Featuring Asia's 50 Best Bars, rooftop lounges, and hidden gems across the Lion City." />
+        <meta name="twitter:title" content="SG Bars — Singapore's Premier Bar & Cocktail Guide" />
+        <meta name="twitter:description" content="Discover Singapore's finest cocktail bars, speakeasies and award-winning venues — from Asia's 50 Best to hidden rooftop gems." />
         <meta name="twitter:image" content={OG_IMAGE} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
