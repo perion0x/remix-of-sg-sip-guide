@@ -249,6 +249,58 @@ const BarDetail = () => {
     enabled: !!slug,
   });
 
+  const { data: galleryImages } = useQuery({
+    queryKey: ["bar-images", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_images")
+        .select("storage_path, source_url, position")
+        .eq("bar_id", bar!.id)
+        .order("position", { ascending: true });
+      return (data ?? []).map((r) => {
+        if (r.storage_path) {
+          const { data: pub } = supabase.storage.from("bar-media").getPublicUrl(r.storage_path);
+          return pub.publicUrl;
+        }
+        return r.source_url ?? "";
+      }).filter(Boolean) as string[];
+    },
+    enabled: !!bar?.id,
+  });
+
+  const { data: menuItems } = useQuery({
+    queryKey: ["bar-menu-items", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_menu_items")
+        .select("section, name, description, price_text, position")
+        .eq("bar_id", bar!.id)
+        .order("position", { ascending: true });
+      return data ?? [];
+    },
+    enabled: !!bar?.id,
+  });
+
+  const { data: menuMeta } = useQuery({
+    queryKey: ["bar-menu", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_menus")
+        .select("source_url, pdf_storage_path, markdown")
+        .eq("bar_id", bar!.id)
+        .order("scraped_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (!data) return null;
+      let pdfUrl: string | null = null;
+      if (data.pdf_storage_path) {
+        pdfUrl = supabase.storage.from("bar-media").getPublicUrl(data.pdf_storage_path).data.publicUrl;
+      }
+      return { ...data, pdfUrl };
+    },
+    enabled: !!bar?.id,
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -322,9 +374,9 @@ const BarDetail = () => {
             </div>
 
             {/* Photo gallery / hero */}
-            {(bar as any).images?.length > 0 ? (
+            {galleryImages && galleryImages.length > 0 ? (
               <div className="mt-4">
-                <PhotoGallery images={(bar as any).images} barName={bar.name} />
+                <PhotoGallery images={galleryImages} barName={bar.name} />
               </div>
             ) : bar.image_url ? (
               <div className="relative h-64 md:h-80 mt-4">
