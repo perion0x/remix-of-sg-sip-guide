@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import BarDetail from "./pages/BarDetail";
 import Bars from "./pages/Bars";
+import RooftopBarsGuide from "./pages/RooftopBarsGuide";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/bars" element={<Bars />} />
             <Route path="/bars/:slug" element={<BarDetail />} />
+            <Route path="/guides/rooftop-bars-singapore" element={<RooftopBarsGuide />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
