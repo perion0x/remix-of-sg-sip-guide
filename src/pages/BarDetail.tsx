@@ -249,6 +249,58 @@ const BarDetail = () => {
     enabled: !!slug,
   });
 
+  const { data: galleryImages } = useQuery({
+    queryKey: ["bar-images", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_images")
+        .select("storage_path, source_url, position")
+        .eq("bar_id", bar!.id)
+        .order("position", { ascending: true });
+      return (data ?? []).map((r) => {
+        if (r.storage_path) {
+          const { data: pub } = supabase.storage.from("bar-media").getPublicUrl(r.storage_path);
+          return pub.publicUrl;
+        }
+        return r.source_url ?? "";
+      }).filter(Boolean) as string[];
+    },
+    enabled: !!bar?.id,
+  });
+
+  const { data: menuItems } = useQuery({
+    queryKey: ["bar-menu-items", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_menu_items")
+        .select("section, name, description, price_text, position")
+        .eq("bar_id", bar!.id)
+        .order("position", { ascending: true });
+      return data ?? [];
+    },
+    enabled: !!bar?.id,
+  });
+
+  const { data: menuMeta } = useQuery({
+    queryKey: ["bar-menu", bar?.id],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("bar_menus")
+        .select("source_url, pdf_storage_path, markdown")
+        .eq("bar_id", bar!.id)
+        .order("scraped_at", { ascending: false })
+        .limit(1)
+        .maybeSingle();
+      if (!data) return null;
+      let pdfUrl: string | null = null;
+      if (data.pdf_storage_path) {
+        pdfUrl = supabase.storage.from("bar-media").getPublicUrl(data.pdf_storage_path).data.publicUrl;
+      }
+      return { ...data, pdfUrl };
+    },
+    enabled: !!bar?.id,
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -322,9 +374,9 @@ const BarDetail = () => {
             </div>
 
             {/* Photo gallery / hero */}
-            {(bar as any).images?.length > 0 ? (
+            {galleryImages && galleryImages.length > 0 ? (
               <div className="mt-4">
-                <PhotoGallery images={(bar as any).images} barName={bar.name} />
+                <PhotoGallery images={galleryImages} barName={bar.name} />
               </div>
             ) : bar.image_url ? (
               <div className="relative h-64 md:h-80 mt-4">
@@ -398,6 +450,65 @@ const BarDetail = () => {
                             className="inline-flex items-center gap-2 btn-gold mt-2"
                           >
                             <ExternalLink className="w-4 h-4" /> View on Google Maps
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Menu */}
+                  {((menuItems && menuItems.length > 0) || menuMeta?.pdfUrl || menuMeta?.source_url) && (
+                    <div>
+                      <h2 className="text-xl font-semibold text-foreground mb-3">Menu</h2>
+                      {menuItems && menuItems.length > 0 ? (
+                        <div className="space-y-6">
+                          {Object.entries(
+                            menuItems.reduce<Record<string, typeof menuItems>>((acc, item) => {
+                              const k = item.section ?? "Menu";
+                              (acc[k] ||= []).push(item);
+                              return acc;
+                            }, {})
+                          ).map(([section, items]) => (
+                            <div key={section}>
+                              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">{section}</h3>
+                              <ul className="divide-y divide-border">
+                                {items.map((it, idx) => (
+                                  <li key={idx} className="py-3 flex items-start justify-between gap-4">
+                                    <div className="min-w-0">
+                                      <div className="font-medium text-foreground">{it.name}</div>
+                                      {it.description && (
+                                        <div className="text-sm text-muted-foreground">{it.description}</div>
+                                      )}
+                                    </div>
+                                    {it.price_text && (
+                                      <div className="text-sm font-medium text-accent shrink-0">{it.price_text}</div>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        {menuMeta?.pdfUrl && (
+                          <a
+                            href={menuMeta.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 btn-gold"
+                          >
+                            <ExternalLink className="w-4 h-4" /> View PDF menu
+                          </a>
+                        )}
+                        {menuMeta?.source_url && !menuMeta?.pdfUrl && (
+                          <a
+                            href={menuMeta.source_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-accent hover:underline inline-flex items-center gap-1"
+                          >
+                            View menu on website <ExternalLink className="w-3.5 h-3.5" />
                           </a>
                         )}
                       </div>

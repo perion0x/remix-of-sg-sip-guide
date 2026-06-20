@@ -14,6 +14,164 @@ export type Database = {
   }
   public: {
     Tables: {
+      bar_enrichment_runs: {
+        Row: {
+          bar_id: string
+          error: string | null
+          id: string
+          images_count: number
+          menu_items_count: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          bar_id: string
+          error?: string | null
+          id?: string
+          images_count?: number
+          menu_items_count?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          bar_id?: string
+          error?: string | null
+          id?: string
+          images_count?: number
+          menu_items_count?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bar_enrichment_runs_bar_id_fkey"
+            columns: ["bar_id"]
+            isOneToOne: true
+            referencedRelation: "bars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bar_images: {
+        Row: {
+          bar_id: string
+          created_at: string
+          height: number | null
+          id: string
+          kind: string
+          position: number
+          source_url: string | null
+          storage_path: string | null
+          width: number | null
+        }
+        Insert: {
+          bar_id: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          kind?: string
+          position?: number
+          source_url?: string | null
+          storage_path?: string | null
+          width?: number | null
+        }
+        Update: {
+          bar_id?: string
+          created_at?: string
+          height?: number | null
+          id?: string
+          kind?: string
+          position?: number
+          source_url?: string | null
+          storage_path?: string | null
+          width?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bar_images_bar_id_fkey"
+            columns: ["bar_id"]
+            isOneToOne: false
+            referencedRelation: "bars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bar_menu_items: {
+        Row: {
+          bar_id: string
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          position: number
+          price_text: string | null
+          section: string | null
+        }
+        Insert: {
+          bar_id: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          position?: number
+          price_text?: string | null
+          section?: string | null
+        }
+        Update: {
+          bar_id?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          position?: number
+          price_text?: string | null
+          section?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bar_menu_items_bar_id_fkey"
+            columns: ["bar_id"]
+            isOneToOne: false
+            referencedRelation: "bars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      bar_menus: {
+        Row: {
+          bar_id: string
+          id: string
+          markdown: string | null
+          pdf_storage_path: string | null
+          scraped_at: string
+          source_url: string | null
+        }
+        Insert: {
+          bar_id: string
+          id?: string
+          markdown?: string | null
+          pdf_storage_path?: string | null
+          scraped_at?: string
+          source_url?: string | null
+        }
+        Update: {
+          bar_id?: string
+          id?: string
+          markdown?: string | null
+          pdf_storage_path?: string | null
+          scraped_at?: string
+          source_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bar_menus_bar_id_fkey"
+            columns: ["bar_id"]
+            isOneToOne: false
+            referencedRelation: "bars"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       bars: {
         Row: {
           address: string | null
