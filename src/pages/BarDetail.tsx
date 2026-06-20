@@ -455,6 +455,65 @@ const BarDetail = () => {
                       </div>
                     </div>
                   )}
+
+                  {/* Menu */}
+                  {((menuItems && menuItems.length > 0) || menuMeta?.pdfUrl || menuMeta?.source_url) && (
+                    <div>
+                      <h2 className="text-xl font-semibold text-foreground mb-3">Menu</h2>
+                      {menuItems && menuItems.length > 0 ? (
+                        <div className="space-y-6">
+                          {Object.entries(
+                            menuItems.reduce<Record<string, typeof menuItems>>((acc, item) => {
+                              const k = item.section ?? "Menu";
+                              (acc[k] ||= []).push(item);
+                              return acc;
+                            }, {})
+                          ).map(([section, items]) => (
+                            <div key={section}>
+                              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">{section}</h3>
+                              <ul className="divide-y divide-border">
+                                {items.map((it, idx) => (
+                                  <li key={idx} className="py-3 flex items-start justify-between gap-4">
+                                    <div className="min-w-0">
+                                      <div className="font-medium text-foreground">{it.name}</div>
+                                      {it.description && (
+                                        <div className="text-sm text-muted-foreground">{it.description}</div>
+                                      )}
+                                    </div>
+                                    {it.price_text && (
+                                      <div className="text-sm font-medium text-accent shrink-0">{it.price_text}</div>
+                                    )}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        {menuMeta?.pdfUrl && (
+                          <a
+                            href={menuMeta.pdfUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 btn-gold"
+                          >
+                            <ExternalLink className="w-4 h-4" /> View PDF menu
+                          </a>
+                        )}
+                        {menuMeta?.source_url && !menuMeta?.pdfUrl && (
+                          <a
+                            href={menuMeta.source_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-sm text-accent hover:underline inline-flex items-center gap-1"
+                          >
+                            View menu on website <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Sidebar */}
