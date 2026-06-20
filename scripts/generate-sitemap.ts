@@ -55,6 +55,12 @@ async function main() {
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${BASE}/guides/rooftop-bars-singapore</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>`;
 
   for (const slug of allSlugs) {

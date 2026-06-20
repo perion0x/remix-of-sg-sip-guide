@@ -22,11 +22,11 @@ const Footer = () => {
           <div>
             <h3 className="text-xs uppercase tracking-[0.2em] text-accent/60 font-semibold mb-5">Explore</h3>
             <ul className="space-y-3 text-sm">
-              {["All Bars", "Asia's 50 Best", "Rooftop Bars", "Speakeasies", "Wine Bars"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="text-muted-foreground hover:text-accent transition-colors duration-300">{item}</a>
-                </li>
-              ))}
+              <li><a href="/bars" className="text-muted-foreground hover:text-accent transition-colors duration-300">All Bars</a></li>
+              <li><a href="/guides/rooftop-bars-singapore" className="text-muted-foreground hover:text-accent transition-colors duration-300">Best Rooftop Bars</a></li>
+              <li><a href="/bars?category=Cocktail+Bar" className="text-muted-foreground hover:text-accent transition-colors duration-300">Cocktail Bars</a></li>
+              <li><a href="/bars?category=Speakeasy" className="text-muted-foreground hover:text-accent transition-colors duration-300">Speakeasies</a></li>
+              <li><a href="/bars?category=Wine+Bar" className="text-muted-foreground hover:text-accent transition-colors duration-300">Wine Bars</a></li>
             </ul>
           </div>
 
