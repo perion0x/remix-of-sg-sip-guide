@@ -50,7 +50,7 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <img src={sgLogo} alt="SG Bars" className="w-9 h-9 rounded-xl object-cover shadow-lg shadow-accent/20 transition-all duration-300 group-hover:shadow-accent/40 group-hover:scale-105" />
+              <img src={sgLogo} alt="SG Bars" className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110" />
               <span className="text-base font-bold text-foreground tracking-tight leading-none">
                 SG Bars
               </span>
