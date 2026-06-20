@@ -82,7 +82,7 @@ const HeroSection = () => {
           className="mt-20 flex items-center justify-center gap-12 text-center"
         >
           {[
-            { value: "503", label: "Bars Listed" },
+            { value: "500+", label: "Bars Listed" },
             { value: "35", label: "Categories" },
             { value: "129", label: "Locations" },
           ].map((stat) => (
