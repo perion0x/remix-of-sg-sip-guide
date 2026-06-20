@@ -257,13 +257,20 @@ const BarDetail = () => {
         .select("storage_path, source_url, position")
         .eq("bar_id", bar!.id)
         .order("position", { ascending: true });
-      return (data ?? []).map((r) => {
-        if (r.storage_path) {
-          const { data: pub } = supabase.storage.from("bar-media").getPublicUrl(r.storage_path);
-          return pub.publicUrl;
+      const rows = data ?? [];
+      const paths = rows.map((r) => r.storage_path).filter(Boolean) as string[];
+      let signedMap = new Map<string, string>();
+      if (paths.length) {
+        const { data: signed } = await supabase.storage
+          .from("bar-media")
+          .createSignedUrls(paths, 60 * 60 * 24 * 365);
+        for (const s of signed ?? []) {
+          if (s.path && s.signedUrl) signedMap.set(s.path, s.signedUrl);
         }
-        return r.source_url ?? "";
-      }).filter(Boolean) as string[];
+      }
+      return rows
+        .map((r) => (r.storage_path && signedMap.get(r.storage_path)) || r.source_url || "")
+        .filter(Boolean) as string[];
     },
     enabled: !!bar?.id,
   });
@@ -294,7 +301,10 @@ const BarDetail = () => {
       if (!data) return null;
       let pdfUrl: string | null = null;
       if (data.pdf_storage_path) {
-        pdfUrl = supabase.storage.from("bar-media").getPublicUrl(data.pdf_storage_path).data.publicUrl;
+        const { data: signed } = await supabase.storage
+          .from("bar-media")
+          .createSignedUrl(data.pdf_storage_path, 60 * 60 * 24 * 365);
+        pdfUrl = signed?.signedUrl ?? null;
       }
       return { ...data, pdfUrl };
     },
