@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import BarDetail from "./pages/BarDetail";
 import Bars from "./pages/Bars";
 import RooftopBarsGuide from "./pages/RooftopBarsGuide";
+import AdminEnrich from "./pages/AdminEnrich";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/bars" element={<Bars />} />
             <Route path="/bars/:slug" element={<BarDetail />} />
             <Route path="/guides/rooftop-bars-singapore" element={<RooftopBarsGuide />} />
+            <Route path="/admin/enrich" element={<AdminEnrich />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
