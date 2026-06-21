@@ -8,6 +8,7 @@ import { toast } from "@/hooks/use-toast";
 
 const FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-all`;
 const PLACES_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-from-places`;
+const REVIEWS_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-reviews`;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 
 export default function AdminEnrich() {
@@ -17,6 +18,8 @@ export default function AdminEnrich() {
   const [log, setLog] = useState<string[]>([]);
   const [placesRunning, setPlacesRunning] = useState(false);
   const [placesLog, setPlacesLog] = useState<string[]>([]);
+  const [reviewsRunning, setReviewsRunning] = useState(false);
+  const [reviewsLog, setReviewsLog] = useState<string[]>([]);
 
   useEffect(() => {
     if (token) sessionStorage.setItem("enrich_token", token);
@@ -70,8 +73,63 @@ export default function AdminEnrich() {
     refetchInterval: placesRunning ? 3000 : 15000,
   });
 
+  const reviewsStats = useQuery({
+    queryKey: ["reviews-stats"],
+    queryFn: async () => {
+      const [{ count: total }, { count: cached }] = await Promise.all([
+        supabase.from("bars").select("id", { count: "exact", head: true }),
+        supabase.from("bar_places_runs").select("bar_id", { count: "exact", head: true }).not("reviews_fetched_at", "is", null),
+      ]);
+      return { total: total ?? 0, cached: cached ?? 0, pending: Math.max(0, (total ?? 0) - (cached ?? 0)) };
+    },
+    refetchInterval: reviewsRunning ? 3000 : 15000,
+  });
+
   const appendLog = (m: string) => setLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
   const appendPlacesLog = (m: string) => setPlacesLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+  const appendReviewsLog = (m: string) => setReviewsLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+
+  async function callReviewsBatch(mode: "missing" | "retry") {
+    const res = await fetch(REVIEWS_FN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${ANON}`,
+        "x-enrich-token": token,
+      },
+      body: JSON.stringify({ batch_size: 5, mode }),
+    });
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.error ?? `HTTP ${res.status}`);
+    return j as { done: boolean; processed: number; succeeded?: number; failed?: number };
+  }
+
+  async function startReviews(mode: "missing" | "retry") {
+    if (!token) {
+      toast({ title: "Token required", description: "Paste the admin token first.", variant: "destructive" });
+      return;
+    }
+    setReviewsRunning(true);
+    appendReviewsLog(`Starting reviews ${mode} run…`);
+    try {
+      while (true) {
+        const r = await callReviewsBatch(mode);
+        appendReviewsLog(`Batch: processed ${r.processed}, ok ${r.succeeded ?? 0}, failed ${r.failed ?? 0}`);
+        reviewsStats.refetch();
+        if (r.done || r.processed === 0) {
+          appendReviewsLog("No more bars to process — stopped.");
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 800));
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      appendReviewsLog(`Error: ${msg}`);
+      toast({ title: "Reviews run stopped", description: msg, variant: "destructive" });
+    } finally {
+      setReviewsRunning(false);
+    }
+  }
 
   async function callPlacesBatch(mode: "missing" | "retry") {
     const res = await fetch(PLACES_FN_URL, {
@@ -265,6 +323,33 @@ export default function AdminEnrich() {
           </div>
           <pre className="text-xs bg-muted/50 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
             {placesLog.length ? placesLog.join("\n") : "Idle."}
+          </pre>
+        </Card>
+
+        <div className="pt-4 border-t border-border">
+          <h2 className="text-2xl font-bold text-foreground">Google Reviews cache</h2>
+          <p className="text-muted-foreground text-sm mt-1">
+            Fetches & caches rating + reviews for every bar so pages load instantly without hitting Google on each visit.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3">
+          <Stat label="Total bars" value={reviewsStats.data?.total ?? "—"} />
+          <Stat label="Cached" value={reviewsStats.data?.cached ?? "—"} />
+          <Stat label="Pending" value={reviewsStats.data?.pending ?? "—"} />
+        </div>
+
+        <Card className="p-5 space-y-4">
+          <div className="flex flex-wrap gap-2 items-center">
+            <Button onClick={() => startReviews("missing")} disabled={reviewsRunning || !token}>
+              {reviewsRunning ? "Running…" : "Cache reviews for all bars"}
+            </Button>
+            <Button variant="outline" onClick={() => startReviews("retry")} disabled={reviewsRunning || !token}>
+              Retry missing
+            </Button>
+          </div>
+          <pre className="text-xs bg-muted/50 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+            {reviewsLog.length ? reviewsLog.join("\n") : "Idle."}
           </pre>
         </Card>
       </div>
