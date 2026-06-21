@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import Header from "@/components/Header";
 import { BarSchema } from "@/components/BarSchema";
 import Footer from "@/components/Footer";
+import { BarReviews } from "@/components/BarReviews";
 import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train, X, ChevronLeft, Images } from "lucide-react";
 
 const InstagramIcon = () => (
@@ -572,6 +573,9 @@ const BarDetail = () => {
                       </div>
                     </div>
                   )}
+
+                  {/* Google Reviews */}
+                  <BarReviews slug={bar.slug} barName={bar.name} />
                 </div>
 
                 {/* Sidebar */}
