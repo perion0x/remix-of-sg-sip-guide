@@ -66,7 +66,7 @@ const Header = () => {
                 <Link
                   key={item.label}
                   to={item.to}
-                  className="relative px-4 py-2 text-sm font-medium text-foreground hover:text-foreground transition-colors duration-300 rounded-lg hover:bg-foreground/5"
+                  className="relative px-4 py-2 text-base font-bold tracking-tight text-foreground hover:text-foreground transition-colors duration-300 rounded-lg hover:bg-foreground/5"
                 >
                   {item.label}
                 </Link>
@@ -98,14 +98,14 @@ const Header = () => {
               >
                 <nav className="flex flex-col py-4 border-t border-border/30">
                   {navItems.map((item) => (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className="py-3 px-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="py-3 px-2 text-base font-bold tracking-tight text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-lg transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
                   ))}
                 </nav>
               </motion.div>
