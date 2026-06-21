@@ -172,6 +172,42 @@ export type Database = {
           },
         ]
       }
+      bar_places_runs: {
+        Row: {
+          bar_id: string
+          error: string | null
+          got_hours: boolean
+          got_image: boolean
+          got_phone: boolean
+          got_website: boolean
+          place_id: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          bar_id: string
+          error?: string | null
+          got_hours?: boolean
+          got_image?: boolean
+          got_phone?: boolean
+          got_website?: boolean
+          place_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          bar_id?: string
+          error?: string | null
+          got_hours?: boolean
+          got_image?: boolean
+          got_phone?: boolean
+          got_website?: boolean
+          place_id?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       bars: {
         Row: {
           address: string | null

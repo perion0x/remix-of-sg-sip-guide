@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
 
 const FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-all`;
+const PLACES_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-from-places`;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 
 export default function AdminEnrich() {
@@ -14,6 +15,8 @@ export default function AdminEnrich() {
   const [running, setRunning] = useState(false);
   const [mode, setMode] = useState<"pending" | "failed">("pending");
   const [log, setLog] = useState<string[]>([]);
+  const [placesRunning, setPlacesRunning] = useState(false);
+  const [placesLog, setPlacesLog] = useState<string[]>([]);
 
   useEffect(() => {
     if (token) sessionStorage.setItem("enrich_token", token);
@@ -53,7 +56,64 @@ export default function AdminEnrich() {
     refetchInterval: running ? 5000 : 30000,
   });
 
+  const placesStats = useQuery({
+    queryKey: ["places-stats"],
+    queryFn: async () => {
+      const [{ count: missing }, { count: done }, { count: failed }, { count: notFound }] = await Promise.all([
+        supabase.from("bars").select("id", { count: "exact", head: true }).or("website.is.null,image_url.is.null"),
+        supabase.from("bar_places_runs").select("bar_id", { count: "exact", head: true }).eq("status", "done"),
+        supabase.from("bar_places_runs").select("bar_id", { count: "exact", head: true }).eq("status", "failed"),
+        supabase.from("bar_places_runs").select("bar_id", { count: "exact", head: true }).eq("status", "not_found"),
+      ]);
+      return { missing: missing ?? 0, done: done ?? 0, failed: failed ?? 0, notFound: notFound ?? 0 };
+    },
+    refetchInterval: placesRunning ? 3000 : 15000,
+  });
+
   const appendLog = (m: string) => setLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+  const appendPlacesLog = (m: string) => setPlacesLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+
+  async function callPlacesBatch(mode: "missing" | "retry") {
+    const res = await fetch(PLACES_FN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${ANON}`,
+        "x-enrich-token": token,
+      },
+      body: JSON.stringify({ batch_size: 5, mode }),
+    });
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.error ?? `HTTP ${res.status}`);
+    return j as { done: boolean; processed: number; succeeded?: number; failed?: number };
+  }
+
+  async function startPlaces(mode: "missing" | "retry") {
+    if (!token) {
+      toast({ title: "Token required", description: "Paste the admin token first.", variant: "destructive" });
+      return;
+    }
+    setPlacesRunning(true);
+    appendPlacesLog(`Starting Google Places ${mode} run…`);
+    try {
+      while (true) {
+        const r = await callPlacesBatch(mode);
+        appendPlacesLog(`Batch: processed ${r.processed}, ok ${r.succeeded ?? 0}, failed ${r.failed ?? 0}`);
+        placesStats.refetch();
+        if (r.done || r.processed === 0) {
+          appendPlacesLog("No more bars to process — stopped.");
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 800));
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      appendPlacesLog(`Error: ${msg}`);
+      toast({ title: "Places run stopped", description: msg, variant: "destructive" });
+    } finally {
+      setPlacesRunning(false);
+    }
+  }
 
   async function callBatch() {
     const res = await fetch(FN_URL, {
@@ -102,7 +162,7 @@ export default function AdminEnrich() {
       <div className="max-w-4xl mx-auto space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Bar enrichment</h1>
-          <p className="text-muted-foreground mt-1">Firecrawl scrape pipeline. Hidden admin page.</p>
+          <p className="text-muted-foreground mt-1">Firecrawl + Google Places pipelines. Hidden admin page.</p>
         </div>
 
         <Card className="p-5 space-y-3">
@@ -178,6 +238,34 @@ export default function AdminEnrich() {
               ))}
             </ul>
           )}
+        </Card>
+
+        <div className="pt-4 border-t border-border">
+          <h2 className="text-2xl font-bold text-foreground">Google Places enrichment</h2>
+          <p className="text-muted-foreground text-sm mt-1">
+            For bars missing a website or image. Pulls website, phone, hours, and a hero photo from Google Maps.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <Stat label="Need data" value={placesStats.data?.missing ?? "—"} />
+          <Stat label="Done" value={placesStats.data?.done ?? "—"} />
+          <Stat label="Not found" value={placesStats.data?.notFound ?? "—"} />
+          <Stat label="Failed" value={placesStats.data?.failed ?? "—"} />
+        </div>
+
+        <Card className="p-5 space-y-4">
+          <div className="flex flex-wrap gap-2 items-center">
+            <Button onClick={() => startPlaces("missing")} disabled={placesRunning || !token}>
+              {placesRunning ? "Running…" : "Start Places run"}
+            </Button>
+            <Button variant="outline" onClick={() => startPlaces("retry")} disabled={placesRunning || !token}>
+              Retry failed
+            </Button>
+          </div>
+          <pre className="text-xs bg-muted/50 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+            {placesLog.length ? placesLog.join("\n") : "Idle."}
+          </pre>
         </Card>
       </div>
     </div>
