@@ -180,7 +180,12 @@ export type Database = {
           got_image: boolean
           got_phone: boolean
           got_website: boolean
+          maps_url: string | null
           place_id: string | null
+          rating: number | null
+          rating_count: number | null
+          reviews_fetched_at: string | null
+          reviews_json: Json | null
           status: string
           updated_at: string
         }
@@ -191,7 +196,12 @@ export type Database = {
           got_image?: boolean
           got_phone?: boolean
           got_website?: boolean
+          maps_url?: string | null
           place_id?: string | null
+          rating?: number | null
+          rating_count?: number | null
+          reviews_fetched_at?: string | null
+          reviews_json?: Json | null
           status?: string
           updated_at?: string
         }
@@ -202,7 +212,12 @@ export type Database = {
           got_image?: boolean
           got_phone?: boolean
           got_website?: boolean
+          maps_url?: string | null
           place_id?: string | null
+          rating?: number | null
+          rating_count?: number | null
+          reviews_fetched_at?: string | null
+          reviews_json?: Json | null
           status?: string
           updated_at?: string
         }
