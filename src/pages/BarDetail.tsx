@@ -608,6 +608,21 @@ const BarDetail = () => {
                       </div>
                     )}
 
+                    {bar.website && (
+                      <div>
+                        <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-2">Website</h3>
+                        <a
+                          href={bar.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm text-foreground hover:text-accent transition-colors break-all"
+                        >
+                          <ExternalLink className="w-4 h-4 text-accent shrink-0" />
+                          {bar.website.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+                        </a>
+                      </div>
+                    )}
+
                     <div className="pt-2 border-t border-border">
                       <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Follow</h3>
                       {bar.social_media_links ? (
