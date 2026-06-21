@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "@/components/Logo";
+import logoImage from "@/assets/sg-bars-logo.png";
 const navItems = [
   { label: "Bars", to: "/bars" },
   { label: "Rankings", to: "#" },
@@ -50,7 +50,11 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <Logo className="w-9 h-9 text-foreground transition-transform duration-300 group-hover:scale-110" />
+              <img
+                src={logoImage}
+                alt="SG Bars"
+                className="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-110"
+              />
               <span className="text-base font-bold text-foreground tracking-tight leading-none">
                 SG Bars
               </span>
