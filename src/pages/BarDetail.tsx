@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 import { supabase } from "@/integrations/supabase/client";
 import { BarSchema } from "@/components/BarSchema";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train, X, ChevronLeft, Images } from "lucide-react";
 
@@ -313,7 +312,6 @@ const BarDetail = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main>
         {isLoading && (
           <div className="text-center py-20 text-muted-foreground">Loading…</div>
