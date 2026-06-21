@@ -115,6 +115,19 @@ Deno.serve(async (req) => {
       publishTime: r.publishTime ?? null,
     }));
 
+    // Persist to cache for future page loads
+    await supabase.from("bar_places_runs").upsert({
+      bar_id: bar.id,
+      place_id: placeId,
+      status: "done",
+      rating: details.rating ?? null,
+      rating_count: details.userRatingCount ?? 0,
+      reviews_json: reviews,
+      maps_url: details.googleMapsUri ?? null,
+      reviews_fetched_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    }, { onConflict: "bar_id" });
+
     return new Response(JSON.stringify({
       reviews,
       rating: details.rating ?? null,
