@@ -66,7 +66,7 @@ const Header = () => {
                 <Link
                   key={item.label}
                   to={item.to}
-                  className="relative px-4 py-2 text-sm font-medium text-foreground hover:text-foreground transition-colors duration-300 rounded-lg hover:bg-foreground/5"
+                  className="relative px-4 py-2 text-base font-bold tracking-tight text-foreground hover:text-foreground transition-colors duration-300 rounded-lg hover:bg-foreground/5"
                 >
                   {item.label}
                 </Link>
