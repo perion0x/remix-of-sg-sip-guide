@@ -573,6 +573,9 @@ const BarDetail = () => {
                       </div>
                     </div>
                   )}
+
+                  {/* Google Reviews */}
+                  <BarReviews slug={bar.slug} barName={bar.name} />
                 </div>
 
                 {/* Sidebar */}
