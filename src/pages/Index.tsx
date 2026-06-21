@@ -1,5 +1,4 @@
 import { Helmet } from "react-helmet-async";
-import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import FeaturedBars from "@/components/FeaturedBars";
 import SearchFilters from "@/components/SearchFilters";
@@ -41,7 +40,6 @@ const Index = () => {
         <meta name="twitter:image" content={OG_IMAGE} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
-      <Header />
       <main>
         <HeroSection />
         <SearchFilters />

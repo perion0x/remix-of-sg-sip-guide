@@ -4,7 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { MapPin, Clock, Award, ChevronLeft, ChevronRight } from "lucide-react";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -100,8 +99,7 @@ const Bars = () => {
         {itemListJsonLd && (
           <script type="application/ld+json">{JSON.stringify(itemListJsonLd)}</script>
         )}
-      </Helmet>
-      <Header />
+        </Helmet>
       <main className="min-h-screen bg-background">
         <section className="py-12">
           <div className="container mx-auto px-4">
