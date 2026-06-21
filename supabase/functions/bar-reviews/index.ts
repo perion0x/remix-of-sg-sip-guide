@@ -64,12 +64,28 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Try cached place_id
+    // Try cache
     const { data: run } = await supabase
       .from("bar_places_runs")
-      .select("place_id")
+      .select("place_id, rating, rating_count, reviews_json, maps_url, reviews_fetched_at")
       .eq("bar_id", bar.id)
       .maybeSingle();
+
+    if (run?.reviews_json && Array.isArray(run.reviews_json)) {
+      return new Response(JSON.stringify({
+        reviews: run.reviews_json,
+        rating: run.rating ?? null,
+        total: run.rating_count ?? 0,
+        mapsUrl: run.maps_url ?? null,
+        cached: true,
+      }), {
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "application/json",
+          "Cache-Control": "public, max-age=86400",
+        },
+      });
+    }
 
     let placeId = run?.place_id ?? null;
     if (!placeId) {
