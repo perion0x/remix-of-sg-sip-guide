@@ -468,17 +468,22 @@ const BarDetail = () => {
 
                   {/* Menu */}
                   {((menuItems && menuItems.length > 0) || menuMeta?.pdfUrl || menuMeta?.source_url) && (
-                    <div>
-                      <h2 className="text-xl font-semibold text-foreground mb-3">Menu</h2>
+                    <div className="space-y-8">
                       {menuItems && menuItems.length > 0 ? (
-                        <div className="space-y-6">
-                          {Object.entries(
-                            menuItems.reduce<Record<string, typeof menuItems>>((acc, item) => {
-                              const k = item.section ?? "Menu";
-                              (acc[k] ||= []).push(item);
-                              return acc;
-                            }, {})
-                          ).map(([section, items]) => (
+                        (() => {
+                          const grouped = menuItems.reduce<Record<string, typeof menuItems>>((acc, item) => {
+                            const k = item.section ?? "Menu";
+                            (acc[k] ||= []).push(item);
+                            return acc;
+                          }, {});
+                          const drinkKeywords = ["cocktail", "cocktails", "drink", "drinks", "beer", "wine", "gin", "champagne", "spirit", "spirits", "happy hour", "aperitif", "mocktail", "sake", "whiskey", "whisky", "rum", "tequila", "vodka", "mezcal", "vermouth", "prosecco", "bubbly", "champagne", "negroni", "martini", "old fashioned", "margarita", "mojito", "manhattan", "spritz"];
+                          const foodKeywords = ["food", "appetizer", "appetizers", "starter", "starters", "main", "mains", "course", "courses", "dessert", "desserts", "snack", "snacks", "side", "sides", "plate", "plates", "brunch", "lunch", "dinner", "dining", "ala carte", "à la carte", "pickleball", "bóng đá", "bóng chuyền", "cbd product", "growth", "beauty", "hope"];
+                          const isDrinkSection = (s: string) => drinkKeywords.some((k) => s.toLowerCase().includes(k));
+                          const isFoodSection = (s: string) => foodKeywords.some((k) => s.toLowerCase().includes(k));
+                          const drinkSections = Object.entries(grouped).filter(([s]) => isDrinkSection(s));
+                          const foodSections = Object.entries(grouped).filter(([s]) => isFoodSection(s));
+                          const otherSections = Object.entries(grouped).filter(([s]) => !isDrinkSection(s) && !isFoodSection(s));
+                          const renderSection = ([section, items]: [string, typeof menuItems]) => (
                             <div key={section}>
                               <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">{section}</h3>
                               <ul className="divide-y divide-border">
@@ -497,10 +502,33 @@ const BarDetail = () => {
                                 ))}
                               </ul>
                             </div>
-                          ))}
-                        </div>
+                          );
+                          return (
+                            <>
+                              {/* Drinks & Cocktails */}
+                              {(drinkSections.length > 0 || otherSections.length > 0) && (
+                                <div>
+                                  <h2 className="text-xl font-semibold text-foreground mb-3">Drinks &amp; Cocktails</h2>
+                                  <div className="space-y-6">
+                                    {drinkSections.map(renderSection)}
+                                    {otherSections.map(renderSection)}
+                                  </div>
+                                </div>
+                              )}
+                              {/* Food */}
+                              {foodSections.length > 0 && (
+                                <div>
+                                  <h2 className="text-xl font-semibold text-foreground mb-3">Food</h2>
+                                  <div className="space-y-6">
+                                    {foodSections.map(renderSection)}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        })()
                       ) : null}
-                      <div className="mt-4 flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-3">
                         {menuMeta?.pdfUrl && (
                           <a
                             href={menuMeta.pdfUrl}
