@@ -4,6 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { MapPin, Clock, Award, ChevronLeft, ChevronRight } from "lucide-react";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -82,6 +83,7 @@ const Bars = () => {
 
   return (
     <>
+      <Header />
       <Helmet>
         <title>Singapore Bars Directory — Cocktail Bars &amp; Speakeasies</title>
         <link rel="canonical" href="https://bars.sg/bars" />
