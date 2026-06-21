@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedBars from "@/components/FeaturedBars";
 import SearchFilters from "@/components/SearchFilters";
 import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import QuestionnaireButton from "@/components/QuestionnaireButton";
 
 const OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/590cf2dc-7ec5-49bb-a029-7934c9a3335a/id-preview-adfa6c3f--f876734b-e0f2-48c3-acb9-15b595e030b5.lovable.app-1771667031143.png";
@@ -40,6 +41,7 @@ const Index = () => {
         <meta name="twitter:image" content={OG_IMAGE} />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
+      <Header />
       <main>
         <HeroSection />
         <SearchFilters />
