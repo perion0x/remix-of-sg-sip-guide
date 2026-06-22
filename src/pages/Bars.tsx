@@ -7,12 +7,17 @@ import { MapPin, Clock, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
+import { AREAS, getAreaSlug, getOpenStatus } from "@/lib/bar-utils";
+import { useAllRatings } from "@/hooks/useBarRatings";
+import { RatingBadge, OpenBadge } from "@/components/RatingBadge";
 
 const BARS_PER_PAGE = 24;
 
 const Bars = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeCategory = searchParams.get("category") || "all";
+  const activeArea = searchParams.get("area") || "all";
+  const sort = (searchParams.get("sort") as "name" | "rating" | "reviews") || "name";
   const currentPage = parseInt(searchParams.get("page") || "1", 10);
 
   const { data: categories } = useQuery({
@@ -30,34 +35,67 @@ const Bars = () => {
     },
   });
 
+  const ratingsQuery = useAllRatings();
+
+  // For name sort + no area filter we can paginate at the DB; otherwise we filter/sort client-side.
+  const needsClientSort = sort !== "name" || activeArea !== "all";
+
   const { data: barsResult, isLoading } = useQuery({
-    queryKey: ["all-bars", activeCategory, currentPage],
+    queryKey: ["all-bars", activeCategory, activeArea, sort, currentPage, needsClientSort, ratingsQuery.data?.size ?? 0],
+    enabled: !needsClientSort || !!ratingsQuery.data,
     queryFn: async () => {
-      let query = supabase
-        .from("bars")
-        .select("*", { count: "exact" })
-        .order("name", { ascending: true });
-
-      if (activeCategory !== "all") {
-        query = query.eq("category", activeCategory);
+      if (!needsClientSort) {
+        let q = supabase.from("bars").select("*", { count: "exact" }).order("name", { ascending: true });
+        if (activeCategory !== "all") q = q.eq("category", activeCategory);
+        const from = (currentPage - 1) * BARS_PER_PAGE;
+        q = q.range(from, from + BARS_PER_PAGE - 1);
+        const { data, error, count } = await q;
+        if (error) throw error;
+        return { bars: data ?? [], total: count ?? 0 };
       }
-
-      const from = (currentPage - 1) * BARS_PER_PAGE;
-      query = query.range(from, from + BARS_PER_PAGE - 1);
-
-      const { data, error, count } = await query;
+      // Client-side path: fetch all matching, then filter by area + sort by rating
+      let q = supabase.from("bars").select("*");
+      if (activeCategory !== "all") q = q.eq("category", activeCategory);
+      const { data, error } = await q;
       if (error) throw error;
-      return { bars: data, total: count ?? 0 };
+      let rows = (data ?? []) as any[];
+      if (activeArea !== "all") {
+        rows = rows.filter((b) => getAreaSlug(b.address) === activeArea);
+      }
+      const ratings = ratingsQuery.data!;
+      if (sort === "rating") {
+        rows.sort((a, b) => {
+          const ra = ratings.get(a.id)?.rating ?? -1;
+          const rb = ratings.get(b.id)?.rating ?? -1;
+          if (rb !== ra) return rb - ra;
+          return a.name.localeCompare(b.name);
+        });
+      } else if (sort === "reviews") {
+        rows.sort((a, b) => {
+          const ca = ratings.get(a.id)?.rating_count ?? 0;
+          const cb = ratings.get(b.id)?.rating_count ?? 0;
+          if (cb !== ca) return cb - ca;
+          return a.name.localeCompare(b.name);
+        });
+      } else {
+        rows.sort((a, b) => a.name.localeCompare(b.name));
+      }
+      const total = rows.length;
+      const from = (currentPage - 1) * BARS_PER_PAGE;
+      return { bars: rows.slice(from, from + BARS_PER_PAGE), total };
     },
   });
 
   const totalPages = Math.ceil((barsResult?.total ?? 0) / BARS_PER_PAGE);
 
-  const setFilter = (category: string) => {
-    const params = new URLSearchParams();
-    if (category !== "all") params.set("category", category);
+  const updateParam = (key: string, value: string | null) => {
+    const params = new URLSearchParams(searchParams);
+    if (value && value !== "all") params.set(key, value);
+    else params.delete(key);
+    params.delete("page");
     setSearchParams(params);
   };
+  const setFilter = (category: string) => updateParam("category", category);
 
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams);
@@ -114,6 +152,47 @@ const Bars = () => {
               Explore {barsResult?.total ?? "—"} bars across Singapore
             </p>
 
+            {/* Sort + Area row */}
+            <div className="flex flex-wrap gap-2 items-center mb-4">
+              <span className="text-xs uppercase tracking-wider text-muted-foreground mr-1">Sort</span>
+              {[
+                { v: "name", label: "A–Z" },
+                { v: "rating", label: "Top rated" },
+                { v: "reviews", label: "Most reviewed" },
+              ].map((s) => (
+                <button
+                  key={s.v}
+                  onClick={() => updateParam("sort", s.v)}
+                  className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                    sort === s.v ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
+              <span className="w-px h-5 bg-border mx-2" />
+              <span className="text-xs uppercase tracking-wider text-muted-foreground mr-1">Area</span>
+              <button
+                onClick={() => updateParam("area", "all")}
+                className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                  activeArea === "all" ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
+                }`}
+              >
+                All areas
+              </button>
+              {AREAS.map((a) => (
+                <Link
+                  key={a.slug}
+                  to={`/bars/area/${a.slug}`}
+                  className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                    activeArea === a.slug ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {a.name}
+                </Link>
+              ))}
+            </div>
+
             {/* Category filter pills */}
             <div className="flex flex-wrap gap-2 mb-10">
               <button
@@ -153,7 +232,10 @@ const Bars = () => {
                       </div>
                     </div>
                   ))
-                : barsResult?.bars?.map((bar) => (
+                : barsResult?.bars?.map((bar) => {
+                    const r = ratingsQuery.data?.get(bar.id);
+                    const status = getOpenStatus(bar.operating_hours);
+                    return (
                     <Link
                       to={`/bars/${bar.slug}`}
                       key={bar.id}
@@ -179,9 +261,17 @@ const Bars = () => {
                             {bar.category}
                           </span>
                         )}
+                        {status && (
+                          <span className="absolute top-3 right-3">
+                            <OpenBadge open={status.open} label={status.label} />
+                          </span>
+                        )}
                       </div>
                       <div className="p-5">
-                        <h2 className="text-lg font-semibold text-foreground mb-1">{bar.name}</h2>
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h2 className="text-lg font-semibold text-foreground">{bar.name}</h2>
+                          <RatingBadge rating={r?.rating ?? null} count={r?.rating_count} />
+                        </div>
                         {bar.address && (
                           <div className="flex items-center text-muted-foreground text-sm mb-1">
                             <MapPin className="w-3.5 h-3.5 mr-1 flex-shrink-0" />
@@ -196,7 +286,8 @@ const Bars = () => {
                         )}
                       </div>
                     </Link>
-                  ))}
+                    );
+                  })}
             </div>
 
             {/* Pagination */}
