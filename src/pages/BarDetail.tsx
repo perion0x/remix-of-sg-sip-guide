@@ -8,6 +8,7 @@ import { BarSchema } from "@/components/BarSchema";
 import Footer from "@/components/Footer";
 import { BarReviews } from "@/components/BarReviews";
 import { MapPin, Phone, Mail, Clock, ExternalLink, ChevronRight, Globe, Train, X, ChevronLeft, Images } from "lucide-react";
+import { getAreaSlug } from "@/lib/bar-utils";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
@@ -470,7 +471,16 @@ const BarDetail = () => {
                         {getArea(bar.address) && (
                           <div className="flex items-start gap-3">
                             <Train className="w-5 h-5 mt-0.5 text-accent shrink-0" />
-                            <span>Located in the <strong>{getArea(bar.address)}</strong> area of Singapore</span>
+                            <span>
+                              Located in the{" "}
+                              <Link
+                                to={`/bars/area/${getAreaSlug(bar.address)}`}
+                                className="text-accent hover:underline font-semibold"
+                              >
+                                {getArea(bar.address)}
+                              </Link>{" "}
+                              area of Singapore
+                            </span>
                           </div>
                         )}
                         {bar.google_maps_link && (
