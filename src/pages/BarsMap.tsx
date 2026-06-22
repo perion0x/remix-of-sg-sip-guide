@@ -59,32 +59,39 @@ export default function BarsMap() {
     queryFn: async () => {
       const pageSize = 1000;
       let from = 0;
-      const out: MapBar[] = [];
+      const runs: any[] = [];
       while (true) {
         const { data, error } = await supabase
           .from("bar_places_runs")
-          .select("bar_id, lat, lng, rating, rating_count, bars!inner(id, name, slug, address, category)")
+          .select("bar_id, lat, lng, rating, rating_count")
           .not("lat", "is", null)
           .not("lng", "is", null)
           .range(from, from + pageSize - 1);
         if (error) throw error;
-        for (const r of data ?? []) {
-          const b: any = (r as any).bars;
-          if (!b) continue;
-          out.push({
-            id: b.id,
-            name: b.name,
-            slug: b.slug,
-            address: b.address,
-            category: b.category,
-            lat: r.lat as number,
-            lng: r.lng as number,
-            rating: (r as any).rating ?? null,
-            rating_count: (r as any).rating_count ?? null,
-          });
-        }
+        runs.push(...(data ?? []));
         if (!data || data.length < pageSize) break;
         from += pageSize;
+      }
+      if (runs.length === 0) return [] as MapBar[];
+      const ids = runs.map((r) => r.bar_id);
+      const barsMap = new Map<string, any>();
+      for (let i = 0; i < ids.length; i += 200) {
+        const chunk = ids.slice(i, i + 200);
+        const { data, error } = await supabase
+          .from("bars")
+          .select("id, name, slug, address, category")
+          .in("id", chunk);
+        if (error) throw error;
+        for (const b of data ?? []) barsMap.set(b.id, b);
+      }
+      const out: MapBar[] = [];
+      for (const r of runs) {
+        const b = barsMap.get(r.bar_id);
+        if (!b) continue;
+        out.push({
+          id: b.id, name: b.name, slug: b.slug, address: b.address, category: b.category,
+          lat: r.lat, lng: r.lng, rating: r.rating ?? null, rating_count: r.rating_count ?? null,
+        });
       }
       return out;
     },
