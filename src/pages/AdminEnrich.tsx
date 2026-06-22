@@ -410,6 +410,33 @@ export default function AdminEnrich() {
             {reviewsLog.length ? reviewsLog.join("\n") : "Idle."}
           </pre>
         </Card>
+
+        <div className="pt-4 border-t border-border">
+          <h2 className="text-2xl font-bold text-foreground">Map coordinates (geocoding)</h2>
+          <p className="text-muted-foreground text-sm mt-1">
+            Backfills latitude/longitude for every bar so they can be plotted on the interactive map at /bars/map.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-3">
+          <Stat label="Total bars" value={geoStats.data?.total ?? "—"} />
+          <Stat label="Geocoded" value={geoStats.data?.geocoded ?? "—"} />
+          <Stat label="Pending" value={geoStats.data?.pending ?? "—"} />
+        </div>
+
+        <Card className="p-5 space-y-4">
+          <div className="flex flex-wrap gap-2 items-center">
+            <Button onClick={() => startGeocode("missing")} disabled={geoRunning || !token}>
+              {geoRunning ? "Running…" : "Geocode all bars"}
+            </Button>
+            <Button variant="outline" onClick={() => startGeocode("retry")} disabled={geoRunning || !token}>
+              Retry missing
+            </Button>
+          </div>
+          <pre className="text-xs bg-muted/50 p-3 rounded max-h-64 overflow-auto whitespace-pre-wrap">
+            {geoLog.length ? geoLog.join("\n") : "Idle."}
+          </pre>
+        </Card>
       </div>
     </div>
   );
