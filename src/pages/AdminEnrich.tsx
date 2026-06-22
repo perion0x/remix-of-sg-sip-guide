@@ -9,6 +9,7 @@ import { toast } from "@/hooks/use-toast";
 const FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-all`;
 const PLACES_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-from-places`;
 const REVIEWS_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-reviews`;
+const GEOCODE_FN_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/enrich-geocode`;
 const ANON = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string;
 
 export default function AdminEnrich() {
@@ -20,6 +21,8 @@ export default function AdminEnrich() {
   const [placesLog, setPlacesLog] = useState<string[]>([]);
   const [reviewsRunning, setReviewsRunning] = useState(false);
   const [reviewsLog, setReviewsLog] = useState<string[]>([]);
+  const [geoRunning, setGeoRunning] = useState(false);
+  const [geoLog, setGeoLog] = useState<string[]>([]);
 
   useEffect(() => {
     if (token) sessionStorage.setItem("enrich_token", token);
@@ -88,6 +91,61 @@ export default function AdminEnrich() {
   const appendLog = (m: string) => setLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
   const appendPlacesLog = (m: string) => setPlacesLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
   const appendReviewsLog = (m: string) => setReviewsLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+  const appendGeoLog = (m: string) => setGeoLog((l) => [`${new Date().toLocaleTimeString()} · ${m}`, ...l].slice(0, 100));
+
+  const geoStats = useQuery({
+    queryKey: ["geo-stats"],
+    queryFn: async () => {
+      const [{ count: total }, { count: geocoded }] = await Promise.all([
+        supabase.from("bars").select("id", { count: "exact", head: true }),
+        supabase.from("bar_places_runs").select("bar_id", { count: "exact", head: true }).not("lat", "is", null),
+      ]);
+      return { total: total ?? 0, geocoded: geocoded ?? 0, pending: Math.max(0, (total ?? 0) - (geocoded ?? 0)) };
+    },
+    refetchInterval: geoRunning ? 3000 : 15000,
+  });
+
+  async function callGeocodeBatch(mode: "missing" | "retry") {
+    const res = await fetch(GEOCODE_FN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${ANON}`,
+        "x-enrich-token": token,
+      },
+      body: JSON.stringify({ batch_size: 10, mode }),
+    });
+    const j = await res.json();
+    if (!res.ok) throw new Error(j.error ?? `HTTP ${res.status}`);
+    return j as { done: boolean; processed: number; succeeded?: number; failed?: number };
+  }
+
+  async function startGeocode(mode: "missing" | "retry") {
+    if (!token) {
+      toast({ title: "Token required", description: "Paste the admin token first.", variant: "destructive" });
+      return;
+    }
+    setGeoRunning(true);
+    appendGeoLog(`Starting geocode ${mode} run…`);
+    try {
+      while (true) {
+        const r = await callGeocodeBatch(mode);
+        appendGeoLog(`Batch: processed ${r.processed}, ok ${r.succeeded ?? 0}, failed ${r.failed ?? 0}`);
+        geoStats.refetch();
+        if (r.done || r.processed === 0) {
+          appendGeoLog("No more bars to geocode — stopped.");
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 600));
+      }
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      appendGeoLog(`Error: ${msg}`);
+      toast({ title: "Geocode run stopped", description: msg, variant: "destructive" });
+    } finally {
+      setGeoRunning(false);
+    }
+  }
 
   async function callReviewsBatch(mode: "missing" | "retry") {
     const res = await fetch(REVIEWS_FN_URL, {
