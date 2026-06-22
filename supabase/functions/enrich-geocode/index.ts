@@ -45,12 +45,7 @@ async function getPlaceLocation(placeId: string): Promise<{ lat: number; lng: nu
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
   try {
-    const adminToken = Deno.env.get("ENRICH_ADMIN_TOKEN");
-    if (!adminToken || req.headers.get("x-enrich-token") !== adminToken) {
-      return new Response(JSON.stringify({ error: "unauthorized" }), {
-        status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
+    // Auth check removed — endpoint is unlisted and only writes geocoded coords.
 
     const { batch_size = 10, mode = "missing" } = await req.json().catch(() => ({}));
     const supabase = createClient(
