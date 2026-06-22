@@ -6,7 +6,7 @@ import logoImage from "@/assets/sg-bars-logo.png";
 const navItems = [
   { label: "Bars", to: "/bars" },
   { label: "Rankings", to: "#" },
-  { label: "Map", to: "#" },
+  { label: "Map", to: "/bars/map" },
   { label: "Neighborhoods", to: "#" },
 ];
 

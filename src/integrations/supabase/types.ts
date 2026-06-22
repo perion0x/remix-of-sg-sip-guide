@@ -180,6 +180,8 @@ export type Database = {
           got_image: boolean
           got_phone: boolean
           got_website: boolean
+          lat: number | null
+          lng: number | null
           maps_url: string | null
           place_id: string | null
           rating: number | null
@@ -196,6 +198,8 @@ export type Database = {
           got_image?: boolean
           got_phone?: boolean
           got_website?: boolean
+          lat?: number | null
+          lng?: number | null
           maps_url?: string | null
           place_id?: string | null
           rating?: number | null
@@ -212,6 +216,8 @@ export type Database = {
           got_image?: boolean
           got_phone?: boolean
           got_website?: boolean
+          lat?: number | null
+          lng?: number | null
           maps_url?: string | null
           place_id?: string | null
           rating?: number | null
