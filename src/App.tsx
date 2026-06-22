@@ -10,6 +10,7 @@ import Bars from "./pages/Bars";
 import RooftopBarsGuide from "./pages/RooftopBarsGuide";
 import AdminEnrich from "./pages/AdminEnrich";
 import Neighbourhood from "./pages/Neighbourhood";
+import BarsMap from "./pages/BarsMap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/bars" element={<Bars />} />
+            <Route path="/bars/map" element={<BarsMap />} />
             <Route path="/bars/area/:area" element={<Neighbourhood />} />
             <Route path="/bars/:slug" element={<BarDetail />} />
             <Route path="/guides/rooftop-bars-singapore" element={<RooftopBarsGuide />} />
