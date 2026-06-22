@@ -1,0 +1,1 @@
+ALTER TABLE public.bar_places_runs ADD CONSTRAINT bar_places_runs_bar_id_key UNIQUE (bar_id);
