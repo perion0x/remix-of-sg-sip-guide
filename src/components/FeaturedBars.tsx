@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useBarRatings } from "@/hooks/useBarRatings";
+import { RatingBadge } from "@/components/RatingBadge";
 
 const NOTABLE_NAMES = [
   "Jigger & Pony",
@@ -26,6 +28,7 @@ const FeaturedBars = () => {
       );
     },
   });
+  const ratings = useBarRatings(bars?.map((b) => b.id));
 
   return (
     <section className="py-28 bg-background relative">
@@ -86,9 +89,15 @@ const FeaturedBars = () => {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-display font-semibold text-foreground group-hover:text-accent transition-colors duration-300 mb-1">
-                        {bar.name}
-                      </h3>
+                      <div className="flex items-center gap-3 mb-1 flex-wrap">
+                        <h3 className="text-lg font-display font-semibold text-foreground group-hover:text-accent transition-colors duration-300">
+                          {bar.name}
+                        </h3>
+                        <RatingBadge
+                          rating={ratings.data?.get(bar.id)?.rating ?? null}
+                          count={ratings.data?.get(bar.id)?.rating_count}
+                        />
+                      </div>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         {bar.category && (
                           <span className="uppercase tracking-wider text-xs font-medium text-accent/50">
