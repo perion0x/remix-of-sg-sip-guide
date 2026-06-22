@@ -1,0 +1,1 @@
+GRANT ALL ON public.bar_places_runs TO service_role; GRANT SELECT ON public.bar_places_runs TO anon, authenticated;
