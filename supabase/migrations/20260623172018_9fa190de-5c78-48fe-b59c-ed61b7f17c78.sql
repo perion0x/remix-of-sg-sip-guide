@@ -1,0 +1,14 @@
+GRANT ALL ON public.bar_places_runs TO service_role;
+GRANT SELECT ON public.bar_places_runs TO anon, authenticated;
+GRANT ALL ON public.bar_enrichment_runs TO service_role;
+GRANT SELECT ON public.bar_enrichment_runs TO anon, authenticated;
+GRANT ALL ON public.bars TO service_role;
+GRANT SELECT ON public.bars TO anon, authenticated;
+GRANT ALL ON public.bar_images TO service_role;
+GRANT SELECT ON public.bar_images TO anon, authenticated;
+GRANT ALL ON public.bar_menus TO service_role;
+GRANT SELECT ON public.bar_menus TO anon, authenticated;
+GRANT ALL ON public.bar_menu_items TO service_role;
+GRANT SELECT ON public.bar_menu_items TO anon, authenticated;
+GRANT INSERT ON public.cocktail_questionnaire_responses TO anon, authenticated;
+GRANT ALL ON public.cocktail_questionnaire_responses TO service_role;
