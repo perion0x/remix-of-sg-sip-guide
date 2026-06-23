@@ -48,10 +48,10 @@ Deno.serve(async (req) => {
     // Auth check removed — endpoint is unlisted and only writes geocoded coords.
 
     const { batch_size = 10, mode = "missing" } = await req.json().catch(() => ({}));
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-    );
+    const url = Deno.env.get("SUPABASE_URL")!;
+    const srk = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    console.log("env", { url, srk_len: srk?.length ?? 0 });
+    const supabase = createClient(url, srk);
 
     const { data: bars } = await supabase
       .from("bars")
