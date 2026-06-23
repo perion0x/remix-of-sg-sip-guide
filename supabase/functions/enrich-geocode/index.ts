@@ -48,10 +48,10 @@ Deno.serve(async (req) => {
     // Auth check removed — endpoint is unlisted and only writes geocoded coords.
 
     const { batch_size = 10, mode = "missing" } = await req.json().catch(() => ({}));
-    const supabase = createClient(
-      Deno.env.get("SUPABASE_URL")!,
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
-    );
+    const url = Deno.env.get("SUPABASE_URL")!;
+    const srk = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    console.log("env", { url, srk_len: srk?.length ?? 0 });
+    const supabase = createClient(url, srk);
 
     const { data: bars } = await supabase
       .from("bars")
@@ -91,21 +91,23 @@ Deno.serve(async (req) => {
           if (r) { placeId = r.id; loc = { lat: r.lat, lng: r.lng }; }
         }
         if (!loc) {
-          await supabase.from("bar_places_runs").upsert({
+          const { error: e1 } = await supabase.from("bar_places_runs").upsert({
             bar_id: bar.id,
             place_id: placeId,
             status: existing?.status ?? "not_found",
             updated_at: new Date().toISOString(),
           }, { onConflict: "bar_id" });
+          if (e1) console.error("upsert not_found error", bar.id, e1);
           failed++; continue;
         }
-        await supabase.from("bar_places_runs").upsert({
+        const { error: e2 } = await supabase.from("bar_places_runs").upsert({
           bar_id: bar.id,
           place_id: placeId,
           lat: loc.lat,
           lng: loc.lng,
           updated_at: new Date().toISOString(),
         }, { onConflict: "bar_id" });
+        if (e2) { console.error("upsert ok error", bar.id, e2); failed++; continue; }
         succeeded++;
       } catch (e) {
         await supabase.from("bar_places_runs").upsert({
