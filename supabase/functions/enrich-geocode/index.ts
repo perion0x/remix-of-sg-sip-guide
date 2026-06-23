@@ -91,21 +91,23 @@ Deno.serve(async (req) => {
           if (r) { placeId = r.id; loc = { lat: r.lat, lng: r.lng }; }
         }
         if (!loc) {
-          await supabase.from("bar_places_runs").upsert({
+          const { error: e1 } = await supabase.from("bar_places_runs").upsert({
             bar_id: bar.id,
             place_id: placeId,
             status: existing?.status ?? "not_found",
             updated_at: new Date().toISOString(),
           }, { onConflict: "bar_id" });
+          if (e1) console.error("upsert not_found error", bar.id, e1);
           failed++; continue;
         }
-        await supabase.from("bar_places_runs").upsert({
+        const { error: e2 } = await supabase.from("bar_places_runs").upsert({
           bar_id: bar.id,
           place_id: placeId,
           lat: loc.lat,
           lng: loc.lng,
           updated_at: new Date().toISOString(),
         }, { onConflict: "bar_id" });
+        if (e2) { console.error("upsert ok error", bar.id, e2); failed++; continue; }
         succeeded++;
       } catch (e) {
         await supabase.from("bar_places_runs").upsert({
