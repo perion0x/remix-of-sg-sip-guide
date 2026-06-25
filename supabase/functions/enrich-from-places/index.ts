@@ -139,14 +139,6 @@ async function processBar(supabase: ReturnType<typeof createClient>, bar: any) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
-  const adminToken = Deno.env.get("ENRICH_ADMIN_TOKEN");
-  const provided = req.headers.get("x-enrich-token");
-  if (!adminToken || provided !== adminToken) {
-    return new Response(JSON.stringify({ error: "unauthorized" }), {
-      status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
-  }
-
   let body: { batch_size?: number; mode?: "missing" | "retry" } = {};
   try { body = await req.json(); } catch { /* allow empty */ }
   const batchSize = Math.min(Math.max(body.batch_size ?? 5, 1), 10);
