@@ -29,6 +29,7 @@ const SearchFilters = () => {
 
       const sorted = Object.entries(counts)
         .map(([name, count]) => ({ name, count }))
+        .filter((c) => c.count >= 10)
         .sort((a, b) => b.count - a.count);
 
       return { categories: sorted, total };
