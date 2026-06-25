@@ -103,10 +103,10 @@ async function processBar(supabase: ReturnType<typeof createClient>, bar: any) {
         contentType: photo.contentType, upsert: false,
       });
       if (!upErr) {
-        const { data: pub } = supabase.storage.from(BUCKET).getPublicUrl(path);
-        if (pub?.publicUrl) {
-          imagePublicUrl = pub.publicUrl;
-          updates.image_url = pub.publicUrl;
+        const { data: signed } = await supabase.storage.from(BUCKET).createSignedUrl(path, 60 * 60 * 24 * 365);
+        if (signed?.signedUrl) {
+          imagePublicUrl = signed.signedUrl;
+          updates.image_url = signed.signedUrl;
           got.image = true;
           await supabase.from("bar_images").insert({
             bar_id: bar.id, storage_path: path, source_url: "google-places",
@@ -138,14 +138,6 @@ async function processBar(supabase: ReturnType<typeof createClient>, bar: any) {
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
-
-  const adminToken = Deno.env.get("ENRICH_ADMIN_TOKEN");
-  const provided = req.headers.get("x-enrich-token");
-  if (!adminToken || provided !== adminToken) {
-    return new Response(JSON.stringify({ error: "unauthorized" }), {
-      status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
-  }
 
   let body: { batch_size?: number; mode?: "missing" | "retry" } = {};
   try { body = await req.json(); } catch { /* allow empty */ }
