@@ -103,10 +103,10 @@ async function processBar(supabase: ReturnType<typeof createClient>, bar: any) {
         contentType: photo.contentType, upsert: false,
       });
       if (!upErr) {
-        const { data: pub } = supabase.storage.from(BUCKET).getPublicUrl(path);
-        if (pub?.publicUrl) {
-          imagePublicUrl = pub.publicUrl;
-          updates.image_url = pub.publicUrl;
+        const { data: signed } = await supabase.storage.from(BUCKET).createSignedUrl(path, 60 * 60 * 24 * 365);
+        if (signed?.signedUrl) {
+          imagePublicUrl = signed.signedUrl;
+          updates.image_url = signed.signedUrl;
           got.image = true;
           await supabase.from("bar_images").insert({
             bar_id: bar.id, storage_path: path, source_url: "google-places",
