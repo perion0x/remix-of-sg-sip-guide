@@ -10,7 +10,7 @@ export function useBarRatings(barIds: string[] | undefined) {
     enabled: !!barIds && barIds.length > 0,
     queryFn: async () => {
       const { data } = await supabase
-        .from("bar_places_runs")
+        .from("bar_places_public" as any)
         .select("bar_id, rating, rating_count")
         .in("bar_id", barIds!);
       const map = new Map<string, BarRating>();
@@ -33,7 +33,7 @@ export function useAllRatings() {
       // paginate through everything (~503 rows)
       while (true) {
         const { data, error } = await supabase
-          .from("bar_places_runs")
+          .from("bar_places_public" as any)
           .select("bar_id, rating, rating_count")
           .range(from, from + pageSize - 1);
         if (error) throw error;
