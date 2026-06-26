@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import heroVideo from "@/assets/hero-bar-video.mp4";
+import heroVideo from "@/assets/hero-bar-video.mp4.asset.json";
+import heroPoster from "@/assets/hero-poster.jpg.asset.json";
 
 const HeroSection = () => {
   return (
@@ -11,10 +12,11 @@ const HeroSection = () => {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster={heroPoster.url}
         className="absolute inset-0 w-full h-full object-cover"
       >
-        <source src={heroVideo} type="video/mp4" />
+        <source src={heroVideo.url} type="video/mp4" />
       </video>
 
       {/* Dark overlay for text readability */}
