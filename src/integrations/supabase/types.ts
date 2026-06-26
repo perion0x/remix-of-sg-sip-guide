@@ -315,7 +315,51 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      bar_places_public: {
+        Row: {
+          bar_id: string | null
+          got_hours: boolean | null
+          got_image: boolean | null
+          got_phone: boolean | null
+          got_website: boolean | null
+          lat: number | null
+          lng: number | null
+          rating: number | null
+          rating_count: number | null
+          reviews_fetched_at: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          bar_id?: string | null
+          got_hours?: boolean | null
+          got_image?: boolean | null
+          got_phone?: boolean | null
+          got_website?: boolean | null
+          lat?: number | null
+          lng?: number | null
+          rating?: number | null
+          rating_count?: number | null
+          reviews_fetched_at?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          bar_id?: string | null
+          got_hours?: boolean | null
+          got_image?: boolean | null
+          got_phone?: boolean | null
+          got_website?: boolean | null
+          lat?: number | null
+          lng?: number | null
+          rating?: number | null
+          rating_count?: number | null
+          reviews_fetched_at?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       get_bar_stats: { Args: never; Returns: Json }

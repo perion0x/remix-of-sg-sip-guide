@@ -9,12 +9,12 @@ export function useBarRatings(barIds: string[] | undefined) {
     queryKey: ["bar-ratings", key],
     enabled: !!barIds && barIds.length > 0,
     queryFn: async () => {
-      const { data } = await supabase
-        .from("bar_places_runs")
+      const { data } = await (supabase as any)
+        .from("bar_places_public" as any)
         .select("bar_id, rating, rating_count")
         .in("bar_id", barIds!);
       const map = new Map<string, BarRating>();
-      for (const r of data ?? []) {
+      for (const r of (data ?? []) as any[]) {
         map.set(r.bar_id, { rating: r.rating, rating_count: r.rating_count });
       }
       return map;
@@ -32,12 +32,12 @@ export function useAllRatings() {
       let from = 0;
       // paginate through everything (~503 rows)
       while (true) {
-        const { data, error } = await supabase
-          .from("bar_places_runs")
+        const { data, error } = await (supabase as any)
+          .from("bar_places_public" as any)
           .select("bar_id, rating, rating_count")
           .range(from, from + pageSize - 1);
         if (error) throw error;
-        for (const r of data ?? []) {
+        for (const r of (data ?? []) as any[]) {
           map.set(r.bar_id, { rating: r.rating, rating_count: r.rating_count });
         }
         if (!data || data.length < pageSize) break;
