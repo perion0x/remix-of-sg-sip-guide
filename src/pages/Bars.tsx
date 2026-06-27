@@ -163,32 +163,33 @@ const Bars = () => {
                 <button
                   key={s.v}
                   onClick={() => updateParam("sort", s.v)}
-                  className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                  className={`bar-filter-chip ${
                     sort === s.v ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
                   }`}
                 >
-                  {s.label}
+                  <span>{s.label}</span>
                 </button>
               ))}
               <span className="w-px h-5 bg-border mx-2" />
               <span className="text-xs uppercase tracking-wider text-muted-foreground mr-1">Area</span>
               <button
                 onClick={() => updateParam("area", "all")}
-                className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                className={`bar-filter-chip ${
                   activeArea === "all" ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
                 }`}
               >
-                All areas
+                <span>All areas</span>
               </button>
               {AREAS.map((a) => (
                 <Link
                   key={a.slug}
                   to={`/bars/area/${a.slug}`}
-                  className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-colors ${
+                  title={a.name}
+                  className={`bar-filter-chip ${
                     activeArea === a.slug ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
                   }`}
                 >
-                  {a.name}
+                  <span>{a.name}</span>
                 </Link>
               ))}
             </div>
@@ -197,25 +198,26 @@ const Bars = () => {
             <div className="flex flex-wrap gap-2 mb-10">
               <button
                 onClick={() => setFilter("all")}
-                className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200 ${
+                className={`bar-filter-chip ${
                   activeCategory === "all"
                     ? "bg-accent text-accent-foreground border-accent shadow-gold"
                     : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
                 }`}
               >
-                All
+                <span>All</span>
               </button>
               {categories?.map((cat) => (
                 <button
                   key={cat.name}
                   onClick={() => setFilter(cat.name)}
-                  className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-200 ${
+                  title={`${cat.name} (${cat.count})`}
+                  className={`bar-filter-chip ${
                     activeCategory === cat.name
                       ? "bg-accent text-accent-foreground border-accent shadow-gold"
                       : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
                   }`}
                 >
-                  {cat.name} ({cat.count})
+                  <span>{cat.name} ({cat.count})</span>
                 </button>
               ))}
             </div>
