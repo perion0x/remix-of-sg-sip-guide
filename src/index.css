@@ -95,6 +95,14 @@
     @apply block w-full truncate;
   }
 
+  .bar-filter-chip {
+    @apply inline-flex h-10 w-36 items-center justify-center overflow-hidden rounded-md border px-3 text-center text-xs font-medium leading-none whitespace-nowrap transition-colors;
+  }
+
+  .bar-filter-chip > span {
+    @apply block w-full truncate;
+  }
+
   .bar-card {
     @apply bg-card rounded-xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 hover:-translate-y-1;
   }
