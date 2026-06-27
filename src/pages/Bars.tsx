@@ -7,7 +7,7 @@ import { MapPin, Clock, Award, ChevronLeft, ChevronRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AREAS, getAreaSlug, getOpenStatus } from "@/lib/bar-utils";
+import { getAreaSlug, getOpenStatus } from "@/lib/bar-utils";
 import { useAllRatings } from "@/hooks/useBarRatings";
 import { RatingBadge, OpenBadge } from "@/components/RatingBadge";
 
@@ -151,48 +151,6 @@ const Bars = () => {
             <p className="text-muted-foreground mb-8">
               Explore {barsResult?.total ?? "—"} bars across Singapore
             </p>
-
-            {/* Sort + Area row */}
-            <div className="flex flex-wrap gap-2 items-center mb-4">
-              <span className="text-xs uppercase tracking-wider text-muted-foreground mr-1">Sort</span>
-              {[
-                { v: "name", label: "A–Z" },
-                { v: "rating", label: "Top rated" },
-                { v: "reviews", label: "Most reviewed" },
-              ].map((s) => (
-                <button
-                  key={s.v}
-                  onClick={() => updateParam("sort", s.v)}
-                  className={`bar-filter-chip ${
-                    sort === s.v ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
-                  }`}
-                >
-                  <span>{s.label}</span>
-                </button>
-              ))}
-              <span className="w-px h-5 bg-border mx-2" />
-              <span className="text-xs uppercase tracking-wider text-muted-foreground mr-1">Area</span>
-              <button
-                onClick={() => updateParam("area", "all")}
-                className={`bar-filter-chip ${
-                  activeArea === "all" ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
-                }`}
-              >
-                <span>All areas</span>
-              </button>
-              {AREAS.map((a) => (
-                <Link
-                  key={a.slug}
-                  to={`/bars/area/${a.slug}`}
-                  title={a.name}
-                  className={`bar-filter-chip ${
-                    activeArea === a.slug ? "bg-accent text-accent-foreground border-accent" : "bg-card text-muted-foreground border-border hover:border-accent hover:text-accent"
-                  }`}
-                >
-                  <span>{a.name}</span>
-                </Link>
-              ))}
-            </div>
 
             {/* Category filter pills */}
             <div className="flex flex-wrap gap-2 mb-10">
