@@ -1,16 +1,9 @@
-import { Menu, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import logoImage from "@/assets/sg-bars-logo.png";
-const navItems = [
-  { label: "Bars", to: "/bars" },
-  { label: "Rankings", to: "#" },
-  { label: "Neighborhoods", to: "#" },
-];
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showBanner, setShowBanner] = useState(true);
 
   return (
