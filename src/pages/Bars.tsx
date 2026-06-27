@@ -257,8 +257,8 @@ const Bars = () => {
                           </div>
                         )}
                         {bar.category && (
-                          <span className="absolute top-3 left-3 inline-flex items-center px-2.5 py-1 rounded-full bg-accent text-accent-foreground text-[11px] font-semibold tracking-wide whitespace-nowrap">
-                            {bar.category}
+                          <span className="bar-category-badge absolute top-3 left-3">
+                            <span>{bar.category}</span>
                           </span>
                         )}
                         {status && (
