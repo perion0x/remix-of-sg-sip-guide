@@ -87,6 +87,14 @@
     @apply inline-flex items-center justify-center w-8 h-8 rounded-full bg-accent text-accent-foreground font-semibold text-sm;
   }
 
+  .bar-category-badge {
+    @apply inline-flex h-6 w-32 items-center justify-center overflow-hidden rounded-full bg-accent px-2.5 text-center text-[11px] font-semibold leading-none text-accent-foreground whitespace-nowrap;
+  }
+
+  .bar-category-badge > span {
+    @apply block w-full truncate;
+  }
+
   .bar-card {
     @apply bg-card rounded-xl overflow-hidden shadow-card hover:shadow-elegant transition-all duration-500 hover:-translate-y-1;
   }
