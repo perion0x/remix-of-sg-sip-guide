@@ -11,9 +11,39 @@ const navItems = [
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showBanner, setShowBanner] = useState(true);
 
   return (
     <>
+      {/* Promo banner */}
+      <AnimatePresence>
+        {showBanner && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="relative bg-accent text-center overflow-hidden"
+          >
+            <div className="py-2 px-4">
+              <p className="text-xs font-medium text-accent-foreground tracking-wide">
+                Discover Singapore's award-winning cocktail bars.{" "}
+                <Link to="/bars" className="underline underline-offset-2 hover:opacity-80">
+                  Explore now →
+                </Link>
+              </p>
+              <button
+                onClick={() => setShowBanner(false)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-accent-foreground/60 hover:text-accent-foreground transition-colors"
+                aria-label="Dismiss banner"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <header className="sticky top-0 z-50 bg-background/60 backdrop-blur-2xl border-b border-border/30">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
